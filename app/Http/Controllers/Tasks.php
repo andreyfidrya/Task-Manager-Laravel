@@ -21,7 +21,7 @@ class Tasks extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class Tasks extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'clientname' => 'required|min:3',
+            'task' => 'required|min:3'            
+        ]);
+    
+        $data = $request->only(['clientname', 'task', 'budget', 'performance', 'duedate', 'author']);
+        Task::create($data);
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -43,24 +50,37 @@ class Tasks extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'clientname' => 'required|min:3',
+            'task' => 'required|min:3'            
+        ]);
+
+        $task = Task::findOrFail($id);
+        $data = $request->only(['clientname', 'task', 'budget', 'performance', 'duedate', 'author']);
+        $task->update($data);
+        return redirect()->route('tasks.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->route('tasks.index');
     }
+
+   
 }

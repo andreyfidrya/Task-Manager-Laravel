@@ -37,11 +37,16 @@
   <td>{{ $task->duedate }}</td> 
   <td>{{ $task->author }}</td> 
   <td>
-  <a href="" class="btn btn-sm btn-primary">Edit</a>
-  <a href="" class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->clientname }}')">Delete</a>
+  <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+  <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
+    @csrf
+    @method('DELETE')
+    <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->clientname }}')">Delete</button>
+  </form>  
   </td>    
 </tr>
 @endforeach
+
 
 </tbody>
 </table>
