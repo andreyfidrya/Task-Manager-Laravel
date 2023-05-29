@@ -27,7 +27,6 @@
 </tr>
 </thead>
 <tbody>
-
 @foreach($tasks as $task)
 <tr>
   <td>{{ $task->clientname }}</td>
@@ -47,10 +46,7 @@
 </tr>
 @endforeach
 
-
 </tbody>
 </table>
-
-
 </body>
 </html>
