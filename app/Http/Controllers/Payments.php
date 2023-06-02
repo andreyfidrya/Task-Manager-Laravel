@@ -45,44 +45,41 @@ class Payments extends Controller
     {
         
 // Adding a payment if Due date is provided.  
-        $paymentname = $request->paymentname;
-        $amount = $request->amount;
-                
+                        
         if($request->duedate !== null)
         {
-        $duedate = $request->duedate;
+        $data = $request->only(['payment', 'amount', 'duedate']);
         
+        $duedate = $request->duedate;
         $today = date("Y-m-d");
         $daytime1 = date_create($today);
         $daytime2 = date_create($duedate);
         $daysdiff = date_diff($daytime1, $daytime2); 
-        $daysleft = $daysdiff->format('%a');    
+        $daysleft = $daysdiff->format('%a');
+
+        $data['daysleft'] = $daysleft;        
+
+        Payment::create($data);
+        return redirect()->route('payments.index');
         
-        $p = new Payment();
-        $p->payment = $paymentname;
-        $p->amount = $amount;
-        $p->duedate = $duedate;
-        $p->daysleft = $daysleft;
-        $p->save();
         }
 
 // Adding a payment if Daysleft is provided.
         if($request->duedate === null)
         {
-        $daysleft = $request->daysleft; 
-        
+
+        $data = $request->only(['payment', 'amount', 'daysleft']);
+
+        $daysleft = $request->daysleft;         
         $today = date("Y-m-d");
         $date=date_create("$today");
         $duedate = date_add($date, date_interval_create_from_date_string("$daysleft days"));
+
+        $data['duedate'] = $duedate;
         
-        $p = new Payment();
-        $p->payment = $paymentname;
-        $p->amount = $amount;
-        $p->duedate = $duedate;
-        $p->daysleft = $daysleft;
-        $p->save();        
-        }
-        return redirect()->route('payments.index');
+        Payment::create($data);
+        return redirect()->route('payments.index');        
+        }        
     }
 
     /**
@@ -96,18 +93,19 @@ class Payments extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Payment $payment)
+    public function edit($id)
     {
-        //
+        $payment = Payment::findOrFail($id);
+        return view('payments.edit', compact('payment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, $id)
     {
 // Updating a payment if Due date is provided.  
-        $paymentname = $request->paymentname;
+        $payment = $request->payment;
         $amount = $request->amount;
                 
         if($request->duedate !== null)
@@ -120,8 +118,8 @@ class Payments extends Controller
         $daysdiff = date_diff($daytime1, $daytime2); 
         $daysleft = $daysdiff->format('%a');    
         
-        $p = new Payment();
-        $p->payment = $paymentname;
+        $p = Payment::find($request->id);           
+        $p->payment = $payment;
         $p->amount = $amount;
         $p->duedate = $duedate;
         $p->daysleft = $daysleft;
@@ -138,7 +136,7 @@ class Payments extends Controller
         $duedate = date_add($date, date_interval_create_from_date_string("$daysleft days"));
         
         $p = new Payment();
-        $p->payment = $paymentname;
+        $p->payment = $payment;
         $p->amount = $amount;
         $p->duedate = $duedate;
         $p->daysleft = $daysleft;

@@ -32,7 +32,7 @@
       <td>{{ $payment->duedate }}</td>
       <td>{{ $payment->daysleft }}</td>
       <td>
-      <a href="" class="btn btn-sm btn-primary">Edit</a>
+      <a href="{{ route('payments.edit', [ $payment->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
       <form method="post" action="{{ route('payments.destroy', [ $payment->id ]) }}">
           @csrf
           @method('DELETE')
