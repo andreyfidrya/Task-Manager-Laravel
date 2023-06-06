@@ -13,9 +13,14 @@ class Payments extends Controller
     public function index()
     {
         $payments = Payment::orderBy("daysleft", "asc")->get();
+        
 // Refreshing today's date
         foreach($payments as $payment)
         {
+        $id = $payment->id;
+        $paymentname = $payment->payment;
+        $amount = $payment->amount;        
+
         $today = date("Y-m-d");
         $duedate = $payment->duedate;
 // Re-calculating daysleft depending on today's date        
@@ -25,8 +30,16 @@ class Payments extends Controller
         $daysleft = $daysdiff->format('%a');
         
         $payment->daysleft = $daysleft;
+// Updating the database
+        $payment = Payment::find($id);
+        $payment->payment = $paymentname;
+        $payment->amount = $amount;    
+        $payment->duedate = $duedate;    
+        $payment->daysleft = $daysleft;
+        $payment->save();    
+
         }
-        
+          
         return view('payments.index', compact('payments'));
     }
 
@@ -105,44 +118,40 @@ class Payments extends Controller
     public function update(Request $request, $id)
     {
 // Updating a payment if Due date is provided.  
-        $payment = $request->payment;
-        $amount = $request->amount;
-                
-        if($request->duedate !== null)
-        {
-        $duedate = $request->duedate;
-        
-        $today = date("Y-m-d");
-        $daytime1 = date_create($today);
-        $daytime2 = date_create($duedate);
-        $daysdiff = date_diff($daytime1, $daytime2); 
-        $daysleft = $daysdiff->format('%a');    
-        
-        $p = Payment::find($request->id);           
-        $p->payment = $payment;
-        $p->amount = $amount;
-        $p->duedate = $duedate;
-        $p->daysleft = $daysleft;
-        $p->save();
-        }
+    if($request->duedate !== null)
+    {
+    $data = $request->only(['payment', 'amount', 'duedate']);
+
+    $duedate = $request->duedate;
+    $today = date("Y-m-d");
+    $daytime1 = date_create($today);
+    $daytime2 = date_create($duedate);
+    $daysdiff = date_diff($daytime1, $daytime2); 
+    $daysleft = $daysdiff->format('%a');
+
+    $data['daysleft'] = $daysleft;        
+
+    Payment::findOrFail($id)->update($data);
+    return redirect()->route('payments.index');
+
+    }
 
 // Updating a payment if Daysleft is provided.
-        if($request->duedate === null)
-        {
-        $daysleft = $request->daysleft; 
-        
-        $today = date("Y-m-d");
-        $date=date_create("$today");
-        $duedate = date_add($date, date_interval_create_from_date_string("$daysleft days"));
-        
-        $p = new Payment();
-        $p->payment = $payment;
-        $p->amount = $amount;
-        $p->duedate = $duedate;
-        $p->daysleft = $daysleft;
-        $p->save();        
-        }
-        return redirect()->route('payments.index');
+    if($request->duedate === null)
+    {
+
+    $data = $request->only(['payment', 'amount', 'daysleft']);
+
+    $daysleft = $request->daysleft;         
+    $today = date("Y-m-d");
+    $date=date_create("$today");
+    $duedate = date_add($date, date_interval_create_from_date_string("$daysleft days"));
+
+    $data['duedate'] = $duedate;
+
+    Payment::findOrFail($id)->update($data);
+    return redirect()->route('payments.index');        
+    }    
     }
 
     /**
