@@ -1,8 +1,9 @@
 <x-layouts.base title="Tasks" header="Edit a Task">
-    <form method="post" action="{{ route('tasks.update', [ $task->id ]) }}">
+  @bind($task)
+    <x-form method="post" action="{{ route('tasks.update', [ $task->id ]) }}">
         @method('PUT')
-        @include('tasks.tasks-fields-form')   
+        @include('tasks.form-fields')   
       <button class="btn btn-primary">Update a Task</button>
-    </form>
+    </x-form>
 <b><a href="{{ route('tasks.index') }}">Go back to Tasks Page</a></b>
 </x-layouts.base>

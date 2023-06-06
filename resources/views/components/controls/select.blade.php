@@ -29,9 +29,8 @@ $selectedValue = $oldExists ? $old : ( $hasItem ? $item[$name] : '');
     id="{{ $id }}" 
     name="{{ $name }}" 
 >   
-    <option selected>Select an author:</option>
     @foreach($options as $value => $text)
-        <option>{{ $text }}</option>
+        <option value="{{ $value }}" @selected($selectedValue == $value)>{{ $text }}</option>
     @endforeach
 </select>
 @error($name)
