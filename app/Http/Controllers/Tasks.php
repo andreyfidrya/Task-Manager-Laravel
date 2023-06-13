@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\Tasks\Save as SaveRequest;
 
 class Tasks extends Controller
 {
@@ -27,13 +27,8 @@ class Tasks extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        $request->validate([
-            'clientname' => 'required|min:3',
-            'task' => 'required|min:3'            
-        ]);
-    
         $data = $request->only(['clientname', 'task', 'budget', 'performance', 'duedate', 'author']);
         Task::create($data);
         return redirect()->route('tasks.index');
@@ -59,13 +54,8 @@ class Tasks extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(SaveRequest $request, $id)
     {
-        $request->validate([
-            'clientname' => 'required|min:3',
-            'task' => 'required|min:3'            
-        ]);
-
         $task = Task::findOrFail($id);
         $data = $request->only(['clientname', 'task', 'budget', 'performance', 'duedate', 'author']);
         $task->update($data);

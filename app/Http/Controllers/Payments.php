@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use Illuminate\Http\Request;
+use App\Http\Requests\Payments\Save as SaveRequest;
 
 class Payments extends Controller
 {
@@ -54,9 +54,9 @@ class Payments extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        
+           
 // Adding a payment if Due date is provided.  
                         
         if($request->duedate !== null)
@@ -115,8 +115,12 @@ class Payments extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(SaveRequest $request, $id)
     {
+        $request->validate([
+            'payment' => 'required|min:3',
+            'amount' => 'required|int'            
+        ]);    
 // Updating a payment if Due date is provided.  
     if($request->duedate !== null)
     {
