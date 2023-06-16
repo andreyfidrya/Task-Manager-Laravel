@@ -1,4 +1,4 @@
-<x-layouts.base title="Tasks" header="Add a New Task">
+<x-layouts.base title="Add a New Task" header="Add a New Task">
     <x-form method="post" action="{{ route('tasks.store') }}">
     @include('tasks.form-fields')   
       <button class="btn btn-primary">Add a Task</button>
