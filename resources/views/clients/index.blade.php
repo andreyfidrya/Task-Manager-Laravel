@@ -1,0 +1,41 @@
+<x-layouts.base title="Tasks" header="Tasks">
+
+<p>
+<a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
+</p>
+
+<table class="table">
+<thead>
+<tr>
+  <th scope="col">Client Name</th>
+  <th scope="col">Task</th>
+  <th scope="col">Budget</th>
+  <th scope="col">Performance</th>
+  <th scope="col">Due date</th>
+  <th scope="col">Author</th>
+  <th scope="col">Action</th>       
+</tr>
+</thead>
+<tbody>
+@foreach($tasks as $task)
+<tr>
+  <td>{{ $task->clientname }}</td>
+  <td>{{ $task->task }}</td> 
+  <td>{{ $task->budget }}</td>  
+  <td>{{ $task->performance }}</td> 
+  <td>{{ $task->duedate }}</td> 
+  <td>{{ $task->author }}</td> 
+  <td>
+  <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+  <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
+    @csrf
+    @method('DELETE')
+    <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->clientname }}')">Delete</button>
+  </form>  
+  </td>    
+</tr>
+@endforeach
+
+</tbody>
+</table>
+</x-layouts.base>

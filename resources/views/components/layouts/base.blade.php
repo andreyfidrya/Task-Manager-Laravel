@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 
-    <title>{{ $title }}</title>    
+    <title>{{ $title }}</title>       
 </head>
 <body>
 
@@ -38,17 +38,18 @@
         @endif
         <div class="container">
             <div class="row">
-                <div class="col col-12 col-md-3">
+                <div class="col col-12 col-md-2">
                     <ul>
                         <li>
-                            <x-navs.link route="tasks.index">Tasks</x-navs.link>
+                            <x-navs.link route="tasks.index">Tasks</x-navs.link>      
                         </li>
+                        <!-- <x-navs.link route="tasks.index">Clients</x-navs.link> -->
                         <li>
                             <x-navs.link route="payments.index">Payments</x-navs.link>
                         </li>
                     </ul>
                 </div>
-                <main class="col col-12 col-md-9">
+                <main class="col col-12 col-md-10">
                     {{ $slot }}
                 </main>
             </div>
