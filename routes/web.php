@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Tasks as TaskController;
+use App\Http\Controllers\Clients as ClientController;
 use App\Http\Controllers\Payments as PaymentController;
 
 /*
@@ -20,4 +21,5 @@ Route::get('/', function () {
 });
 
 Route::resource('tasks', TaskController::class);
+Route::resource('clients', ClientController::class);
 Route::resource('payments', PaymentController::class);

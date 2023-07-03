@@ -43,7 +43,7 @@
                         <li>
                             <x-navs.link route="tasks.index">Tasks</x-navs.link>      
                         </li>
-                        <!-- <x-navs.link route="tasks.index">Clients</x-navs.link> -->
+                        <x-navs.link route="clients.index">Clients</x-navs.link> 
                         <li>
                             <x-navs.link route="payments.index">Payments</x-navs.link>
                         </li>

@@ -26,6 +26,7 @@
   <td>{{ $task->duedate }}</td> 
   <td>{{ $task->author }}</td> 
   <td>
+  <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
   <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
   <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
     @csrf

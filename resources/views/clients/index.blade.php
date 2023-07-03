@@ -1,36 +1,29 @@
-<x-layouts.base title="Tasks" header="Tasks">
+<x-layouts.base title="Clients" header="Clients">
 
 <p>
-<a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
+<a href="{{ route('clients.create') }}" class="btn btn-success">Add a Client</a>
 </p>
 
 <table class="table">
 <thead>
 <tr>
   <th scope="col">Client Name</th>
-  <th scope="col">Task</th>
-  <th scope="col">Budget</th>
-  <th scope="col">Performance</th>
-  <th scope="col">Due date</th>
-  <th scope="col">Author</th>
-  <th scope="col">Action</th>       
+  <th scope="col">Client Slug</th>
+  <th scope="col">Client Info</th> 
 </tr>
 </thead>
 <tbody>
-@foreach($tasks as $task)
+@foreach($clients as $client)
 <tr>
-  <td>{{ $task->clientname }}</td>
-  <td>{{ $task->task }}</td> 
-  <td>{{ $task->budget }}</td>  
-  <td>{{ $task->performance }}</td> 
-  <td>{{ $task->duedate }}</td> 
-  <td>{{ $task->author }}</td> 
-  <td>
-  <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
-  <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
+  <td>{{ $client->clientname }}</td>
+  <td>{{ $client->clientslug }}</td> 
+  <td>{{ $client->clientinfo }}</td>  
+<td>
+  <a href="{{ route('clients.edit', [ $client->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+  <form method="post" action="{{ route('clients.destroy', [ $client->id ]) }}">
     @csrf
     @method('DELETE')
-    <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->clientname }}')">Delete</button>
+    <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the client {{ $client->clientname }} from the database?')">Delete</button>
   </form>  
   </td>    
 </tr>
