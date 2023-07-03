@@ -25,9 +25,10 @@ class Clients extends Controller
         return redirect()->route('clients.index');
     }
 
-    public function show(string $id)
+    public function show($slug)
     {
-        //
+        $client = Client::where('clientslug', $slug)->firstOrFail();
+        return view('clients.show', compact('client'));
     }
 
     public function edit(string $id)

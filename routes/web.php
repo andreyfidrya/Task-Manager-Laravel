@@ -23,3 +23,5 @@ Route::get('/', function () {
 Route::resource('tasks', TaskController::class);
 Route::resource('clients', ClientController::class);
 Route::resource('payments', PaymentController::class);
+
+Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
