@@ -22,7 +22,7 @@ class Save extends FormRequest
     public function rules(): array
     {
         return [
-            'clientname' => 'required|min:3',
+            'clientname' => 'required',
             'task' => 'required|min:3'
         ];
     }

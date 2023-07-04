@@ -19,6 +19,7 @@
   <td>{{ $client->clientslug }}</td> 
   <td>{{ $client->clientinfo }}</td>  
 <td>
+  <a href="{{ route('clients.show', [ $client->clientslug ]) }}" class="btn btn-info">View</a>
   <a href="{{ route('clients.edit', [ $client->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
   <form method="post" action="{{ route('clients.destroy', [ $client->id ]) }}">
     @csrf

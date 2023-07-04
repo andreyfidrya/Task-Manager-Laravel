@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Client;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 
 class Tasks extends Controller
@@ -21,7 +22,7 @@ class Tasks extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        return view('tasks.create');        
     }
 
     /**
@@ -49,7 +50,7 @@ class Tasks extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit', compact('task'));        
     }
 
     /**

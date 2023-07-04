@@ -9,5 +9,9 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];    
+    protected $guarded = [];
+    
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }
