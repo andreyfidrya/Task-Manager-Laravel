@@ -71,7 +71,7 @@ class Tasks extends Controller
      */
     public function destroy($id)
     {
-        $task = Client::findOrFail($id);
+        $task = Task::findOrFail($id);
         $task->delete();
         return redirect()->route('tasks.index');
     }

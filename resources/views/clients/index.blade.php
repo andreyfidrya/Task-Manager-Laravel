@@ -9,7 +9,8 @@
 <tr>
   <th scope="col">Client Name</th>
   <th scope="col">Client Slug</th>
-  <th scope="col">Client Info</th> 
+  <th scope="col">Client Info</th>
+  <th scope="col">Action</th> 
 </tr>
 </thead>
 <tbody>
