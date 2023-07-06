@@ -19,7 +19,7 @@
 <tbody>
 @foreach($tasks as $task)
 <tr>
-  <td>{{ $task->clientname }}</td>
+  <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
   <td>{{ $task->task }}</td> 
   <td>{{ $task->budget }}</td>  
   <td>{{ $task->performance }}</td> 

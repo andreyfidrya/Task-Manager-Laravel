@@ -1,6 +1,6 @@
-<div class="mb-3">    
-    <x-form-input name="clientname" label="Client Name"/> 
-</div> 
+<div class="mb-3">
+    <x-form-select name="client_id" label="Client" :options="$clients" placeholder="Select the client" />
+</div>
 <div class="mb-3">    
     <x-form-input name="task" label="Task"/> 
 </div>

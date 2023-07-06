@@ -1,6 +1,6 @@
 <x-layouts.base title="View a Task" header="View a Task">
 
-<strong>Client Name: </strong>{{ $task->clientname }}
+<b>Client Name: </b> {{ $task->client->name }}
 <hr>
 <b>Task: </b>{{ $task->task }}<br>
 <b>Budget: </b>{{ $task->budget }}<br>

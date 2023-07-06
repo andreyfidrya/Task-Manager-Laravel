@@ -22,7 +22,8 @@ class Tasks extends Controller
      */
     public function create()
     {
-        return view('tasks.create');        
+        $clients = Client::orderBy('name')->pluck('name', 'id');
+        return view('tasks.create', compact('clients'));        
     }
 
     /**
@@ -30,7 +31,7 @@ class Tasks extends Controller
      */
     public function store(SaveRequest $request)
     {
-        $data = $request->only(['clientname', 'task', 'budget', 'performance', 'duedate', 'author']);
+        $data = $request->only(['client_id', 'task', 'budget', 'performance', 'duedate', 'author']);
         Task::create($data);
         return redirect()->route('tasks.index');
     }
@@ -50,7 +51,8 @@ class Tasks extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task'));        
+        $clients = Client::orderBy('name')->pluck('name', 'id');
+        return view('tasks.edit', compact('task', 'clients'));        
     }
 
     /**
@@ -59,7 +61,7 @@ class Tasks extends Controller
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['clientname', 'task', 'budget', 'performance', 'duedate', 'author']);
+        $data = $request->only(['task', 'budget', 'performance', 'duedate', 'author']);
         $task->update($data);
         return redirect()->route('tasks.index');
     }
@@ -69,7 +71,7 @@ class Tasks extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Client::findOrFail($id);
         $task->delete();
         return redirect()->route('tasks.index');
     }

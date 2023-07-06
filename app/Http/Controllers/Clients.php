@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\Clients\Save as SaveRequest;
 
 class Clients extends Controller
 {
@@ -18,31 +19,37 @@ class Clients extends Controller
         return view('clients.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        $data = $request->only(['clientname', 'clientslug', 'clientinfo']);
+        $data = $request->only(['name', 'slug', 'info']);
         Client::create($data);
         return redirect()->route('clients.index');
     }
 
     public function show($slug)
     {
-        $client = Client::where('clientslug', $slug)->firstOrFail();
+        $client = Client::where('slug', $slug)->firstOrFail();
         return view('clients.show', compact('client'));
     }
 
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('clients.edit', compact('client')); 
     }
 
-    public function update(Request $request, string $id)
+    public function update(SaveRequest $request, string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $data = $request->only(['name', 'slug', 'info']);
+        $client->update($data);
+        return redirect()->route('clients.index');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $client->delete();
+        return redirect()->route('clients.index');
     }
 }

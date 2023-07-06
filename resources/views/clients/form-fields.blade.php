@@ -1,10 +1,11 @@
+@csrf
 <div class="mb-3">    
-    <x-form-input name="clientname" label="Client Name"/> 
+    <x-form-input name="name" label="Name"/> 
 </div> 
 <div class="mb-3">    
-    <x-form-input name="clientslug" label="Client Slug"/> 
+    <x-form-input name="slug" label="Slug"/> 
 </div>
 <div class="mb-3">
-    <x-form-textarea name="clientinfo" label="Client Info"/>
+    <x-form-textarea name="info" label="Info"/>
 </div>
 

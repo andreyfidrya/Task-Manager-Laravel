@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Tasks;
+namespace App\Http\Requests\Clients;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,9 +21,10 @@ class Save extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'client_id' => 'required',
-            'task' => 'required|min:3'
-        ];
+            return [
+                'name' => 'required|min:3',
+                'slug' => 'required|min:3',
+                'info' => 'required|min:3'
+            ];        
     }
 }
