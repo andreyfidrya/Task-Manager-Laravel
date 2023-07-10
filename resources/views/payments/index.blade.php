@@ -1,4 +1,4 @@
-<x-layouts.base title="Payments" header="Regular Payments">
+<x-layouts.porto title="Payments" header="Regular Payments">
 
   <p>
     <a href="{{ route('payments.create') }}" class="btn btn-success">Add a Payment</a>
@@ -35,4 +35,4 @@
 </tbody>
 </table>  
 
-</x-layouts.base>
+</x-layouts.porto>

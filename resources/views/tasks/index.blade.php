@@ -1,4 +1,4 @@
-<x-layouts.base title="Tasks" header="Tasks">
+<x-layouts.porto title="Tasks" header="Tasks">
 
 <p>
 <a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
@@ -39,4 +39,4 @@
 
 </tbody>
 </table>
-</x-layouts.base>
+</x-layouts.porto>

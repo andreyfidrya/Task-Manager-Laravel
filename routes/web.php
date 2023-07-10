@@ -25,3 +25,7 @@ Route::resource('clients', ClientController::class);
 Route::resource('payments', PaymentController::class);
 
 Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+
+Route::get('/layouts-dark-header', function () {
+    return view('layouts-dark-header');
+});

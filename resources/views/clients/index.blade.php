@@ -1,4 +1,4 @@
-<x-layouts.base title="Clients" header="Clients">
+<x-layouts.porto title="Clients" header="Clients">
 
 <p>
 <a href="{{ route('clients.create') }}" class="btn btn-success">Add a Client</a>
@@ -33,4 +33,4 @@
 
 </tbody>
 </table>
-</x-layouts.base>
+</x-layouts.porto>
