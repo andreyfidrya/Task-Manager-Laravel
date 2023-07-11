@@ -1,4 +1,4 @@
-<x-layouts.base title="Edit a client" header="Edit a Clinet">
+<x-layouts.porto title="Edit a client" header="Edit a Clinet">
   @bind($client)
     <x-form method="post" action="{{ route('clients.update', [ $client->id ]) }}">
         @method('PUT')
@@ -6,4 +6,4 @@
       <button class="btn btn-primary">Update a Client</button>
     </x-form>
 <b><a href="{{ route('clients.index') }}">Go back to Clients Page</a></b>
-</x-layouts.base>
+</x-layouts.porto>

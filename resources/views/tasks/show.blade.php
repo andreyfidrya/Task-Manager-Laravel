@@ -1,4 +1,4 @@
-<x-layouts.base title="View a Task" header="View a Task">
+<x-layouts.porto title="View a Task" header="View a Task">
 
 <b>Client Name: </b> {{ $task->client->name }}
 <hr>
@@ -15,4 +15,4 @@
     <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->client->name }}')">Delete</button>
   </form>
 <b><a href="{{ route('tasks.index') }}">Go back to Tasks Page</a></b>
-</x-layouts.base>
+</x-layouts.porto>

@@ -1,4 +1,4 @@
-<x-layouts.base title="View a Client" header="View a Client">
+<x-layouts.porto title="View a Client" header="View a Client">
 
 <b>Client Name: </b>{{ $client->name }}
 <hr>
@@ -11,4 +11,4 @@
     <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $client->name }}')">Delete</button>
   </form>
 <b><a href="{{ route('clients.index') }}">Go back to Clients Page</a></b>
-</x-layouts.base>
+</x-layouts.porto>

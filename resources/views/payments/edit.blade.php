@@ -1,4 +1,4 @@
-<x-layouts.base title="Payments" header="Edit a Payment">
+<x-layouts.porto title="Payments" header="Edit a Payment">
 
 <form method="post" action="{{ route('payments.update', [ $payment->id ]) }}">
 @method('PUT')    
@@ -7,4 +7,4 @@
 </form>
 <b><a href="{{ route('payments.index') }}">Go back to Payments Page</a></b>
 
-</x-layouts.base>
+</x-layouts.porto>
