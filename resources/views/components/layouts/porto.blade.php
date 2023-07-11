@@ -184,7 +184,7 @@
 				                        </ul>
 				                    </li>
 									<li class="nav-parent">
-				                        <a class="nav-link" href="http://task-manager-laravel/tasks">
+				                        <a class="nav-link" href="">
 				                            <i class="bx bx-cube" aria-hidden="true"></i>
 				                            <span>Email Creation Tool</span>
 				                        </a>
@@ -207,7 +207,10 @@
 				                        </ul>
 				                    </li>
 									<li class="nav-children">
-									<x-navs.link route="payments.index">Payments</x-navs.link>				                        
+									<x-navs.link route="payments.index">
+									<i class="bx bx-cube" aria-hidden="true"></i>
+				                            <span>Payments</span>
+									</x-navs.link>				                        
 				                    </li>  
 									<li class="nav-parent nav-expanded nav-active">
 				                        <a class="nav-link" href="#">
