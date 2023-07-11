@@ -1,5 +1,6 @@
 <x-layouts.porto title="Tasks" header="Tasks">
 
+
 <p>
 <a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
 </p>
@@ -22,7 +23,7 @@
   <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
   <td>{{ $task->task }}</td> 
   <td>{{ $task->budget }}</td>  
-  <td>{{ $task->performance }}</td> 
+  <td>{!! $task->performance !!}</td> 
   <td>{{ $task->duedate }}</td> 
   <td>{{ $task->author }}</td> 
   <td>

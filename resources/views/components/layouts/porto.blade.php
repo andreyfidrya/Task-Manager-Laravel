@@ -45,15 +45,21 @@
 
 		<!-- Head Libs -->
 		<script src="{{ asset('vendor/modernizr/modernizr.js') }}"></script>
+		
+		<!-- CKEditor -->
+		<script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+		
+		
 
 	</head>
 	<body>
+	
 		<section class="body">
 
 			<!-- start: header -->
 			<header class="header">
 				<div class="logo-container">
-					<a href="" class="logo">
+					<a href="/" class="logo">
 						<img src="{{ asset('img/logo.png') }}" width="75" height="35" alt="Porto Admin" />
 					</a>
 				</div>
@@ -287,7 +293,7 @@
 				                }
 				            }
 				        </script>
-
+						
 				    </div>
 					
 
@@ -368,6 +374,9 @@
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{ asset('js/theme.js') }}"></script>
 
+		<!-- Text Editor -->
+		<script src="{{ asset('js/texteditor.js') }}"></script>
+
 		<!-- Theme Custom -->
 		<script src="{{ asset('js/custom.js') }}"></script>
 
@@ -376,6 +385,18 @@
 
 		<!-- Examples -->
 		<script src="{{ asset('js/examples/examples.dashboard.js') }}"></script>
+
+		
+		
+		<script>
+		ClassicEditor
+			.create( document.querySelector( '#editor' ) )
+			.catch( error => {
+				console.error( error );
+			} );
+		</script>
+
+
 
 	</body>
 </html>

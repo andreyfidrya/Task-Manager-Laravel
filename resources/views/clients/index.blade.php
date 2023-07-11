@@ -18,7 +18,7 @@
 <tr>
   <td>{{ $client->name }}</td>
   <td>{{ $client->slug }}</td> 
-  <td>{{ $client->info }}</td>  
+  <td>{!! $client->info !!}</td>  
 <td>
   <a href="{{ route('clients.show', [ $client->slug ]) }}" class="btn btn-info">View</a>
   <a href="{{ route('clients.edit', [ $client->id ]) }}" class="btn btn-sm btn-primary">Edit</a>

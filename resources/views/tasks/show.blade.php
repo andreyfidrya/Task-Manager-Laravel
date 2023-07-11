@@ -4,7 +4,7 @@
 <hr>
 <b>Task: </b>{{ $task->task }}<br>
 <b>Budget: </b>{{ $task->budget }}<br>
-<b>Performance: </b>{{ $task->performance }}<br>
+<b>Performance: </b>{!! $task->performance !!}<br>
 <b>Due Date: </b>{{ $task->duedate }}<br>
 <b>Author: </b>{{ $task->author }}<br>
 <hr>

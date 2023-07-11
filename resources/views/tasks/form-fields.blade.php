@@ -1,3 +1,4 @@
+@csrf
 <div class="mb-3">
     <x-form-select name="client_id" label="Client" :options="$clients" placeholder="Select the client" />
 </div>
@@ -8,7 +9,7 @@
     <x-form-input name="budget" label="Budget"/> 
 </div>
 <div class="mb-3">
-    <x-form-textarea name="performance" label="Performance"/>
+    <x-form-textarea name="performance" id="editor" label="Performance"/>
 </div>
 <div class="mb-3">
     <x-form-input type="date" name="duedate" label="Due Date"/>

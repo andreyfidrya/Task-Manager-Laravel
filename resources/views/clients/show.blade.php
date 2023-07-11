@@ -2,7 +2,7 @@
 
 <b>Client Name: </b>{{ $client->name }}
 <hr>
-<b>Client Info: </b>{{ $client->info }}<br>
+<b>Client Info: </b>{!! $client->info !!}<br>
 <hr>
 <a href="{{ route('clients.edit', [ $client->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
   <form method="post" action="{{ route('clients.destroy', [ $client->id ]) }}">
