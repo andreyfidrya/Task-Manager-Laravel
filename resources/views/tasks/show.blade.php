@@ -1,6 +1,6 @@
 <x-layouts.porto title="View a Task" header="View a Task">
 
-<b>Client Name: </b> {{ $task->client->name }}
+<b>Client Name: </b> <a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a>
 <hr>
 <b>Task: </b>{{ $task->task }}<br>
 <b>Budget: </b>{{ $task->budget }}<br>
