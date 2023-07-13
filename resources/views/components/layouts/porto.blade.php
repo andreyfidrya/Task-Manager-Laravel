@@ -190,14 +190,14 @@
 				                        </ul>
 				                    </li>
 									<li class="nav-parent">
-				                        <a class="nav-link" href="">
+				                        <a class="nav-link" href="#">
 				                            <i class="bx bx-cube" aria-hidden="true"></i>
 				                            <span>Email Creation Tool</span>
 				                        </a>
 				                        <ul class="nav nav-children">
 											<li>
-				                                <a class="nav-link" href="ui-elements-typography.html">
-				                                    Email Creation
+				                                <a class="nav-link" href="/emails/">
+				                                    Email Template
 				                                </a>
 				                            </li>
 											<li>
