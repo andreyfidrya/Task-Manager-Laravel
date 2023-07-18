@@ -198,16 +198,12 @@
 												<li>
 												<x-navs.link route="emails.index">Email Template</x-navs.link>
 				                            	</li>				                            
-											<li>
-				                                <a class="nav-link" href="ui-elements-typography.html">
-				                                    Topics
-				                                </a>
-				                            </li>
-											<li>
-				                                <a class="nav-link" href="ui-elements-typography.html">
-				                                    Samples
-				                                </a>
-				                            </li> 		                            											
+												<li>
+				                                <x-navs.link route="topics.index">Topics</x-navs.link>
+												</li>
+												<li>
+												<x-navs.link route="samples.index">Samples</x-navs.link>												
+				                            	</li> 		                            											
 				                        </ul>
 				                    </li>
 									<li class="nav-children">

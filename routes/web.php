@@ -5,6 +5,8 @@ use App\Http\Controllers\Tasks as TaskController;
 use App\Http\Controllers\Clients as ClientController;
 use App\Http\Controllers\Payments as PaymentController;
 use App\Http\Controllers\Emails as EmailController;
+use App\Http\Controllers\Topics as TopicController;
+use App\Http\Controllers\Samples as SampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,9 @@ Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client
 
 Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
 Route::get('/emails/edit/', [ EmailController::class, 'edit' ]);
+
+Route::resource('topics', TopicController::class);
+Route::resource('samples', SampleController::class);
 
 Route::get('/layouts-dark-header', function () {
     return view('layouts-dark-header');
