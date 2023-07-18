@@ -27,7 +27,7 @@ Route::resource('payments', PaymentController::class);
 
 Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
 
-Route::get('/emails/', [ EmailController::class, 'index' ]);
+Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
 Route::get('/emails/edit/', [ EmailController::class, 'edit' ]);
 
 Route::get('/layouts-dark-header', function () {

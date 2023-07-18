@@ -26,7 +26,7 @@
       <form method="post" action="{{ route('payments.destroy', [ $payment->id ]) }}">
           @csrf
           @method('DELETE')
-          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the payment from {{ $payment->payment }}')">Delete</button>
+          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $payment->payment }} payment')">Delete</button>
       </form>
       </td>     
 </tr>

@@ -194,12 +194,10 @@
 				                            <i class="bx bx-cube" aria-hidden="true"></i>
 				                            <span>Email Creation Tool</span>
 				                        </a>
-				                        <ul class="nav nav-children">
-											<li>
-				                                <a class="nav-link" href="/emails/">
-				                                    Email Template
-				                                </a>
-				                            </li>
+				                        <ul class="nav nav-children">											                          
+												<li>
+												<x-navs.link route="emails.index">Email Template</x-navs.link>
+				                            	</li>				                            
 											<li>
 				                                <a class="nav-link" href="ui-elements-typography.html">
 				                                    Topics
