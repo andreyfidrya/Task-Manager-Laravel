@@ -6,7 +6,10 @@
     <x-form-input name="client" label="Client"/> 
 </div>
 <div class="mb-3">
-    <x-form-textarea name="intro" label="Intro"/>
+    <x-form-textarea name="intro" id="editor" label="Intro"/>
+</div>
+<div class="mb-3">
+    <x-form-textarea name="samples" label="Samples"/>
 </div>
 <div class="mb-3">
     <x-form-select name="topics" label="Topics" :options="['Topic 1' => 'Topic 1', 'Topic 2' => 'Topic 2']" placeholder="Select a topic"/> 
@@ -18,7 +21,7 @@
     <x-form-select name="seo" label="SEO" :options="['Yes' => 'Yes', 'No' => 'No']" placeholder="Does the job require SEO skills?"/> 
 </div>
 <div class="mb-3">
-    <x-form-textarea name="conclusion" label="Conclusion"/>
+    <x-form-textarea name="conclusion" id="editor2" label="Conclusion"/>
 </div>
 
 

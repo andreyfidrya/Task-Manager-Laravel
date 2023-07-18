@@ -9,7 +9,8 @@ class Emails extends Controller
 {
     public function index()
     {
-        return view('emails.index');
+        $emails = Email::all();
+        return view('emails.index', compact('emails'));
     }
 
     public function edit()
