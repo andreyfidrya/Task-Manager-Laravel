@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Emailtool;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Topic;
+use App\Http\Requests\Topics\Save as SaveRequest;
 
 class Topics extends Controller
 {
@@ -16,31 +17,40 @@ class Topics extends Controller
 
     public function create()
     {
-        //
+        return view('emails.topics.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        //
+        $data = $request->only(['slug', 'name']);
+        Topic::create($data);
+        return redirect()->route('topics.index');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $topic = Topic::where('slug', $slug)->firstOrFail();
+        return view('emails.topics.show', compact('topic'));
     }
 
     public function edit($id)
     {
-        //
+        $topic = Topic::findOrFail($id);
+        return view('emails.topics.edit', compact('topic'));
     }
 
-    public function update(Request $request, $id)
+    public function update(SaveRequest $request, $id)
     {
-        //
+        $topic = Topic::findOrFail($id);
+        $data = $request->only(['slug', 'name']);
+        $topic->update($data);
+        return redirect()->route('topics.index');
     }
 
     public function destroy($id)
     {
-        //
+        $topic = Topic::findOrFail($id);
+        $topic->delete();
+        return redirect()->route('topics.index');
     }
 }
