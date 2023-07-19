@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Topics;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class Save extends FormRequest
 {
@@ -19,8 +20,8 @@ class Save extends FormRequest
     public function rules(): array
     {
         return [
-            'slug' => 'required|min:3',
-            'name' => 'required|min:3'
+            'slug' => ['required', 'min:3', Rule::unique('topics')],
+            'name' => ['required', 'min:3', Rule::unique('topics')]
         ];
     }
 }
