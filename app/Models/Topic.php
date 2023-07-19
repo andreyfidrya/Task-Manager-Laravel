@@ -10,4 +10,9 @@ class Topic extends Model
     use HasFactory;
 
     protected $fillable = ['slug', 'name'];
+
+    public function samples()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

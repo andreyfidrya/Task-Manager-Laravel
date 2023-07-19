@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sample extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['url', 'title'];
+
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class);
+    }
 }
