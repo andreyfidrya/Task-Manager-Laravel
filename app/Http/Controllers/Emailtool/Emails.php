@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Emailtool;
 
+use App\Http\Controllers\Controller;
 use App\Models\Email;
 use Illuminate\Http\Request;
 

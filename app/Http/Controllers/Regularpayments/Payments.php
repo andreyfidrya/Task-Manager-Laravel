@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Regularpayments;
 
+use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Http\Requests\Payments\Save as SaveRequest;
 

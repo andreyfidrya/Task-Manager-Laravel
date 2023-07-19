@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Tasks as TaskController;
-use App\Http\Controllers\Clients as ClientController;
-use App\Http\Controllers\Payments as PaymentController;
-use App\Http\Controllers\Emails as EmailController;
-use App\Http\Controllers\Topics as TopicController;
-use App\Http\Controllers\Samples as SampleController;
+use App\Http\Controllers\Taskmanager\Tasks as TaskController;
+use App\Http\Controllers\Taskmanager\Clients as ClientController;
+use App\Http\Controllers\Regularpayments\Payments as PaymentController;
+use App\Http\Controllers\Emailtool\Emails as EmailController;
+use App\Http\Controllers\Emailtool\Topics as TopicController;
+use App\Http\Controllers\Emailtool\Samples as SampleController;
 
 /*
 |--------------------------------------------------------------------------

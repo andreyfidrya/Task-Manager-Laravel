@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Emailtool;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Sample;
+use App\Models\Topic;
 
-class Samples extends Controller
+class Topics extends Controller
 {
     public function index()
     {
-        $samples = Sample::all();
-        return view('emails.samples.index', compact('samples'));
+        $topics = Topic::all();
+        return view('emails.topics.index', compact('topics'));
     }
 
     public function create()
