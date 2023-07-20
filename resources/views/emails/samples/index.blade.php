@@ -21,7 +21,7 @@
       <form method="post" action="{{ route('samples.destroy', [ $sample->id ]) }}">
           @csrf
           @method('DELETE')
-          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $sample->name }} sample')">Delete</button>
+          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $sample->title }} sample')">Delete</button>
       </form>
       </td>     
 </tr>

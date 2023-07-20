@@ -23,17 +23,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('tasks', TaskController::class);
-Route::resource('clients', ClientController::class);
+Route::group(['prefix' => 'tm'], function () {
+    Route::resource('tasks', TaskController::class);
+    Route::resource('clients', ClientController::class);
+    Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+});
+
 Route::resource('payments', PaymentController::class);
 
-Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
-
-Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
-Route::get('/emails/edit/', [ EmailController::class, 'edit' ]);
-
-Route::resource('topics', TopicController::class);
-Route::resource('samples', SampleController::class);
+Route::group(['prefix' => 'ect'], function () {
+    Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
+    Route::get('/emails/edit/', [ EmailController::class, 'edit' ]);
+    Route::resource('topics', TopicController::class);
+    Route::resource('samples', SampleController::class);
+});
 
 Route::get('/layouts-dark-header', function () {
     return view('layouts-dark-header');

@@ -54,6 +54,6 @@ class Samples extends Controller
 
     public function destroy($id)
     {
-        //
+        
     }
 }
