@@ -13,6 +13,6 @@ class Topic extends Model
 
     public function samples()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Sample::class);
     }
 }

@@ -54,6 +54,9 @@ class Samples extends Controller
 
     public function destroy($id)
     {
-        
+        $sample = Sample::findOrFail($id);
+        $sample->topics()->detach();
+        $sample->delete();
+        return redirect()->route('samples.index');
     }
 }
