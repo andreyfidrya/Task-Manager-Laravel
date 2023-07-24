@@ -9,16 +9,13 @@
     <x-form-textarea name="intro" id="editor" label="Intro"/>
 </div>
 <div class="mb-3">
-    <x-form-textarea name="samples" label="Samples"/>
+    <x-form-select name="wordpress" label="WordPress" :options="['No' => 'No', 'Yes' => 'Yes']" placeholder="Does the job require WordPress skills?"/> 
 </div>
 <div class="mb-3">
-    <x-form-select name="topics" label="Topics" :options="['Topic 1' => 'Topic 1', 'Topic 2' => 'Topic 2']" placeholder="Select a topic"/> 
+    <x-form-select name="seo" label="SEO" :options="['No' => 'No', 'Yes' => 'Yes']" placeholder="Does the job require SEO skills?"/> 
 </div>
-<div class="mb-3">
-    <x-form-select name="wordpress" label="WordPress" :options="['Yes' => 'Yes', 'No' => 'No']" placeholder="Does the job require WordPress skills?"/> 
-</div>
-<div class="mb-3">
-    <x-form-select name="seo" label="SEO" :options="['Yes' => 'Yes', 'No' => 'No']" placeholder="Does the job require SEO skills?"/> 
+<div class="mb-3">    
+    <x-form-input name="cost" label="Cost"/> 
 </div>
 <div class="mb-3">
     <x-form-textarea name="conclusion" id="editor2" label="Conclusion"/>

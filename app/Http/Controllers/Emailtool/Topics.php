@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Emailtool;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Topic;
+use App\Models\Email;
 use App\Http\Requests\Topics\Save as SaveRequest;
 
 class Topics extends Controller
@@ -30,7 +31,8 @@ class Topics extends Controller
     public function show($slug)
     {
         $topic = Topic::where('slug', $slug)->firstOrFail();
-        return view('emails.topics.show', compact('topic'));
+        $email = Email::first();
+        return view('emails.topics.show', compact('topic', 'email'));
     }
 
     public function edit($id)

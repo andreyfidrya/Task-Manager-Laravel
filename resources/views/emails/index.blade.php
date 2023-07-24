@@ -9,15 +9,15 @@
 
 {!! $email->intro !!}<p> 
 
-{{ $email->samples }}<p>
-
 {{ $email->wordpress }}<p> 
 
-{{ $email->seo }}<p>   
+{{ $email->seo }}<p>
+    
+{{ $email->cost }}<p>
 
 {!! $email->conclusion !!}<p>
 
 @endforeach
 
-<a href="/emails/edit/" class="btn btn-primary">Customize</a>
+<a href="{{ route('emails.edit', [ $email->id ]) }}" class="btn btn-primary">Customize</a>
 </x-layouts.porto>

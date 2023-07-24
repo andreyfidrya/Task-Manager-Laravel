@@ -33,7 +33,8 @@ Route::resource('payments', PaymentController::class);
 
 Route::group(['prefix' => 'ect'], function () {
     Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
-    Route::get('/emails/edit/', [ EmailController::class, 'edit' ]);
+    Route::get('/emails/edit/{id}', [ EmailController::class, 'edit' ])->name('emails.edit');
+    Route::put('/emails/{id}', [ EmailController::class, 'update' ])->name('emails.update');
     Route::resource('topics', TopicController::class);
     Route::resource('samples', SampleController::class);
 });
