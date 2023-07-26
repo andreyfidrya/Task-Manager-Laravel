@@ -12,7 +12,7 @@ class Topics extends Controller
 {
     public function index()
     {
-        $topics = Topic::all();
+        $topics = Topic::orderBy('name')->get();
         return view('emails.topics.index', compact('topics'));
     }
 
