@@ -1,7 +1,5 @@
 <x-layouts.porto title="Emails" header="Emails">
 
-@foreach($emails as $email)
-
 <h1>{{ $email->template }}:</h1>
 <hr>
 {{ $email->spam }}<p>
@@ -16,8 +14,6 @@
 {{ $email->cost }}<p>
 
 {!! $email->conclusion !!}<p>
-
-@endforeach
 
 <a href="{{ route('emails.edit', [ $email->id ]) }}" class="btn btn-primary">Customize</a>
 </x-layouts.porto>

@@ -13,20 +13,18 @@ class Emails extends Controller
 {
     public function index()
     {
-        $emails = Email::all();               
-        return view('emails.index', compact('emails'));
+        $email = Email::first();               
+        return view('emails.index', compact('email'));
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $email = Email::findOrFail($id);
+        $email = Email::first();
         return view('emails.edit', compact('email'));
     }
 
     public function update(SaveRequest $request, $id)
     {
-        $email = Email::findOrFail($id);
-        
         $spam = $request->spam;        
         $client = $request->client;
         $intro = $request->intro;        
@@ -48,27 +46,18 @@ class Emails extends Controller
         $cost = $request->cost;
         $conclusion = $request->conclusion;
 
-        $email = Email::findOrFail($id);       
-        if ($spam === null)
-        {
-            $spam = '';               
-        } 
-        else 
-        {
-            $spam = $request->spam; 
-        }         
-        
+              
+        $email = Email::first();
 
-        $email->spam = $spam;
-        $email->client = $client;
-        $email->intro = $intro;
-
-        $email->wordpress = $wordpress;        
-        $email->seo = $seo;        
-
-        $email->cost = $cost;
-        $email->conclusion = $conclusion;
-        $email->save();
+        $email->update([
+            'spam' => $spam,
+            'client' => $client,
+            'intro' => $intro,
+            'wordpress' => $wordpress,
+            'seo' => $seo,
+            'cost' => $cost,
+            'conclusion' => $conclusion
+        ]); 
 
         return redirect()->route('emails.index');
     }

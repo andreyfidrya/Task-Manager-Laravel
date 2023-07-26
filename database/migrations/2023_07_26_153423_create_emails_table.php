@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('spam')->nullable();
             $table->string('client');
             $table->text('intro');
-            $table->text('samples');
-            $table->text('wordpress');
-            $table->text('seo');
+            $table->string('wordpress');
+            $table->string('seo');
+            $table->string('cost');
             $table->text('conclusion');
             $table->timestamps();
         });
