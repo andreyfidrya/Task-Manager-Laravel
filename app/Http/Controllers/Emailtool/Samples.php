@@ -19,7 +19,7 @@ class Samples extends Controller
     public function create()
     {
         return view('emails.samples.create', [
-            'topics' => Topic::orderByDesc('name')->pluck('name', 'id')
+            'topics' => Topic::orderBy('name')->pluck('name', 'id')
         ]);
     }
 
