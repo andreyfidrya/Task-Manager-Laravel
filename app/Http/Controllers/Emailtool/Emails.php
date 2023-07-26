@@ -58,6 +58,7 @@ class Emails extends Controller
             $spam = $request->spam; 
         }         
         
+
         $email->spam = $spam;
         $email->client = $client;
         $email->intro = $intro;

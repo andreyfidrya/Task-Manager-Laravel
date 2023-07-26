@@ -20,5 +20,5 @@ I have experience in writing content related to <b>{{ $topic->name }}</b>. Here 
     @method('DELETE')
     <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $topic->name }}')">Delete a topic</button>
   </form>
-<b><a href="{{ route('topics.index') }}">Go back to Tasks Page</a></b>
+<b><a href="{{ route('topics.index') }}">Go back to the Topics Page</a></b>
 </x-layouts.porto>
