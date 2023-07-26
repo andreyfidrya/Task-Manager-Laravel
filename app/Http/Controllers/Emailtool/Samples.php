@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Emailtool;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Samples\Save as SaveRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\Sample;
 use App\Models\Topic;
 
@@ -18,9 +19,12 @@ class Samples extends Controller
 
     public function create()
     {
+        $size = DB::table('topics')->count();        
+
         return view('emails.samples.create', [
-            'topics' => Topic::orderBy('name')->pluck('name', 'id')
-        ]);
+            'topics' => Topic::orderBy('name')->pluck('name', 'id'),                                               
+        ], compact('size'));
+        
     }
 
     public function store(SaveRequest $request)

@@ -6,5 +6,5 @@
     <x-form-input name="title" label="Title"/> 
 </div>
 <div class="mb-3">
-    <x-form-select name="topics[]" label="Topics" :options="$topics" multiple many-relation /> 
+    <x-form-select name="topics[]" size="{{$size}}" label="Topics" :options="$topics" multiple many-relation /> 
 </div>
