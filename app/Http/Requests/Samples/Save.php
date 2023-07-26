@@ -5,6 +5,7 @@ namespace App\Http\Requests\Samples;
 use App\Models\Topic;
 use App\Rules\AllInModel;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class Save extends FormRequest
 {
@@ -24,8 +25,8 @@ class Save extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'required|min:3',
-            'title' => 'required|min:3',
+            'url' => ['required', 'min:3', Rule::unique('samples')],
+            'title' => ['required', 'min:3', Rule::unique('samples')],
             'topics' => [ 'required', 'array', 'min:1']
         ];
     }
