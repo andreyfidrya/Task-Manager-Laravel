@@ -26,8 +26,12 @@
       </td>     
 </tr>
 @endforeach
-  
+
 </tbody>
-</table>  
+</table>
+
+<div class="mt-3">
+  {{ $samples->links() }}
+</div>
 
 </x-layouts.porto>

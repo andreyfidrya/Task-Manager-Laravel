@@ -13,7 +13,7 @@ class Samples extends Controller
 {
     public function index()
     {
-        $samples = Sample::all();
+        $samples = Sample::paginate(10);
         return view('emails.samples.index', compact('samples'));
     }
 
