@@ -42,3 +42,5 @@ Route::group(['prefix' => 'ect'], function () {
 Route::get('/layouts-dark-header', function () {
     return view('layouts-dark-header');
 });
+
+Route::get('/search/', [ TopicController::class, 'search' ])->name('search');

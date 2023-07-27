@@ -67,9 +67,9 @@
 				<!-- start: search & user box -->
 				<div class="header-right">
 
-					<form action="pages-search-results.html" class="search nav-form">
+					<form action="{{ route('search') }}" method="GET" class="search nav-form">
 						<div class="input-group">
-							<input type="text" class="form-control" name="q" id="q" placeholder="Search...">
+							<input type="text" class="form-control" name="search" id="q" placeholder="Search...">
 							<button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
 						</div>
 					</form>
