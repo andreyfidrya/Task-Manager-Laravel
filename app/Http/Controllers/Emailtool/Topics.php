@@ -60,18 +60,19 @@ class Topics extends Controller
     public function search(Request $request){
         // Get the search value from the request
         $search = $request->input('search');
-    
+
         // Search in the title and body columns from the posts table
         $topics = Topic::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->get();
-        
+
         $samples = Sample::query()
             ->where('title', 'LIKE', "%{$search}%")
-            ->where('url', 'LIKE', "%{$search}%")
+            ->orWhere('url', 'LIKE', "%{$search}%")
             ->get();
-
+        
         // Return the search view with the resluts compacted
         return view('emails.search', compact('topics', 'samples'));
     }
+    
 }

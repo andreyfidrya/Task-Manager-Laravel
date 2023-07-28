@@ -7,6 +7,7 @@ use App\Http\Controllers\Regularpayments\Payments as PaymentController;
 use App\Http\Controllers\Emailtool\Emails as EmailController;
 use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,7 @@ Route::get('/layouts-dark-header', function () {
 });
 
 Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
+
+Route::controller(SearchController::class)->group(function(){
+    Route::get('autocomplete', 'autocomplete')->name('autocomplete');
+});
