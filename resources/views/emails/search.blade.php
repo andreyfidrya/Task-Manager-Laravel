@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
   @if($topics->isNotEmpty())
+  <b><h1>Topics:</h1></b>  
   <table class="table">  
   <thead>
     <tr>
@@ -31,14 +32,16 @@
       </td>     
 </tr>
 @endforeach
+</tbody>
+</table>
 @else 
     <div>
-        <h2>No topics have been found</h2>
+        <h3>No topics have been found</h3>
     </div>
 @endif
 <hr>
-
 @if($samples->isNotEmpty())
+<b><h1>Samples:</h1></b>
 <table class="table">
   <thead>
     <tr>
@@ -65,7 +68,7 @@
 </table>
 @else 
     <div>
-        <h2>No samples have been found</h2>
+        <h3>No samples have been found</h3>
     </div>
 @endif
 </x-layouts.porto>
