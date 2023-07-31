@@ -7,6 +7,7 @@ use App\Http\Controllers\Regularpayments\Payments as PaymentController;
 use App\Http\Controllers\Emailtool\Emails as EmailController;
 use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
+use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
 
 /*
@@ -39,6 +40,8 @@ Route::group(['prefix' => 'ect'], function () {
     Route::resource('topics', TopicController::class);
     Route::resource('samples', SampleController::class);
 });
+
+Route::resource('users', UserController::class);
 
 Route::get('/layouts-dark-header', function () {
     return view('layouts-dark-header');
