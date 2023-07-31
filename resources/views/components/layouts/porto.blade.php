@@ -249,10 +249,8 @@
 				                        </a>
 				                        <ul class="nav nav-children">
 				                            <li>
-				                                <a class="nav-link" href="index.html">
-				                                    All users
-				                                </a>
-				                            </li>
+												<x-navs.link route="users.index">All users</x-navs.link>
+											</li>
 				                            <li class="nav-parent">
 				                                <a>
 				                                    Users by roles
