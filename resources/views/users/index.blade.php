@@ -1,4 +1,9 @@
 <x-layouts.porto title="Users" header="Users">
+
+    <p>
+    <a href="{{ route('users.create') }}" class="btn btn-success">Add a User</a>
+    </p>
+
     <table class="table table-bordered">
         <tbody>
             <tr>
