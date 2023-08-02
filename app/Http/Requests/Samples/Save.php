@@ -26,7 +26,7 @@ class Save extends FormRequest
     {
         return [
             'url' => ['required', 'url', 'min:3', Rule::unique('samples')],
-            'title' => ['required', 'min:3', Rule::unique('samples')],
+            'title' => ['required', 'min:3'],
             'topics' => [ 'required', 'array', 'min:1']
         ];
     }
