@@ -30,6 +30,10 @@
 @endforeach
   
 </tbody>
-</table>  
+</table>
+
+<div class="mt-3">
+  {{ $topics->links() }}
+</div>
 
 </x-layouts.porto>
