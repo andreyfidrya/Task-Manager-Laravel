@@ -6,10 +6,10 @@
     <x-form-input name="email" label="Email"/> 
 </div>
 <div class="mb-3">    
-    <x-form-input name="password" label="Password"/> 
+    <x-form-input type="password" name="password" label="Password"/> 
 </div>
 <div class="mb-3">    
-    <x-form-input name="second-password" label="Repeat password"/> 
+    <x-form-input type="password" name="password_confirmation" label="Repeat password"/> 
 </div>
 
 

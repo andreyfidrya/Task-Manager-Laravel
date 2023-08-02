@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Users\Save as SaveRequest;
 
 class Users extends Controller
 {
@@ -29,9 +31,14 @@ class Users extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        //
+        $data = $request->only(['name', 'email']);
+        $password = Hash::make($request->password);
+        $data['password'] = $password;           
+
+        User::create($data);
+        return redirect()->route('users.index');
     }
 
     /**
