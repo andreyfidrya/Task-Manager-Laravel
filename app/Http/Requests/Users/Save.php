@@ -5,6 +5,7 @@ namespace App\Http\Requests\Users;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use App\Models\User;
 
 class Save extends FormRequest
 {
@@ -25,7 +26,7 @@ class Save extends FormRequest
     {
         return [
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', 'min:3', Rule::unique('users')],
+            'email' => ['required', 'email', Rule::unique('users')],
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()]                
         ];
     }    

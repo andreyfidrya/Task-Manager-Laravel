@@ -18,7 +18,13 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->password }}</td>
                 <td>
-                    <a href=""></a>        
+                <a href="route('users.show', [ $user->id ])" class="btn btn-info">View</a>
+                <a href="{{ route('users.edit', [ $user->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+                <form method="post" action="{{ route('users.destroy', [ $user->id ]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete {{ $user->name }}')">Delete</button>
+                </form>  
                 </td>                
             </tr>
             @endforeach
