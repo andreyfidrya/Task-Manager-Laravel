@@ -50,23 +50,24 @@
 					</div>
 					<div class="card-body">
 						<form method="post" action="{{ route('login.store') }}">
-							<div class="form-group mb-3">
+						@csrf
+							<div class="mb-3">
 								<label>Username</label>
 								<div class="input-group">
-									<input name="username" type="text" class="form-control form-control-lg" />
+									<input name="email" type="text" class="form-control form-control-lg" />
 									<span class="input-group-text">
 										<i class="bx bx-user text-4"></i>
 									</span>
 								</div>
 							</div>
 
-							<div class="form-group mb-3">
+							<div class="mb-3">
 								<div class="clearfix">
 									<label class="float-start">Password</label>
-									<a href="pages-recover-password.html" class="float-end">Lost Password?</a>
+									<a href="" class="float-end">Lost Password?</a>
 								</div>
 								<div class="input-group">
-									<input name="pwd" type="password" class="form-control form-control-lg" />
+									<input name="password" type="password" class="form-control form-control-lg" />
 									<span class="input-group-text">
 										<i class="bx bx-lock text-4"></i>
 									</span>
@@ -88,11 +89,6 @@
 							<span class="mt-3 mb-3 line-thru text-center text-uppercase">
 								<span>or</span>
 							</span>
-
-							<div class="mb-1 text-center">
-								<a class="btn btn-facebook mb-3 ms-1 me-1" href="#">Connect with <i class="fab fa-facebook-f"></i></a>
-								<a class="btn btn-twitter mb-3 ms-1 me-1" href="#">Connect with <i class="fab fa-twitter"></i></a>
-							</div>
 
 							<p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p>
 

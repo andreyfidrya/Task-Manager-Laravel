@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\Login as LoginRequest;
 
 class Session extends Controller
 {
@@ -11,8 +11,10 @@ class Session extends Controller
         return view('auth.login');
     }
 
-    public function store(){
-        
+    public function store(LoginRequest $request){
+        $request->authenticate();
+        $request->session()->regenerate(); 
+        return redirect()->route('tasks.index');
     }
 
     public function destroy(){

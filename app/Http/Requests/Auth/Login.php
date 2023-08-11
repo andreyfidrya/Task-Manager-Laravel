@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class Login extends FormRequest
 {
@@ -14,7 +16,16 @@ class Login extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'password' => 'required'            
         ];
+    }
+
+    public function authenticate(){
+        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
     }
 }
