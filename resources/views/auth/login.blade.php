@@ -54,7 +54,7 @@
 							<div class="mb-3">
 								<label>Username</label>
 								<div class="input-group">
-									<input name="email" type="text" class="form-control form-control-lg" />
+									<x-form-input name="email" type="text" class="form-control form-control-lg" />
 									<span class="input-group-text">
 										<i class="bx bx-user text-4"></i>
 									</span>
@@ -67,7 +67,7 @@
 									<a href="" class="float-end">Lost Password?</a>
 								</div>
 								<div class="input-group">
-									<input name="password" type="password" class="form-control form-control-lg" />
+									<x-form-input name="password" type="password" class="form-control form-control-lg" />
 									<span class="input-group-text">
 										<i class="bx bx-lock text-4"></i>
 									</span>
