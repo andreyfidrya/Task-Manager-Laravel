@@ -9,6 +9,7 @@ use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Auth\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,9 @@ Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
 
 Route::controller(SearchController::class)->group(function(){
     Route::get('autocomplete', 'autocomplete')->name('autocomplete');
+});
+
+Route::controller(Session::class)->group(function(){    
+        Route::get('/auth/login', 'create')->name('login');
+        Route::post('/auth/login', 'store')->name('login.store');           
 });

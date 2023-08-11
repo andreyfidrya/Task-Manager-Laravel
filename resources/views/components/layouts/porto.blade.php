@@ -28,7 +28,7 @@
 		<link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/all.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('vendor/boxicons/css/boxicons.min.css') }} " />
 		<link rel="stylesheet" href="{{ asset('vendor/magnific-popup/magnific-popup.css') }} " />
-		<link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css') }} " />
+		<link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css') }}" />
 		<link rel="stylesheet" href="{{ asset('vendor/jquery-ui/jquery-ui.css') }} " />
 		<link rel="stylesheet" href="{{ asset('vendor/jquery-ui/jquery-ui.theme.css') }} " />
 		<link rel="stylesheet" href="{{ asset('vendor/bootstrap-multiselect/css/bootstrap-multiselect.css') }}" />
