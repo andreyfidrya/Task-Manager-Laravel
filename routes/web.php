@@ -56,5 +56,7 @@ Route::controller(SearchController::class)->group(function(){
 
 Route::controller(Session::class)->group(function(){    
         Route::get('/auth/login', 'create')->name('login');
-        Route::post('/auth/login', 'store')->name('login.store');           
+        Route::post('/auth/login', 'store')->name('login.store');
+        Route::get('/auth/logout', 'exit')->name('login.exit');
+        Route::delete('/auth/logout', 'destroy')->name('login.destroy');           
 });
