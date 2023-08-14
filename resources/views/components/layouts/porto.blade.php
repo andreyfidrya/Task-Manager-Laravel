@@ -136,8 +136,8 @@
 								</li>
 								<li>
 								<x-form method="delete" action="{{ route('login.destroy') }}">
-								<a role="menuitem" tabindex="-1" href="{{ route('login.destroy') }}"><i class="bx bx-power-off"></i> Logout</a>
-								</x-form>
+								<button class="btn btn-danger">Logout</button>
+								</x-form>								
 								</li>
 							</ul>
 						</div>

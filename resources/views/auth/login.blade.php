@@ -52,7 +52,7 @@
 						<form method="post" action="{{ route('login.store') }}">
 						@csrf
 							<div class="mb-3">
-								<label>Username</label>
+								<label>Email</label>
 								<div class="input-group">
 									<x-form-input name="email" type="text" class="form-control form-control-lg" />
 									<span class="input-group-text">
@@ -77,8 +77,8 @@
 							<div class="row">
 								<div class="col-sm-8">
 									<div class="checkbox-custom checkbox-default">
-										<input id="RememberMe" name="rememberme" type="checkbox"/>
-										<label for="RememberMe">Remember Me</label>
+									<div class="mb-3">
+                        			<x-form-checkbox name="remember" label="Remember Me" />										
 									</div>
 								</div>
 								<div class="col-sm-4 text-end">

@@ -26,37 +26,43 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'tm'], function () {
-    Route::resource('tasks', TaskController::class);
-    Route::resource('clients', ClientController::class);
-    Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+Route::middleware('auth')->group(function(){
+
+    Route::group(['prefix' => 'tm'], function () {
+        Route::resource('tasks', TaskController::class);
+        Route::resource('clients', ClientController::class);
+        Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+    });
+    
+    Route::resource('payments', PaymentController::class);
+    
+    Route::group(['prefix' => 'ect'], function () {
+        Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
+        Route::get('/emails/edit/{id}', [ EmailController::class, 'edit' ])->name('emails.edit');
+        Route::put('/emails/{id}', [ EmailController::class, 'update' ])->name('emails.update');
+        Route::resource('topics', TopicController::class);
+        Route::resource('samples', SampleController::class);
+    });
+    
+    Route::resource('users', UserController::class);
+    
+    Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
+    
+    Route::controller(SearchController::class)->group(function(){
+        Route::get('autocomplete', 'autocomplete')->name('autocomplete');
+    });
+
 });
 
-Route::resource('payments', PaymentController::class);
 
-Route::group(['prefix' => 'ect'], function () {
-    Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
-    Route::get('/emails/edit/{id}', [ EmailController::class, 'edit' ])->name('emails.edit');
-    Route::put('/emails/{id}', [ EmailController::class, 'update' ])->name('emails.update');
-    Route::resource('topics', TopicController::class);
-    Route::resource('samples', SampleController::class);
-});
+Route::controller(Session::class)->group(function(){
+        Route::middleware('guest')->group(function(){
+            Route::get('/auth/login', 'create')->name('login');
+            Route::post('/auth/login', 'store')->name('login.store');
+        });
 
-Route::resource('users', UserController::class);
-
-// Route::get('/layouts-dark-header', function () {
-//    return view('layouts-dark-header');
-// });
-
-Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
-
-Route::controller(SearchController::class)->group(function(){
-    Route::get('autocomplete', 'autocomplete')->name('autocomplete');
-});
-
-Route::controller(Session::class)->group(function(){    
-        Route::get('/auth/login', 'create')->name('login');
-        Route::post('/auth/login', 'store')->name('login.store');
-        Route::get('/auth/logout', 'exit')->name('login.exit');
-        Route::delete('/auth/logout', 'destroy')->name('login.destroy');           
+        Route::middleware('auth')->group(function(){
+            Route::get('/auth/logout', 'exit')->name('login.exit');
+            Route::delete('/auth/logout', 'destroy')->name('login.destroy'); 
+        });          
 });
