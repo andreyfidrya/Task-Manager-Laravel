@@ -10,7 +10,7 @@
 <tr>
   <th scope="col">Client Name</th>
   <th scope="col">Task</th>
-  <th scope="col">Budget</th>
+  <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
   <th scope="col">Author</th>
