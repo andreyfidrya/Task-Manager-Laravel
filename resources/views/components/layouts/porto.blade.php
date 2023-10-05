@@ -1,6 +1,6 @@
 @props([
     'title',
-    'header'
+    'header'		
 ])
 
 <!doctype html>

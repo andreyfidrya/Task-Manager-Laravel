@@ -17,6 +17,8 @@ class Session extends Controller
     public function store(LoginRequest $request){
         $request->authenticate();
         $request->session()->regenerate(); 
+        //$username = Auth::user()->name;
+        //dd($username);        
         return redirect()->route('tasks.index');
     }
 
