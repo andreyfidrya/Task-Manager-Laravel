@@ -178,34 +178,7 @@
 				                            </li>
 											<li>
 											<x-navs.link route="clients.index">Clients</x-navs.link>
-				                            </li>
-											<li class="nav-parent">
-				                                <a class="nav-link" href="#">
-				                                    Milestones<span class="mega-sub-nav-toggle toggled float-end" data-toggle="collapse" data-target=".mega-sub-nav-sub-menu-1"></span>
-				                                </a>
-				                                <ul class="nav nav-children">
-				                                    <li>
-				                                        <a class="nav-link" href="ui-elements-icons-elusive.html">
-														All milestones  
-				                                        </a>
-				                                    </li>
-													<li>
-				                                        <a class="nav-link" href="ui-elements-icons-elusive.html">
-														Milestones per month  
-				                                        </a>
-				                                    </li>
-				                                    <li>
-				                                        <a class="nav-link" href="ui-elements-icons-font-awesome.html">
-														Milestones per clients 
-				                                        </a>
-				                                    </li>
-				                                    <li>
-				                                        <a class="nav-link" href="ui-elements-icons-line-icons.html">
-														Milestones per users
-				                                        </a>
-				                                    </li>				                                    
-				                                </ul>
-				                            </li>											
+				                            </li>																						
 				                            <li class="nav-parent">
 				                                <a class="nav-link" href="#">
 				                                    Earnings <span class="mega-sub-nav-toggle toggled float-end" data-toggle="collapse" data-target=".mega-sub-nav-sub-menu-1"></span>
