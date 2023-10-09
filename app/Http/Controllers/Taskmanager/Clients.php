@@ -53,4 +53,9 @@ class Clients extends Controller
         $client->delete();
         return redirect()->route('clients.index');
     }
+
+    public function trash()
+    {
+        return view('clients.trash');
+    }
 }

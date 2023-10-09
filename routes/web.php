@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function(){
         Route::resource('tasks', TaskController::class);
         Route::resource('clients', ClientController::class);
         Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+        Route::get('/inactive-clients', [ClientController::class, 'trash'])->name('inactiveclients');
     });
     
     Route::resource('payments', PaymentController::class);

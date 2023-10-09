@@ -176,32 +176,42 @@
 											<li>
 											<x-navs.link route="tasks.index">Tasks</x-navs.link>
 				                            </li>
+									<li class="nav-parent">
+				                        <a class="nav-link" href="#">
+				                            <span>Clients</span>
+				                        </a>
+				                        <ul class="nav nav-children">											                          
 											<li>
-											<x-navs.link route="clients.index">Clients</x-navs.link>
-				                            </li>																						
-				                            <li class="nav-parent">
-				                                <a class="nav-link" href="#">
-				                                    Earnings <span class="mega-sub-nav-toggle toggled float-end" data-toggle="collapse" data-target=".mega-sub-nav-sub-menu-1"></span>
-				                                </a>
-				                                <ul class="nav nav-children">
-				                                    <li>
-				                                        <a class="nav-link" href="ui-elements-icons-elusive.html">
-														Total earnings per month
-				                                        </a>
-				                                    </li>
-				                                    <li>
-				                                        <a class="nav-link" href="ui-elements-icons-font-awesome.html">
-														Earnings by clients per month
-				                                        </a>
-				                                    </li>
-				                                    <li>
-				                                        <a class="nav-link" href="ui-elements-icons-line-icons.html">
-														Earnings by users per month
-				                                        </a>
-				                                    </li>				                                    
-				                                </ul>
-				                            </li>											
+											<x-navs.link route="clients.index">Active Clients</x-navs.link>
+				                            </li>				                            
+											<li>
+				                            <x-navs.link route="inactiveclients">Inactive Clients</x-navs.link>
+											</li>														                            											
 				                        </ul>
+				                    </li>
+				                    <li class="nav-parent">
+				                        <a class="nav-link" href="#">
+				                            Earnings <span class="mega-sub-nav-toggle toggled float-end" data-toggle="collapse" data-target=".mega-sub-nav-sub-menu-1"></span>
+				                        </a>
+				                        <ul class="nav nav-children">
+				                            <li>
+				                                <a class="nav-link" href="ui-elements-icons-elusive.html">
+													Total earnings per month
+				                                </a>
+				                            </li>
+				                            <li>
+				                                <a class="nav-link" href="ui-elements-icons-font-awesome.html">
+													Earnings by clients per month
+				                                </a>
+				                            </li>
+				                            <li>
+				                                <a class="nav-link" href="ui-elements-icons-line-icons.html">
+													Earnings by users per month
+				                                </a>
+				                            </li>				                                    
+				                        </ul>
+				                    </li>											
+				                </ul>
 				                    </li>
 									<li class="nav-parent">
 				                        <a class="nav-link" href="#">
