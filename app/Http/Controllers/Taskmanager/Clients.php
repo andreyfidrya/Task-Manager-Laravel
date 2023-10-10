@@ -56,6 +56,7 @@ class Clients extends Controller
 
     public function trash()
     {
-        return view('clients.trash');
+        $inactiveclients = Client::onlyTrashed()->get();
+        return view('clients.trash', compact('inactiveclients'));
     }
 }
