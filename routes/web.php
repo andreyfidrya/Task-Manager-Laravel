@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function(){
         Route::resource('clients', ClientController::class);
         Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
         Route::get('/inactive-clients', [ClientController::class, 'trash'])->name('inactiveclients');
+        Route::delete('/{id}/destroyclientforever', [ClientController::class, 'destroyclientForever'])->name('removeclientforever');
+        Route::put('/{id}/restoreclient', [ClientController::class, 'restoreclient'])->name('restoreclient');
     });
     
     Route::resource('payments', PaymentController::class);

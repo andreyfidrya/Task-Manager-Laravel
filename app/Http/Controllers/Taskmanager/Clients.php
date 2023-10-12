@@ -59,4 +59,14 @@ class Clients extends Controller
         $inactiveclients = Client::onlyTrashed()->get();
         return view('clients.trash', compact('inactiveclients'));
     }
+
+    public function restoreclient($id){
+        $restoredproducts = Client::onlyTrashed()->findOrFail($id);
+        $restoredproducts->restore();
+        return redirect()->route('inactiveclients');
+    }
+
+    public function destroyclientForever($id){
+        Client::onlyTrashed()->findOrFail($id)->forceDelete();        
+    }
 }

@@ -15,9 +15,17 @@
   <td>{{ $client->name }}</td>
   <td>{{ $client->slug }}</td> 
   <td>{!! $client->info !!}</td>  
-<td>
-  <a href="{{ route('clients.show', [ $client->slug ]) }}" class="btn btn-info">View</a>
-  <a href="{{ route('clients.edit', [ $client->id ]) }}" class="btn btn-sm btn-primary">Edit</a>    
+  <td>
+      <form method="post" onClick="return confirm('Вы действительно хотите удалить товар: {{$client->name}} навсегда?')" action="{{ route('removeclientforever', [ $client->id ]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Удалить</button>
+      </form>
+      <form method="post" action="{{ route('restoreclient', [ $client->id ]) }}">
+                        @csrf
+                        @method('PUT')
+                        <button class="btn btn-success">Восстановить</button>
+      </form>
   </td>    
 </tr>
 @endforeach
