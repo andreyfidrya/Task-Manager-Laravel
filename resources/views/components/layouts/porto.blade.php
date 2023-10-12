@@ -195,17 +195,15 @@
 				                        </a>
 				                        <ul class="nav nav-children">
 				                            <li>
-				                                <a class="nav-link" href="ui-elements-icons-elusive.html">
-													Total earnings per month
-				                                </a>
-				                            </li>
+				                            <x-navs.link route="performedtasks">Total earnings per month</x-navs.link>    
+											</li>
 				                            <li>
-				                                <a class="nav-link" href="ui-elements-icons-font-awesome.html">
+				                                <a class="nav-link" href="">
 													Earnings by clients per month
 				                                </a>
 				                            </li>
 				                            <li>
-				                                <a class="nav-link" href="ui-elements-icons-line-icons.html">
+				                                <a class="nav-link" href="">
 													Earnings by users per month
 				                                </a>
 				                            </li>				                                    

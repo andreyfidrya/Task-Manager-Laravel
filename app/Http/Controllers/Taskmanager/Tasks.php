@@ -56,5 +56,21 @@ class Tasks extends Controller
         return redirect()->route('tasks.index');
     }
 
-   
+    public function trash()
+    {
+        $performedtasks = Task::onlyTrashed()->get();
+        $sum = Task::onlyTrashed()
+        ->sum('budget');
+        return view('tasks.trash', compact('performedtasks', 'sum'));        
+    }
+
+    public function restoretask($id){
+        $restoredproducts = Task::onlyTrashed()->findOrFail($id);
+        $restoredproducts->restore();
+        return redirect()->route('performedtasks');
+    }
+
+    public function destroytaskForever($id){
+        Task::onlyTrashed()->findOrFail($id)->forceDelete();        
+    }
 }

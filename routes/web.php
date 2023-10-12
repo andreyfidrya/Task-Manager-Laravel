@@ -32,9 +32,14 @@ Route::middleware('auth')->group(function(){
         Route::resource('tasks', TaskController::class);
         Route::resource('clients', ClientController::class);
         Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+        
         Route::get('/inactive-clients', [ClientController::class, 'trash'])->name('inactiveclients');
         Route::delete('/{id}/destroyclientforever', [ClientController::class, 'destroyclientForever'])->name('removeclientforever');
         Route::put('/{id}/restoreclient', [ClientController::class, 'restoreclient'])->name('restoreclient');
+        
+        Route::get('/performed-tasks', [TaskController::class, 'trash'])->name('performedtasks');
+        Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
+        Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
     });
     
     Route::resource('payments', PaymentController::class);
