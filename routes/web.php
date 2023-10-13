@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}/destroyclientforever', [ClientController::class, 'destroyclientForever'])->name('removeclientforever');
         Route::put('/{id}/restoreclient', [ClientController::class, 'restoreclient'])->name('restoreclient');
         
-        Route::get('/performed-tasks', [TaskController::class, 'trash'])->name('performedtasks');
+        Route::get('/total-earnings-per-month', [TaskController::class, 'trash'])->name('performedtasks');
         Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
         Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
     });

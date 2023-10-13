@@ -71,6 +71,7 @@ class Tasks extends Controller
     }
 
     public function destroytaskForever($id){
-        Task::onlyTrashed()->findOrFail($id)->forceDelete();        
+        Task::onlyTrashed()->findOrFail($id)->forceDelete(); 
+        return redirect()->route('performedtasks');       
     }
 }

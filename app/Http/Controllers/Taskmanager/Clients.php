@@ -67,6 +67,7 @@ class Clients extends Controller
     }
 
     public function destroyclientForever($id){
-        Client::onlyTrashed()->findOrFail($id)->forceDelete();        
+        Client::onlyTrashed()->findOrFail($id)->forceDelete();  
+        return redirect()->route('inactiveclients');      
     }
 }

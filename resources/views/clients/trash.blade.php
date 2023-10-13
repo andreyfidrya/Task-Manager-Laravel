@@ -16,7 +16,7 @@
   <td>{{ $client->slug }}</td> 
   <td>{!! $client->info !!}</td>  
   <td>
-      <form method="post" onClick="return confirm('Вы действительно хотите удалить товар: {{$client->name}} навсегда?')" action="{{ route('removeclientforever', [ $client->id ]) }}">
+      <form method="post" onClick="return confirm('Do you really want to delete {{$client->name}} forever?')" action="{{ route('removeclientforever', [ $client->id ]) }}">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">Удалить</button>
