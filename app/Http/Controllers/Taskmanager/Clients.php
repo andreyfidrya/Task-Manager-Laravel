@@ -11,7 +11,7 @@ class Clients extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::orderBy('name', 'ASC')->get();
         return view('clients.index', compact('clients'));
     }
 
@@ -56,7 +56,7 @@ class Clients extends Controller
 
     public function trash()
     {
-        $inactiveclients = Client::onlyTrashed()->get();
+        $inactiveclients = Client::orderBy('name', 'ASC')->onlyTrashed()->get();
         return view('clients.trash', compact('inactiveclients'));
     }
 
