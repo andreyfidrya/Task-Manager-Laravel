@@ -64,6 +64,11 @@ class Tasks extends Controller
         return view('tasks.trash', compact('performedtasks', 'sum'));        
     }
 
+    public function earningsbyclients()
+    {
+        return view('earnings.earningsbyclients');        
+    }
+
     public function restoretask($id){
         $restoredproducts = Task::onlyTrashed()->findOrFail($id);
         $restoredproducts->restore();

@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function(){
         Route::put('/{id}/restoreclient', [ClientController::class, 'restoreclient'])->name('restoreclient');
         
         Route::get('/total-earnings-per-month', [TaskController::class, 'trash'])->name('performedtasks');
+        Route::get('/earnings-by-clients-per-month', [TaskController::class, 'earningsbyclients'])->name('earningsbyclients');
         Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
         Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
     });
