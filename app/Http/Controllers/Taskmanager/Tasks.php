@@ -66,7 +66,8 @@ class Tasks extends Controller
 
     public function earningsbyclients()
     {
-        return view('earnings.earningsbyclients');        
+        $clients = Client::orderBy('name', 'ASC')->get();
+        return view('earnings.earningsbyclients', compact('clients'));        
     }
 
     public function restoretask($id){
