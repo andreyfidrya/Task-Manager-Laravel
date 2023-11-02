@@ -21,7 +21,7 @@
     <form method="post" action="">
         @csrf
         @method('DELETE')
-        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from ')">Delete</button>
+        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete from expenses')">Delete</button>
     </form>
   </td>    
 </tr>
