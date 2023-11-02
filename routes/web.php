@@ -9,6 +9,7 @@ use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SpendingsController;
 use App\Http\Controllers\Auth\Session;
 
 /*
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/earnings-by-clients-per-month', [TaskController::class, 'earningsbyclients'])->name('earningsbyclients');
         Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
         Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
+        Route::resource('spendings', SpendingsController::class);
     });
     
     Route::resource('payments', PaymentController::class);
@@ -60,6 +62,7 @@ Route::middleware('auth')->group(function(){
     Route::controller(SearchController::class)->group(function(){
         Route::get('autocomplete', 'autocomplete')->name('autocomplete');
     });
+    
 
 });
 

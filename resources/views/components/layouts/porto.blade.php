@@ -204,7 +204,10 @@
 				                                <a class="nav-link" href="">
 													Earnings by users per month
 				                                </a>
-				                            </li>				                                    
+				                            </li>
+											<li>
+				                            <x-navs.link route="spendings.index">Spendings per month</x-navs.link>    
+											</li>				                                    
 				                        </ul>
 				                    </li>											
 				                </ul>
