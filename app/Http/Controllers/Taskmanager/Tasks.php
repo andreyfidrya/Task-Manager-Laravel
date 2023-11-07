@@ -66,8 +66,12 @@ class Tasks extends Controller
 
     public function earningsbyclients()
     {
+        $performedtasks = Task::onlyTrashed()->get();
+        $totalsum = Task::onlyTrashed()
+        ->sum('budget');
+
         $clients = Client::orderBy('name', 'ASC')->get();
-        return view('earnings.earningsbyclients', compact('clients'));        
+        return view('earnings.earningsbyclients', compact('clients', 'totalsum'));        
     }
 
     public function restoretask($id){
