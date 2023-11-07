@@ -20,7 +20,7 @@ class Spendings extends Controller
      */
     public function create()
     {
-        //
+        return view('spendings.create');
     }
 
     /**

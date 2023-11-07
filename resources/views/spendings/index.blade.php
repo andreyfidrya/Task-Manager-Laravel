@@ -1,6 +1,6 @@
 <x-layouts.porto title="Total Spendings per Month" header="Total Spendings per Month">
 <p>
-<a href="#" class="btn btn-success">Add an Expense</a>
+<a href="{{ route('spendings.create') }}" class="btn btn-success">Add an Expense</a>
 </p>
 <table class="table">
 <thead>
