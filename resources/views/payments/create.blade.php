@@ -1,4 +1,4 @@
-<x-layouts.porto title="Payments" header="Add a New Payment">
+<x-layouts.porto title="Add a New Payment" header="Add a New Payment">
 
 <form method="post" action="{{ route('payments.store') }}">
     @include('payments.payments-fields-form')   
