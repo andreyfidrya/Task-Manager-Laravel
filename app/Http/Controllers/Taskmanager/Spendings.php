@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Taskmanager;
 
 use App\Http\Controllers\Controller;
+use App\Models\Spending;
 use Illuminate\Http\Request;
+use App\Http\Requests\Spendings\Save as SaveRequest;
 
 class Spendings extends Controller
 {
@@ -12,7 +14,8 @@ class Spendings extends Controller
      */
     public function index()
     {
-        return view('spendings.index');
+        $spendings = Spending::all();
+        return view('spendings.index', compact('spendings'));
     }
 
     /**
@@ -26,9 +29,11 @@ class Spendings extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        //
+        $data = $request->only(['spending', 'amount', 'date']);
+        Spending::create($data);
+        return redirect()->route('spendings.index');
     }
 
     /**

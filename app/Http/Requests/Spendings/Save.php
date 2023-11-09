@@ -11,7 +11,7 @@ class Save extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class Save extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'spending' => 'required|min:3',
+            'amount' => 'required',
+            'date' => 'required'
         ];
     }
 }

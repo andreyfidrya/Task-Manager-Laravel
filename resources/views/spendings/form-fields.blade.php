@@ -1,6 +1,6 @@
 @csrf
 <div class="mb-3">    
-    <x-form-input name="spendings" label="Spendings"/> 
+    <x-form-input name="spending" label="Spendings"/> 
 </div>
 <div class="mb-3">    
     <x-form-input name="amount" label="Amount"/> 

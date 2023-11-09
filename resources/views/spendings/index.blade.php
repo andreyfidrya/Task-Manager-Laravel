@@ -12,10 +12,11 @@
 </tr>
 </thead>
 <tbody>
+@foreach($spendings as $expense)
 <tr>
-  <td></td> 
-  <td></td> 
-  <td></td> 
+  <td>{{ $expense->spending }}</td> 
+  <td>{{ $expense->amount }}</td> 
+  <td>{{ $expense->date }}</td> 
   <td>
     <a href="#" class="btn btn-sm btn-primary">Edit</a>
     <form method="post" action="">
@@ -25,6 +26,8 @@
     </form>
   </td>    
 </tr>
+@endforeach
+
 </tbody>
 </table>
 Spendings per month: <strong></strong><br>
