@@ -41,4 +41,6 @@
 </tbody>
 </table>
 Earnings per month: <strong>{{$sum}} USD</strong><br>
+Spendings per month: <strong>{{ $sumspent }} USD</strong><br>
+<h2>Profits per month: <strong>{{ $sum - $sumspent }} USD</strong><br></h2>
 </x-layouts.porto>

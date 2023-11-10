@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Taskmanager;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Client;
+use App\Models\Spending;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 
 class Tasks extends Controller
@@ -61,7 +62,9 @@ class Tasks extends Controller
         $performedtasks = Task::onlyTrashed()->get();
         $sum = Task::onlyTrashed()
         ->sum('budget');
-        return view('tasks.trash', compact('performedtasks', 'sum'));        
+        $sumspent = Spending::all()
+        ->sum('amount');
+        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent'));        
     }
 
     public function earningsbyclients()
