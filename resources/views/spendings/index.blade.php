@@ -30,5 +30,5 @@
 
 </tbody>
 </table>
-Spendings per month: <strong></strong><br>
+Spendings per month: <strong>{{ $sumspent }} USD</strong><br>
 </x-layouts.porto>

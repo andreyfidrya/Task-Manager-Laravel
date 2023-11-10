@@ -15,7 +15,9 @@ class Spendings extends Controller
     public function index()
     {
         $spendings = Spending::all();
-        return view('spendings.index', compact('spendings'));
+        $sumspent = Spending::all()
+        ->sum('amount');
+        return view('spendings.index', compact('spendings', 'sumspent'));
     }
 
     /**
