@@ -49,24 +49,24 @@ class Spendings extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $expense = Spending::findOrFail($id);
+        return view('spendings.edit', compact('expense'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(SaveRequest $request, $id)
     {
-        //
+        $expense = Spending::findOrFail($id);
+        $data = $request->only(['spending', 'amount', 'date']);
+        $expense->update($data);
+        return redirect()->route('spendings.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $expense = Spending::findOrFail($id);
+        $expense->delete();
+        return redirect()->route('spendings.index');
     }
 }

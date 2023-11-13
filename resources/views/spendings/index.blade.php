@@ -18,11 +18,11 @@
   <td>{{ $expense->amount }}</td> 
   <td>{{ $expense->date }}</td> 
   <td>
-    <a href="#" class="btn btn-sm btn-primary">Edit</a>
-    <form method="post" action="">
+    <a href="{{ route('spendings.edit', [ $expense->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+    <form method="post" action="{{ route('spendings.destroy', [ $expense->id ]) }}">
         @csrf
         @method('DELETE')
-        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete from expenses')">Delete</button>
+        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete {{ $expense->spending }} from expenses')">Delete</button>
     </form>
   </td>    
 </tr>
