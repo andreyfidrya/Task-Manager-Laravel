@@ -40,8 +40,11 @@ Route::middleware('auth')->group(function(){
         
         Route::get('/total-earnings-per-month', [TaskController::class, 'trash'])->name('performedtasks');
         Route::get('/earnings-by-clients-per-month', [TaskController::class, 'earningsbyclients'])->name('earningsbyclients');
+        Route::get('/earnings-by-users-per-month', [TaskController::class, 'earningsbyusers'])->name('earningsbyusers');
+
         Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
         Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
+        
         Route::resource('spendings', SpendingController::class);
     });
     

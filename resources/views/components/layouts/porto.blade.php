@@ -201,9 +201,7 @@
 				                            <x-navs.link route="earningsbyclients">Earnings by clients per month</x-navs.link>    
 											</li>
 				                            <li>
-				                                <a class="nav-link" href="">
-													Earnings by users per month
-				                                </a>
+				                            <x-navs.link route="earningsbyusers">Earnings by users per month</x-navs.link>    
 				                            </li>															                                    
 				                        </ul>
 				                    </li>

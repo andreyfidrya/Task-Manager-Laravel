@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Client;
 use App\Models\Spending;
+use App\Models\User;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 
 class Tasks extends Controller
@@ -75,6 +76,11 @@ class Tasks extends Controller
 
         $clients = Client::orderBy('name', 'ASC')->get();
         return view('earnings.earningsbyclients', compact('clients', 'totalsum'));        
+    }
+
+    public function earningsbyusers()
+    {
+        return view('earnings.earningsbyusers');
     }
 
     public function restoretask($id){
