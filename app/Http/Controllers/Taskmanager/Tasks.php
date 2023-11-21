@@ -80,7 +80,15 @@ class Tasks extends Controller
 
     public function earningsbyusers()
     {
-        return view('earnings.earningsbyusers');
+        $earningsbyandrey = Task::onlyTrashed()
+        ->where('author', 'Andrey')
+        ->sum('budget');
+
+        $earningsbyelena = Task::onlyTrashed()
+        ->where('author', 'Elena')
+        ->sum('budget');
+
+        return view('earnings.earningsbyusers', compact('earningsbyandrey', 'earningsbyelena'));
     }
 
     public function restoretask($id){
