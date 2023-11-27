@@ -6,6 +6,9 @@
     <x-form-input name="task" label="Task"/> 
 </div>
 <div class="mb-3">    
+    <x-form-input name="wordcount" label="Word Count"/> 
+</div>
+<div class="mb-3">    
     <x-form-input name="budget" label="Budget"/> 
 </div>
 <div class="mb-3">

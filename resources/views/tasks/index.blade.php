@@ -10,6 +10,7 @@
 <tr>
   <th scope="col">Client Name</th>
   <th scope="col">Task</th>
+  <th scope="col">Word Count</th>
   <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
@@ -21,7 +22,8 @@
 @foreach($tasks as $task)
 <tr>
   <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
-  <td>{{ $task->task }}</td> 
+  <td>{{ $task->task }}</td>
+  <td>{{ $task->wordcount }}</td> 
   <td>{{ $task->budget }}</td>  
   <td>{!! $task->performance !!}</td> 
   <td>{{ $task->duedate }}</td> 
