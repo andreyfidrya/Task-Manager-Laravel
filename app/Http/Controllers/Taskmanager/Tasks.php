@@ -25,7 +25,7 @@ class Tasks extends Controller
 
     public function store(SaveRequest $request)
     {
-        $data = $request->only(['client_id', 'task', 'budget', 'performance', 'duedate', 'author']);
+        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'author']);
         Task::create($data);
         return redirect()->route('tasks.index');
     }
@@ -46,7 +46,7 @@ class Tasks extends Controller
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'budget', 'performance', 'duedate', 'author']);
+        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'author']);
         $task->update($data);
         return redirect()->route('tasks.index');
     }

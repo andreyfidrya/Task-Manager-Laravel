@@ -7,7 +7,7 @@
 </div>
 <div class="mb-3">    
     <x-form-input name="wordcount" label="Word Count"/> 
-</div>
+</div>  
 <div class="mb-3">    
     <x-form-input name="budget" label="Budget"/> 
 </div>
