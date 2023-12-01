@@ -91,6 +91,16 @@ class Tasks extends Controller
         return view('earnings.earningsbyusers', compact('earningsbyandrey', 'earningsbyelena'));
     }
 
+    public function totalworkload()
+    {
+        return view('workload.totalworkload');
+    }
+
+    public function workloadperuser()
+    {
+        return view('workload.workloadperuser');
+    }
+
     public function restoretask($id){
         $restoredproducts = Task::onlyTrashed()->findOrFail($id);
         $restoredproducts->restore();

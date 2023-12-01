@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function(){
         Route::get('/earnings-by-clients-per-month', [TaskController::class, 'earningsbyclients'])->name('earningsbyclients');
         Route::get('/earnings-by-users-per-month', [TaskController::class, 'earningsbyusers'])->name('earningsbyusers');
 
+        Route::get('/total-workload-per-week', [TaskController::class, 'totalworkload'])->name('totalworkload');
+        Route::get('/workload-per-user-per-week', [TaskController::class, 'workloadperuser'])->name('workloadperuser');
+
         Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
         Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
         

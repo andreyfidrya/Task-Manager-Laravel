@@ -202,7 +202,7 @@
 											</li>
 				                            <li>
 				                            <x-navs.link route="earningsbyusers">Earnings by users per month</x-navs.link>    
-				                            </li>															                                    
+				                            </li>																										                                    
 				                        </ul>
 				                    </li>
 									<li class="nav-parent">
@@ -213,6 +213,19 @@
 											<li>
 				                            <x-navs.link route="spendings.index">Spendings per month</x-navs.link>    
 											</li>								     											
+				                        </ul>
+				                    </li>
+									<li class="nav-parent">
+				                        <a class="nav-link" href="#">
+				                            <span>Workload</span>
+				                        </a>
+				                        <ul class="nav nav-children">											                          
+											<li>
+											<x-navs.link route="totalworkload">Total workload per week</x-navs.link>
+				                            </li>				                            
+											<li>
+				                            <x-navs.link route="workloadperuser">Workload per user per week</x-navs.link>
+											</li>														                            											
 				                        </ul>
 				                    </li>											
 				                </ul>
