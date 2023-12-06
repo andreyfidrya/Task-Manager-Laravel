@@ -93,12 +93,31 @@ class Tasks extends Controller
 
     public function totalworkload()
     {
-        return view('workload.totalworkload');
+    //  $startDate = '2023-12-01'; $endDate = '2023-12-05';
+    
+    //$now = Carbon::now();
+    //$weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
+    //$weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
+        
+        $totalwordcount = Task::onlyTrashed()
+    //  ->whereBetween('deleted_at', [$startDate, $endDate])
+        ->sum('wordcount');
+        
+
+        return view('workload.totalworkload', compact('totalwordcount'));
     }
 
     public function workloadperuser()
     {
-        return view('workload.workloadperuser');
+        $wordcountandrey = Task::onlyTrashed()
+        ->where('author', 'Andrey')
+        ->sum('wordcount');
+
+        $wordcountelena = Task::onlyTrashed()
+        ->where('author', 'Elena')
+        ->sum('wordcount');
+
+        return view('workload.workloadperuser', compact('wordcountandrey', 'wordcountelena'));
     }
 
     public function restoretask($id){
