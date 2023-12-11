@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\Client;
 use App\Models\Spending;
 use App\Models\User;
+use Carbon\Carbon;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 
 class Tasks extends Controller
@@ -95,12 +96,12 @@ class Tasks extends Controller
     {
     //  $startDate = '2023-12-01'; $endDate = '2023-12-05';
     
-    //$now = Carbon::now();
-    //$weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
-    //$weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
+    $now = Carbon::now();
+    $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
+    $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
         
         $totalwordcount = Task::onlyTrashed()
-    //  ->whereBetween('deleted_at', [$startDate, $endDate])
+        ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
         ->sum('wordcount');
         
 
