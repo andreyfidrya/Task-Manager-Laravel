@@ -33,6 +33,7 @@
 <thead>
 <tr>  
   <th scope="col">Task</th>
+  <th scope="col">Word Count</th>
   <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
@@ -43,7 +44,8 @@
 <tbody>
     @foreach($client->tasks()->onlyTrashed()->get() as $task)                
 <tr>
-  <td>{{ $task->task }}</td> 
+  <td>{{ $task->task }}</td>
+  <td>{{ $task->wordcount }}</td> 
   <td>{{ $task->budget }}</td>  
   <td>{!! $task->performance !!}</td> 
   <td>{{ $task->duedate }}</td> 
