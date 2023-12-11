@@ -94,11 +94,10 @@ class Tasks extends Controller
 
     public function totalworkload()
     {
-    //  $startDate = '2023-12-01'; $endDate = '2023-12-05';
-    
-    $now = Carbon::now();
-    $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
-    $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
+       
+        $now = Carbon::now();
+        $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
+        $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
         
         $totalwordcount = Task::onlyTrashed()
         ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
@@ -110,12 +109,19 @@ class Tasks extends Controller
 
     public function workloadperuser()
     {
+
+        $now = Carbon::now();
+        $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
+        $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
+
         $wordcountandrey = Task::onlyTrashed()
         ->where('author', 'Andrey')
+        ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
         ->sum('wordcount');
 
         $wordcountelena = Task::onlyTrashed()
         ->where('author', 'Elena')
+        ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
         ->sum('wordcount');
 
         return view('workload.workloadperuser', compact('wordcountandrey', 'wordcountelena'));
