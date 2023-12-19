@@ -6,6 +6,7 @@
   <th scope="col">Client Name</th>
   <th scope="col">Client Slug</th>
   <th scope="col">Client Info</th>
+  <th scope="col">Client Price</th>
   <th scope="col">Action</th> 
 </tr>
 </thead>
@@ -14,7 +15,8 @@
 <tr>
   <td>{{ $client->name }}</td>
   <td>{{ $client->slug }}</td> 
-  <td>{!! $client->info !!}</td>  
+  <td>{!! $client->info !!}</td>
+  <td>{{ $client->price }}</td>  
   <td>
       <form method="post" onClick="return confirm('Do you really want to delete {{$client->name}} forever?')" action="{{ route('removeclientforever', [ $client->id ]) }}">
                         @csrf
