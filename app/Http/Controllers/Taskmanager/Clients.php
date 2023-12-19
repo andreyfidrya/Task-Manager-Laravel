@@ -22,7 +22,7 @@ class Clients extends Controller
 
     public function store(SaveRequest $request)
     {
-        $data = $request->only(['name', 'slug', 'info']);
+        $data = $request->only(['name', 'slug', 'info', 'price']);
         Client::create($data);
         return redirect()->route('clients.index');
     }
@@ -42,7 +42,7 @@ class Clients extends Controller
     public function update(SaveRequest $request, string $id)
     {
         $client = Client::findOrFail($id);
-        $data = $request->only(['name', 'slug', 'info']);
+        $data = $request->only(['name', 'slug', 'info', 'price']);
         $client->update($data);
         return redirect()->route('clients.index');
     }
