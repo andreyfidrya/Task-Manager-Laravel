@@ -45,7 +45,7 @@ class Samples extends Controller
         $size = DB::table('topics')->count();
         $sample = Sample::findOrFail($id);
         $topics = Topic::orderBy('name')->pluck('name', 'id');
-        return view('emails.samples.edit', compact('sample', 'topics', 'size'));
+        return view('emails.samples.edit', compact('sample', 'topics', 'size'));        
     }
 
     public function update(SaveRequest $request, $id)

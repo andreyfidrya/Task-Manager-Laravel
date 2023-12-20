@@ -20,7 +20,7 @@ class Save extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => ['required', 'url', 'min:3', Rule::unique('samples')],
+            'url' => ['required', 'url', 'min:3', Rule::unique('samples')->ignore($this->sample)],
             'title' => ['required', 'min:3'],
             'topics' => [ 'required', 'array', 'min:1']
         ];

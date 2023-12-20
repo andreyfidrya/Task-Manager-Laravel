@@ -26,7 +26,7 @@ class Save extends FormRequest
     {
         return [
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', Rule::unique('users')],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()]                
         ];
     }    
