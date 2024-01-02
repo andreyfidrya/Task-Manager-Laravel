@@ -20,13 +20,14 @@ class Tasks extends Controller
 
     public function create()
     {
+        $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
-        return view('tasks.create', compact('clients'));        
+        return view('tasks.create', compact('clients', 'users'));        
     }
 
     public function store(SaveRequest $request)
     {
-        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'author']);
+        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id']);
         Task::create($data);
         return redirect()->route('tasks.index');
     }
@@ -41,13 +42,14 @@ class Tasks extends Controller
     {
         $task = Task::findOrFail($id);
         $clients = Client::orderBy('name')->pluck('name', 'id');
-        return view('tasks.edit', compact('task', 'clients'));        
+        $users = User::orderBy('name')->pluck('name', 'id');
+        return view('tasks.edit', compact('task', 'clients', 'users'));        
     }
 
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'author']);
+        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id']);
         $task->update($data);
         return redirect()->route('tasks.index');
     }

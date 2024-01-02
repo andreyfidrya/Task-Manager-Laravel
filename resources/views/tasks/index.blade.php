@@ -14,7 +14,7 @@
   <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
-  <th scope="col">Author</th>
+  <th scope="col">User</th>
   <th scope="col">Action</th>       
 </tr>
 </thead>
@@ -26,8 +26,8 @@
   <td>{{ $task->wordcount }}</td> 
   <td>{{ $task->budget }}</td>  
   <td>{!! $task->performance !!}</td> 
-  <td>{{ $task->duedate }}</td> 
-  <td>{{ $task->author }}</td> 
+  <td>{{ $task->duedate }}</td>
+  <td>{{ $task->user->name }}</td>   
   <td>
   <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
   <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>

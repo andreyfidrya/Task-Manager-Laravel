@@ -18,7 +18,7 @@
     <x-form-input type="date" name="duedate" label="Due Date"/>
 </div>
 <div class="mb-3">
-    <x-form-select name="author" label="Author" :options="['Andrey' => 'Andrey', 'Elena' => 'Elena']" placeholder="Select the author"/> 
+    <x-form-select name="user_id" label="User" :options="$users" placeholder="Select the user"/> 
 </div>
 
 

@@ -34,7 +34,8 @@ class Users extends Controller
 
     public function show(string $id)
     {
-        //
+        $user = User::firstOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     public function edit(string $id)

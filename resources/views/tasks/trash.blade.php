@@ -5,12 +5,10 @@
 <tr>
   <th scope="col">Client Name</th>
   <th scope="col">Task</th>
-  <th scope="col">Word Count</th>
   <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
-  <th scope="col">Author</th>
-  <th scope="col">Completion date</th>
+  <th scope="col">User</th>
   <th scope="col">Action</th>       
 </tr>
 </thead>
@@ -19,12 +17,10 @@
 <tr>
   <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
   <td>{{ $task->task }}</td>
-  <td>{{ $task->wordcount }}</td> 
   <td>{{ $task->budget }}</td>  
   <td>{!! $task->performance !!}</td> 
   <td>{{ $task->duedate }}</td> 
-  <td>{{ $task->author }}</td>
-  <td>{{ $task->deleted_at }}</td> 
+  <td>{{ $task->user->name }}</td>
   <td>
       <form method="post" onClick="return confirm('Do you want to remove the task from {{ $task->client->name }} forever?')" action="{{ route('removetaskforever', [ $task->id ]) }}">
                         @csrf

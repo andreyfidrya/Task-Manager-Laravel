@@ -32,7 +32,9 @@ Route::middleware('auth')->group(function(){
     Route::group(['prefix' => 'tm'], function () {
         Route::resource('tasks', TaskController::class);
         Route::resource('clients', ClientController::class);
-        Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client');
+        Route::get('/clients/{slug}', [ ClientController::class, 'show' ])->name('client'); 
+        
+               
         
         Route::get('/inactive-clients', [ClientController::class, 'trash'])->name('inactiveclients');
         Route::delete('/{id}/destroyclientforever', [ClientController::class, 'destroyclientForever'])->name('removeclientforever');
@@ -61,7 +63,7 @@ Route::middleware('auth')->group(function(){
         Route::resource('samples', SampleController::class);
     });
     
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class); 
     
     Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
     
