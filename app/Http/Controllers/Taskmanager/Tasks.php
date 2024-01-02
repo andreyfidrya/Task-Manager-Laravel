@@ -82,16 +82,9 @@ class Tasks extends Controller
     }
 
     public function earningsbyusers()
-    {
-        $earningsbyandrey = Task::onlyTrashed()
-        ->where('author', 'Andrey')
-        ->sum('budget');
-
-        $earningsbyelena = Task::onlyTrashed()
-        ->where('author', 'Elena')
-        ->sum('budget');
-
-        return view('earnings.earningsbyusers', compact('earningsbyandrey', 'earningsbyelena'));
+    {        
+        $users = User::orderBy('name', 'ASC')->get();
+        return view('earnings.earningsbyusers', compact('users'));
     }
 
     public function totalworkload()
