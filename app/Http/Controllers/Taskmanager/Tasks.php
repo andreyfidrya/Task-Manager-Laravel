@@ -109,7 +109,7 @@ class Tasks extends Controller
         $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
         $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
 
-        $wordcountandrey = Task::onlyTrashed()
+        /*$wordcountandrey = Task::onlyTrashed()
         ->where('author', 'Andrey')
         ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
         ->sum('wordcount');
@@ -117,9 +117,10 @@ class Tasks extends Controller
         $wordcountelena = Task::onlyTrashed()
         ->where('author', 'Elena')
         ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
-        ->sum('wordcount');
+        ->sum('wordcount');*/
 
-        return view('workload.workloadperuser', compact('wordcountandrey', 'wordcountelena'));
+        $users = User::orderBy('name', 'ASC')->get();
+        return view('workload.workloadperuser', compact('users', 'weekStartDate', 'weekEndDate'));
     }
 
     public function restoretask($id){
