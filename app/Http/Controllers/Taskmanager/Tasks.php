@@ -9,6 +9,7 @@ use App\Models\Spending;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Http\Requests\Tasks\Save as SaveRequest;
+use App\Enums\Task\Status as TaskStatus;
 
 class Tasks extends Controller
 {
@@ -27,7 +28,9 @@ class Tasks extends Controller
 
     public function store(SaveRequest $request)
     {
+        $status = TaskStatus::INPROGRESS;
         $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id']);
+        $data['status'] = $status;
         Task::create($data);
         return redirect()->route('tasks.index');
     }
@@ -35,6 +38,7 @@ class Tasks extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
+        //dd($task->status);        
         return view('tasks.show', compact('task'));
     }
 

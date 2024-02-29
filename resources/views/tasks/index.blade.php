@@ -14,6 +14,7 @@
   <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
+  <th scope="col">Status</th>
   <th scope="col">User</th>
   <th scope="col">Action</th>       
 </tr>
@@ -27,6 +28,7 @@
   <td>{{ $task->budget }}</td>  
   <td>{!! $task->performance !!}</td> 
   <td>{{ $task->duedate }}</td>
+  <td>{{ $task->status->text() }}</td>
   <td>{{ $task->user->name }}</td>   
   <td>
   <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
