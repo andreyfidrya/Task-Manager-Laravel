@@ -5,6 +5,18 @@
 <a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
 </p>
 
+<form method="get" action="">
+<label>Statuses:</label>
+<select name="statuses">
+<option value="">All statuses</option>
+@foreach($statuses as $status)
+<option value="">{{ $status }}</option>
+@endforeach
+</select>
+<input type="submit" class="btn btn-info" name="apply_filter" value="Apply Filter">
+<input type="submit" class="btn btn-info" name="empty-filters" value="Empty Filter">
+</form>
+
 <table class="table">
 <thead>
 <tr>

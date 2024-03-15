@@ -16,7 +16,9 @@ class Tasks extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        $statusesArr = TaskStatus::cases();
+        $statuses = array_column($statusesArr, 'name');
+        return view('tasks.index', compact('tasks', 'statuses'));
     }
 
     public function create()
