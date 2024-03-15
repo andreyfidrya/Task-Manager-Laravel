@@ -21,16 +21,20 @@ class Tasks extends Controller
 
     public function create()
     {
+        $statusesArr = TaskStatus::cases();
+        $statuses = array_column($statusesArr, 'name');        
+
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
-        return view('tasks.create', compact('clients', 'users'));        
+        return view('tasks.create', compact('clients', 'users', 'statuses'));        
     }
 
     public function store(SaveRequest $request)
     {
-        $status = TaskStatus::INPROGRESS;
-        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id']);
-        $data['status'] = $status;
+        // $status = TaskStatus::INPROGRESS;        
+        
+        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'status']);
+        // $data['status'] = $status;
         Task::create($data);
         return redirect()->route('tasks.index');
     }
@@ -45,15 +49,17 @@ class Tasks extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
+        $statusesArr = TaskStatus::cases();
+        $statuses = array_column($statusesArr, 'name');
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
-        return view('tasks.edit', compact('task', 'clients', 'users'));        
+        return view('tasks.edit', compact('task', 'clients', 'users', 'statuses'));        
     }
 
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id']);
+        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'status']);
         $task->update($data);
         return redirect()->route('tasks.index');
     }

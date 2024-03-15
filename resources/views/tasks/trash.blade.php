@@ -9,6 +9,7 @@
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
   <th scope="col">User</th>
+  <th scope="col">Status</th>
   <th scope="col">Action</th>       
 </tr>
 </thead>
@@ -21,6 +22,7 @@
   <td>{!! $task->performance !!}</td> 
   <td>{{ $task->duedate }}</td> 
   <td>{{ $task->user->name }}</td>
+  <td>{{ $task->status->text() }}</td>
   <td>
       <form method="post" onClick="return confirm('Do you want to remove the task from {{ $task->client->name }} forever?')" action="{{ route('removetaskforever', [ $task->id ]) }}">
                         @csrf
