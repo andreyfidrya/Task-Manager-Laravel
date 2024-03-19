@@ -15,12 +15,13 @@ class Tasks extends Controller
 {
     public function index()
     {
-        $tasks = Task::all();
         $statusesArr = TaskStatus::cases();
-        $statuses = array_column($statusesArr, 'name');
-        return view('tasks.index', compact('tasks', 'statuses'));
+        //$statuses = array_column($statusesArr, 'name');
+        //dd($statusesArr);         
+        $tasks = Task::all();        
+        return view('tasks.index', compact('tasks', 'statusesArr'));
     }
-
+    
     public function create()
     {
         $statusesArr = TaskStatus::cases();

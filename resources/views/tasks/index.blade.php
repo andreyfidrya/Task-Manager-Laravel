@@ -7,10 +7,10 @@
 
 <form method="get" action="">
 <label>Statuses:</label>
-<select name="statuses">
-<option value="">All statuses</option>
-@foreach($statuses as $status)
-<option value="">{{ $status }}</option>
+<select name="task_statuses">
+<option value="all_statuses">All statuses</option>
+@foreach($statusesArr as $status)
+<option value="{{ $status->value }}">{{ $status->name }}</option>
 @endforeach
 </select>
 <input type="submit" class="btn btn-info" name="apply_filter" value="Apply Filter">
@@ -32,26 +32,53 @@
 </tr>
 </thead>
 <tbody>
+
 @foreach($tasks as $task)
-<tr>
-  <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
-  <td>{{ $task->task }}</td>
-  <td>{{ $task->wordcount }}</td> 
-  <td>{{ $task->budget }}</td>  
-  <td>{!! $task->performance !!}</td> 
-  <td>{{ $task->duedate }}</td>
-  <td>{{ $task->status->text() }}</td>
-  <td>{{ $task->user->name }}</td>   
-  <td>
-  <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
-  <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
-  <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
-    @csrf
-    @method('DELETE')
-    <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->client->name }}')">Delete</button>
-  </form>  
-  </td>    
-</tr>
+  
+  @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $task->status->value && isset($_GET['apply_filter']))  
+    <tr>
+      <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
+      <td>{{ $task->task }}</td>
+      <td>{{ $task->wordcount }}</td> 
+      <td>{{ $task->budget }}</td>  
+      <td>{!! $task->performance !!}</td> 
+      <td>{{ $task->duedate }}</td>
+      <td>{{ $task->status->text() }}</td>
+      <td>{{ $task->user->name }}</td>   
+      <td>
+      <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
+      <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+      <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->client->name }}')">Delete</button>
+      </form>  
+      </td>    
+    </tr>  
+  @endif
+  
+  @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] === 'all_statuses' || !isset($_GET['task_statuses']))
+    <tr>
+      <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
+      <td>{{ $task->task }}</td>
+      <td>{{ $task->wordcount }}</td> 
+      <td>{{ $task->budget }}</td>  
+      <td>{!! $task->performance !!}</td> 
+      <td>{{ $task->duedate }}</td>
+      <td>{{ $task->status->text() }}</td>
+      <td>{{ $task->user->name }}</td>   
+      <td>
+      <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
+      <a href="{{ route('tasks.edit', [ $task->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+      <form method="post" action="{{ route('tasks.destroy', [ $task->id ]) }}">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the task from {{ $task->client->name }}')">Delete</button>
+      </form>  
+      </td>    
+    </tr>    
+  @endif  
+
 @endforeach
 
 </tbody>
