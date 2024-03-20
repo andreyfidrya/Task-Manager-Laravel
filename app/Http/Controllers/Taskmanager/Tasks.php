@@ -18,7 +18,7 @@ class Tasks extends Controller
         $statusesArr = TaskStatus::cases();
         //$statuses = array_column($statusesArr, 'name');
         //dd($statusesArr);         
-        $tasks = Task::all();        
+        $tasks = Task::all();                
         return view('tasks.index', compact('tasks', 'statusesArr'));
     }
     

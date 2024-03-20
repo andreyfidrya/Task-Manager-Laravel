@@ -10,7 +10,13 @@
 <select name="task_statuses">
 <option value="all_statuses">All statuses</option>
 @foreach($statusesArr as $status)
-<option value="{{ $status->value }}">{{ $status->name }}</option>
+  @if(!isset($_GET['task_statuses']))    
+    <option value="{{ $status->value }}">{{ $status->name }}</option>
+  @endif
+  
+  @if(isset($_GET['task_statuses']))    
+    <option value="{{ $status->value }}" {{ (  $_GET['task_statuses'] == $status->value ) ? 'selected' : ''}}>{{ $status->name }}</option>
+  @endif
 @endforeach
 </select>
 <input type="submit" class="btn btn-info" name="apply_filter" value="Apply Filter">
