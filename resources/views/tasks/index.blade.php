@@ -10,12 +10,10 @@
 <select name="task_statuses">
 <option value="all_statuses">All statuses</option>
 @foreach($statusesArr as $status)
-  @if(!isset($_GET['task_statuses']))    
-    <option value="{{ $status->value }}">{{ $status->name }}</option>
-  @endif
-  
-  @if(isset($_GET['task_statuses']))    
+  @if(isset($_GET['task_statuses'])) 
     <option value="{{ $status->value }}" {{ (  $_GET['task_statuses'] == $status->value ) ? 'selected' : ''}}>{{ $status->name }}</option>
+  @else  
+    <option value="{{ $status->value }}">{{ $status->name }}</option>  
   @endif
 @endforeach
 </select>
