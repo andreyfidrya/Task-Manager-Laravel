@@ -6,6 +6,7 @@
   <table class="table">
   <thead>
     <tr>
+      <th scope="col"></th>
       <th scope="col">Payment</th>
       <th scope="col">Amount, UAH</th>
       <th scope="col">Due Date</th>
@@ -17,6 +18,7 @@
 
 @foreach($payments as $payment)  
 <tr>
+      <td><input type="checkbox" name="select" value="{{$payment->amount}}" onclick="UpdateCost(this);"></td>
       <td>{{ $payment->payment }}</td>
       <td>{{ $payment->amount }}</td>
       <td>{{ $payment->duedate }}</td>
@@ -31,8 +33,24 @@
       </td>     
 </tr>
 @endforeach
-  
+
 </tbody>
-</table>  
+</table>
+	
+Total cost: <input type="text" id="total" disabled="disabled"/> 
+
+<script>
+  var total=0;
+  function UpdateCost(elem) {
+ 
+    if (elem.checked == true) { 
+		total += Number(elem.value); 
+	  }else{
+		total -=Number(elem.value);
+	  }
+ 
+	document.getElementById('total').value = total.toFixed(0);
+}
+</script>
 
 </x-layouts.porto>

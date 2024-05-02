@@ -25,8 +25,7 @@ class Tasks extends Controller
     public function create()
     {
         $statusesArr = TaskStatus::cases();
-        $statuses = array_column($statusesArr, 'name');        
-
+        $statuses = array_column($statusesArr, 'name');  
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
         return view('tasks.create', compact('clients', 'users', 'statuses'));        
@@ -52,10 +51,14 @@ class Tasks extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        $statusesArr = TaskStatus::cases();
-        $statuses = array_column($statusesArr, 'name');
+        $statusesArr = TaskStatus::cases();                
+        $collection  = collect($statusesArr);
+        //dd($collection);
+        //$statuses = array_column($statusesArr, 'name');  
+        $statuses = $collection->pluck('name', 'value');        
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
+        //dd($statuses);              
         return view('tasks.edit', compact('task', 'clients', 'users', 'statuses'));        
     }
 

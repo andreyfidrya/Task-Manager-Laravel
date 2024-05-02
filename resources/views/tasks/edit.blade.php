@@ -5,6 +5,6 @@
         @include('tasks.form-fields')   
       <button class="btn btn-primary">Update a Task</button>
     </x-form>
-    @endbind
+  @endbind
 <b><a href="{{ route('tasks.index') }}">Go back to Tasks Page</a></b>
 </x-layouts.porto>

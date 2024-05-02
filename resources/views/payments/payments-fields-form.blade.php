@@ -1,4 +1,5 @@
 @csrf
+  
   <div class="mb-3">
     <x-controls.input name="payment" label="Payment Name" :item="$payment ?? null"/>
   </div>
