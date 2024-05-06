@@ -24,6 +24,7 @@
 <table class="table">
 <thead>
 <tr>
+  <th scope="col"></th>
   <th scope="col">Client Name</th>
   <th scope="col">Task</th>
   <th scope="col">Word Count</th>
@@ -41,6 +42,7 @@
   
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $task->status->value && isset($_GET['apply_filter']))  
     <tr>
+      <td><input type="checkbox" name="select" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
       <td>{{ $task->task }}</td>
       <td>{{ $task->wordcount }}</td> 
@@ -63,6 +65,7 @@
   
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] === 'all_statuses' || !isset($_GET['task_statuses']))
     <tr>
+      <td><input type="checkbox" name="select" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
       <td>{{ $task->task }}</td>
       <td>{{ $task->wordcount }}</td> 
@@ -87,4 +90,21 @@
 
 </tbody>
 </table>
+
+Total cost: <input type="text" id="total" disabled="disabled"/> 
+
+<script>
+  var total=0;
+  function UpdateCost(elem) {
+ 
+    if (elem.checked == true) { 
+		total += Number(elem.value); 
+	  }else{
+		total -=Number(elem.value);
+	  }
+ 
+	document.getElementById('total').value = total.toFixed(0);
+}
+</script>
+
 </x-layouts.porto>
