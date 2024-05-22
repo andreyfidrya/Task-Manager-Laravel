@@ -16,26 +16,30 @@ class Tasks extends Controller
     public function index()
     {
         $statusesArr = TaskStatus::cases();
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         //$statuses = array_column($statusesArr, 'name');
-        //dd($statusesArr);         
-        $tasks = Task::all();                
-        return view('tasks.index', compact('tasks', 'statusesArr'));
+        //dd($taskstatuses);         
+        $tasks = Task::all();                        
+        return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses'));
     }
     
     public function create()
     {
-        $statusesArr = TaskStatus::cases();
-        $statuses = array_column($statusesArr, 'name');  
+        $statusesArr = TaskStatus::cases();        
+        $statuses = array_column($statusesArr, 'name'); 
+        //dd($statuses[1]); 
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
-        return view('tasks.create', compact('clients', 'users', 'statuses'));        
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
+        //dd($taskstatuses[1]);
+        return view('tasks.create', compact('clients', 'users', 'statuses', 'taskstatuses'));        
     }
 
     public function store(SaveRequest $request)
     {
         // $status = TaskStatus::INPROGRESS;        
         
-        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'status']);
+        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
         // $data['status'] = $status;
         Task::create($data);
         return redirect()->route('tasks.index');
@@ -58,14 +62,15 @@ class Tasks extends Controller
         $statuses = $collection->pluck('name', 'value');        
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
-        //dd($statuses);              
-        return view('tasks.edit', compact('task', 'clients', 'users', 'statuses'));        
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
+        //dd($taskstatuses);              
+        return view('tasks.edit', compact('task', 'clients', 'users', /*'statuses',*/ 'taskstatuses'));        
     }
 
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'status']);
+        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', /*'status',*/ 'taskstatus']);
         $task->update($data);
         return redirect()->route('tasks.index');
     }
@@ -84,7 +89,9 @@ class Tasks extends Controller
         ->sum('budget');
         $sumspent = Spending::all()
         ->sum('amount');
-        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent'));        
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
+        //dd($taskstatuses[0]);
+        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses'));        
     }
 
     public function earningsbyclients()

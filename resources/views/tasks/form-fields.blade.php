@@ -20,8 +20,9 @@
 <div class="mb-3">
     <x-form-select name="user_id" label="User" :options="$users" placeholder="Select the user"/> 
 </div>
+
 <div class="mb-3">
-    <x-form-select name="status" label="Status" :options="$statuses" placeholder="Select the status"/> 
-</div>
+    <x-form-select name="taskstatus" label="Task Status" :options="$taskstatuses" placeholder="Select the status"/> 
+</div> 
 
 

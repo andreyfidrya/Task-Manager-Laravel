@@ -9,11 +9,11 @@
 <label>Statuses:</label>
 <select name="task_statuses">
 <option value="all_statuses">All statuses</option>
-@foreach($statusesArr as $status)
+@foreach($taskstatuses as $taskstatus)
   @if(isset($_GET['task_statuses'])) 
-    <option value="{{ $status->value }}" {{ (  $_GET['task_statuses'] == $status->value ) ? 'selected' : ''}}>{{ $status->name }}</option>
+    <option value="{{ $taskstatus }}" {{ (  $_GET['task_statuses'] == $taskstatus ) ? 'selected' : ''}}>{{ $taskstatus }}</option>
   @else  
-    <option value="{{ $status->value }}">{{ $status->name }}</option>  
+    <option value="{{ $taskstatus }}">{{ $taskstatus }}</option>  
   @endif
 @endforeach
 </select>
@@ -31,7 +31,8 @@
   <th scope="col">Budget, $USD</th>
   <th scope="col">Performance</th>
   <th scope="col">Due date</th>
-  <th scope="col">Status</th>
+  <!-- <th scope="col">Status</th>--> 
+  <th scope="col">Task Status</th>
   <th scope="col">User</th>
   <th scope="col">Action</th>       
 </tr>
@@ -40,7 +41,7 @@
 
 @foreach($tasks as $task)
   
-  @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $task->status->value && isset($_GET['apply_filter']))  
+  @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $taskstatuses[$task->taskstatus] && isset($_GET['apply_filter']))  
     <tr>
       <td><input type="checkbox" name="select" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
@@ -49,7 +50,8 @@
       <td>{{ $task->budget }}</td>  
       <td>{!! $task->performance !!}</td> 
       <td>{{ $task->duedate }}</td>
-      <td>{{ $task->status->text() }}</td>
+       
+      <td>{{ $taskstatuses[$task->taskstatus] }}</td>
       <td>{{ $task->user->name }}</td>   
       <td>
       <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
@@ -72,7 +74,8 @@
       <td>{{ $task->budget }}</td>  
       <td>{!! $task->performance !!}</td> 
       <td>{{ $task->duedate }}</td>
-      <td>{{ $task->status->text() }}</td>
+       
+      <td>{{ $taskstatuses[$task->taskstatus] }}</td>
       <td>{{ $task->user->name }}</td>   
       <td>
       <a href="{{ route('tasks.show', [ $task->id ]) }}" class="btn btn-info">View</a>
@@ -91,7 +94,7 @@
 </tbody>
 </table>
 
-Total cost: <input type="text" id="total" disabled="disabled"/> 
+Total earnings: <input type="text" id="total" disabled="disabled"/> 
 
 <script>
   var total=0;
