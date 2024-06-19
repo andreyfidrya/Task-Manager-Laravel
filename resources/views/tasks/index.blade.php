@@ -1,8 +1,8 @@
 <x-layouts.porto title="Tasks" header="Tasks">
 
-
 <p>
 <a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
+<button class="btn btn-danger removeAll">Remove Selected Tasks</button>
 </p>
 
 <form method="get" action="">
@@ -24,7 +24,7 @@
 <table class="table">
 <thead>
 <tr>
-  <th scope="col"></th>
+  <th scope="col"><input type="checkbox" id="checkboxesMain"></th>
   <th scope="col">Client Name</th>
   <th scope="col">Task</th>
   <th scope="col">Word Count</th>
@@ -42,8 +42,8 @@
 @foreach($tasks as $task)
   
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $taskstatuses[$task->taskstatus] && isset($_GET['apply_filter']))  
-    <tr>
-      <td><input type="checkbox" name="select" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
+    <tr id="sid{{$task->id}}">  
+      <td><input type="checkbox" class="checkbox" data-id="{{$task->id}}" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
       <td>{{ $task->task }}</td>
       <td>{{ $task->wordcount }}</td> 
@@ -66,8 +66,8 @@
   @endif
   
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] === 'all_statuses' || !isset($_GET['task_statuses']))
-    <tr>
-      <td><input type="checkbox" name="select" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
+    <tr id="tr_{{$task->id}}">
+      <td><input type="checkbox" class="checkbox" value="{{$task->budget}}" data-id="{{$task->id}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
       <td>{{ $task->task }}</td>
       <td>{{ $task->wordcount }}</td> 
@@ -94,10 +94,15 @@
 </tbody>
 </table>
 
-Total earnings: <input type="text" id="total" disabled="disabled"/> 
+Total earnings: <input type="text" id="total" disabled="disabled"/>
 
-<script>
-  var total=0;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/js/jquery-1.8.3.min.js" integrity="sha512-J9QfbPuFlqGD2CYVCa6zn8/7PEgZnGpM5qtFOBZgwujjDnG5w5Fjx46YzqvIh/ORstcj7luStvvIHkisQi5SKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>  
+  
+  var total=0;  
+  
   function UpdateCost(elem) {
  
     if (elem.checked == true) { 
@@ -107,7 +112,69 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
 	  }
  
 	document.getElementById('total').value = total.toFixed(0);
-}
+  }
+
 </script>
+
+<script>
+  $(function(e){
+      $("#checkboxesMain").click(function(){
+        $('.checkboxesMain').prop('checked', $(this).prop('checked'));
+      });      
+  });
+</script>
+
+<script type = "text/javascript" >
+    $(document).ready(function() {
+        $('#checkboxesMain').on('click', function(e) {
+            if ($(this).is(':checked', true)) {
+                $(".checkbox").prop('checked', true);
+            } else {
+                $(".checkbox").prop('checked', false);
+            }
+        });
+        $('.checkbox').on('click', function() {
+            if ($('.checkbox:checked').length == $('.checkbox').length) {
+                $('#checkboxesMain').prop('checked', true);
+            } else {
+                $('#checkboxesMain').prop('checked', false);
+            }
+        });
+        $('.removeAll').on('click', function(e) {
+            var taskIdArr = [];
+            $(".checkbox:checked").each(function() {
+                taskIdArr.push($(this).attr('data-id'));
+            });
+            if (taskIdArr.length <= 0) {
+                alert("Choose min one item to remove.");
+            } else {
+                if (confirm("Are you sure?")) {
+                    var taskId = taskIdArr.join(",");
+                    $.ajax({
+                        url: "{{url('/tm/delete-all')}}",
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: 'ids=' + taskId,
+                        success: function(data) {
+                            if (data['status'] == true) {
+                                $(".checkbox:checked").each(function() {
+                                    $(this).parents("tr").remove();
+                                });
+                                alert(data['message']);
+                            } else {
+                                alert('Error occured.');
+                            }
+                        },
+                        error: function(data) {
+                            alert(data.responseText);
+                        }
+                    });
+                }
+            }
+        });
+    }); 
+ </script>
 
 </x-layouts.porto>

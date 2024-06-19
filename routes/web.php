@@ -46,8 +46,9 @@ Route::middleware('auth')->group(function(){
         Route::get('/workload-per-user-per-week', [TaskController::class, 'workloadperuser'])->name('workloadperuser');
 
         Route::delete('/{id}/destroytaskforever', [TaskController::class, 'destroytaskForever'])->name('removetaskforever');
-        Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask');
-        
+        Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask'); 
+        Route::delete('/delete-all', [TaskController::class, 'removeMulti']);       
+
         Route::resource('spendings', SpendingController::class);        
     });
     
@@ -84,3 +85,6 @@ Route::controller(Session::class)->group(function(){
             Route::delete('/auth/logout', 'destroy')->name('login.destroy'); 
         });          
 });
+
+
+

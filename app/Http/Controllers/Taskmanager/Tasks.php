@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\Spending;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 use App\Enums\Task\Status as TaskStatus;
 
@@ -92,6 +93,13 @@ class Tasks extends Controller
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         //dd($taskstatuses[0]);
         return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses'));        
+    }
+
+    public function removeMulti(Request $request)
+    {
+        $ids = $request->ids;
+        Task::whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed."]);         
     }
 
     public function earningsbyclients()
