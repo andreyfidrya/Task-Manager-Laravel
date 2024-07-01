@@ -1,4 +1,4 @@
-<x-layouts.porto title="View a Task" header="View a Task">
+<x-layouts.porto title="View a Task" header="View a Task" username={{$username}}>
 
 <b>Client Name: </b> <a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a>
 <hr>

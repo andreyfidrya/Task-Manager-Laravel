@@ -1,4 +1,4 @@
-<x-layouts.porto title="Add a New Task" header="Add a New Task">
+<x-layouts.porto title="Add a New Task" header="Add a New Task" username={{$username}}>
     <x-form method="post" action="{{ route('tasks.store') }}">
     @include('tasks.form-fields')   
       <button class="btn btn-primary">Add a Task</button>

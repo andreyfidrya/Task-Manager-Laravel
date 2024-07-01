@@ -1,7 +1,10 @@
 @props([
     'title',
-    'header'		
+    'header',
+	'username'		
 ])
+
+
 
 <!doctype html>
 <html class="fixed header-dark">
@@ -122,7 +125,7 @@
 							</figure>
 							-->
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-								<span class="name">User Name</span>
+								<span class="name">{{$username}}</span>
 								<span class="role">Administrator</span>
 							</div>
 

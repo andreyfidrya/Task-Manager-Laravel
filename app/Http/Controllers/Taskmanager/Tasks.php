@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 use App\Enums\Task\Status as TaskStatus;
+use Illuminate\Support\Facades\Auth;
 
 class Tasks extends Controller
 {
@@ -18,22 +19,24 @@ class Tasks extends Controller
     {
         $statusesArr = TaskStatus::cases();
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
+        $username = Auth::user()->name;        
         //$statuses = array_column($statusesArr, 'name');
-        //dd($taskstatuses);         
+        //dd($username);         
         $tasks = Task::all();                        
-        return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses'));
+        return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses', 'username'));
     }
     
     public function create()
     {
         $statusesArr = TaskStatus::cases();        
-        $statuses = array_column($statusesArr, 'name'); 
+        $statuses = array_column($statusesArr, 'name');
+        $username = Auth::user()->name; 
         //dd($statuses[1]); 
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         //dd($taskstatuses[1]);
-        return view('tasks.create', compact('clients', 'users', 'statuses', 'taskstatuses'));        
+        return view('tasks.create', compact('clients', 'users', 'statuses', 'taskstatuses', 'username'));        
     }
 
     public function store(SaveRequest $request)
@@ -49,14 +52,16 @@ class Tasks extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
+        $username = Auth::user()->name;
         //dd($task->status);        
-        return view('tasks.show', compact('task'));
+        return view('tasks.show', compact('task', 'username'));
     }
 
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        $statusesArr = TaskStatus::cases();                
+        $statusesArr = TaskStatus::cases();
+        $username = Auth::user()->name;                
         $collection  = collect($statusesArr);
         //dd($collection);
         //$statuses = array_column($statusesArr, 'name');  
@@ -65,7 +70,7 @@ class Tasks extends Controller
         $users = User::orderBy('name')->pluck('name', 'id');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         //dd($taskstatuses);              
-        return view('tasks.edit', compact('task', 'clients', 'users', /*'statuses',*/ 'taskstatuses'));        
+        return view('tasks.edit', compact('task', 'clients', 'users', /*'statuses',*/ 'taskstatuses', 'username'));        
     }
 
     public function update(SaveRequest $request, $id)
@@ -86,13 +91,14 @@ class Tasks extends Controller
     public function trash()
     {
         $performedtasks = Task::onlyTrashed()->get();
+        $username = Auth::user()->name;
         $sum = Task::onlyTrashed()
         ->sum('budget');
         $sumspent = Spending::all()
         ->sum('amount');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         //dd($taskstatuses[0]);
-        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses'));        
+        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses', 'username'));        
     }
 
     public function removeMulti(Request $request)
@@ -105,17 +111,19 @@ class Tasks extends Controller
     public function earningsbyclients()
     {
         $performedtasks = Task::onlyTrashed()->get();
+        $username = Auth::user()->name;
         $totalsum = Task::onlyTrashed()
         ->sum('budget');
 
         $clients = Client::orderBy('name', 'ASC')->get();
-        return view('earnings.earningsbyclients', compact('clients', 'totalsum'));        
+        return view('earnings.earningsbyclients', compact('clients', 'totalsum', 'username'));        
     }
 
     public function earningsbyusers()
     {        
         $users = User::orderBy('name', 'ASC')->get();
-        return view('earnings.earningsbyusers', compact('users'));
+        $username = Auth::user()->name;
+        return view('earnings.earningsbyusers', compact('users', 'username'));
     }
 
     public function totalworkload()
@@ -129,8 +137,9 @@ class Tasks extends Controller
         ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
         ->sum('wordcount');
         
+        $username = Auth::user()->name;
 
-        return view('workload.totalworkload', compact('totalwordcount'));
+        return view('workload.totalworkload', compact('totalwordcount', 'username'));
     }
 
     public function workloadperuser()
@@ -139,6 +148,7 @@ class Tasks extends Controller
         $now = Carbon::now();
         $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
         $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
+        $username = Auth::user()->name;
 
         /*$wordcountandrey = Task::onlyTrashed()
         ->where('author', 'Andrey')
@@ -151,7 +161,7 @@ class Tasks extends Controller
         ->sum('wordcount');*/
 
         $users = User::orderBy('name', 'ASC')->get();
-        return view('workload.workloadperuser', compact('users', 'weekStartDate', 'weekEndDate'));
+        return view('workload.workloadperuser', compact('users', 'weekStartDate', 'weekEndDate', 'username'));
     }
 
     public function restoretask($id){

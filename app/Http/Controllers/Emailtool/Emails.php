@@ -8,13 +8,15 @@ use App\Models\Sample;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Requests\Emails\Save as SaveRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Emails extends Controller
 {
     public function index()
     {
+        $username = Auth::user()->name;
         $email = Email::first();               
-        return view('emails.index', compact('email'));
+        return view('emails.index', compact('email', 'username'));
     }
 
     public function edit()

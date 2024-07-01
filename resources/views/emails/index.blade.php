@@ -1,4 +1,4 @@
-<x-layouts.porto title="Emails" header="Emails">
+<x-layouts.porto title="Emails" header="Emails" username={{$username}}>
 
 <h1>{{ $email->template }}:</h1>
 <hr>
