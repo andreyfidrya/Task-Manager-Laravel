@@ -1,4 +1,4 @@
-<x-layouts.porto title="View an Email" header="View an Email">
+<x-layouts.porto title="View an Email" header="View an Email" username={{$username}}>
 
 {{ $email->spam }}<br>
 {{ $email->client }}<br>

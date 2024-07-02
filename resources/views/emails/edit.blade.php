@@ -1,4 +1,4 @@
-<x-layouts.porto title="Emails" header="Customize an Email">
+<x-layouts.porto title="Emails" header="Customize an Email" username={{$username}}>
   @bind($email)
 <form method="post" action="{{ route('emails.update', [ $email->id ]) }}">
 @method('PUT')    

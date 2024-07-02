@@ -1,4 +1,4 @@
-<x-layouts.porto title="Add a topic" header="Add a New Topic">
+<x-layouts.porto title="Add a topic" header="Add a New Topic" username={{$username}}>
 
 <form method="post" action="{{ route('topics.store') }}">
     @include('emails.topics.form-fields')   

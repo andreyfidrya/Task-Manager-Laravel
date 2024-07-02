@@ -1,4 +1,4 @@
-<x-layouts.porto title="Topics" header="Topics">
+<x-layouts.porto title="Topics" header="Topics" username={{$username}}>
 
   <p>
     <a href="{{ route('topics.create') }}" class="btn btn-success">Add a Topic</a>

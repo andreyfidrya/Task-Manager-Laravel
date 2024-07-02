@@ -8,22 +8,25 @@ use App\Http\Requests\Samples\Save as SaveRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sample;
 use App\Models\Topic;
+use Illuminate\Support\Facades\Auth;
 
 class Samples extends Controller
 {
     public function index()
     {
+        $username = Auth::user()->name;
         $samples = Sample::paginate(10);
-        return view('emails.samples.index', compact('samples'));
+        return view('emails.samples.index', compact('samples', 'username'));
     }
 
     public function create()
     {
+        $username = Auth::user()->name;
         $size = DB::table('topics')->count();        
 
         return view('emails.samples.create', [
             'topics' => Topic::orderBy('name')->pluck('name', 'id'),                                               
-        ], compact('size'));
+        ], compact('size', 'username'));
         
     }
 
@@ -42,10 +45,11 @@ class Samples extends Controller
 
     public function edit($id)
     {
+        $username = Auth::user()->name;
         $size = DB::table('topics')->count();
         $sample = Sample::findOrFail($id);
         $topics = Topic::orderBy('name')->pluck('name', 'id');
-        return view('emails.samples.edit', compact('sample', 'topics', 'size'));        
+        return view('emails.samples.edit', compact('sample', 'topics', 'size', 'username'));        
     }
 
     public function update(SaveRequest $request, $id)

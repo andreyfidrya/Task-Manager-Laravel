@@ -21,8 +21,9 @@ class Emails extends Controller
 
     public function edit()
     {
+        $username = Auth::user()->name;
         $email = Email::first();
-        return view('emails.edit', compact('email'));
+        return view('emails.edit', compact('email', 'username'));
     }
 
     public function update(SaveRequest $request, $id)

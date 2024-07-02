@@ -1,4 +1,4 @@
-<x-layouts.porto title="Samples" header="Samples">
+<x-layouts.porto title="Samples" header="Samples" username={{$username}}>
 
   <p>
     <a href="{{ route('samples.create') }}" class="btn btn-success">Add a Sample</a>
