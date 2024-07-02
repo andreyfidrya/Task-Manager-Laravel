@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Regularpayments;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Http\Requests\Payments\Save as SaveRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Payments extends Controller
 {
@@ -13,6 +14,7 @@ class Payments extends Controller
      */
     public function index()
     {
+        $username = Auth::user()->name;
         $payments = Payment::orderBy("daysleft", "asc")->get();
         
 // Refreshing today's date
@@ -41,7 +43,7 @@ class Payments extends Controller
 
         }
           
-        return view('payments.index', compact('payments'));
+        return view('payments.index', compact('payments', 'username'));
     }
 
     /**
@@ -49,7 +51,8 @@ class Payments extends Controller
      */
     public function create()
     {
-        return view('payments.create');
+        $username = Auth::user()->name;
+        return view('payments.create', compact('username'));
     }
 
     /**
@@ -109,8 +112,9 @@ class Payments extends Controller
      */
     public function edit($id)
     {
+        $username = Auth::user()->name;
         $payment = Payment::findOrFail($id);
-        return view('payments.edit', compact('payment'));
+        return view('payments.edit', compact('payment', 'username'));
     }
 
     /**

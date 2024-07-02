@@ -1,4 +1,4 @@
-<x-layouts.porto title="Payments" header="Edit a Payment">
+<x-layouts.porto title="Payments" header="Edit a Payment" username={{$username}}>
 
 <form method="post" action="{{ route('payments.update', [ $payment->id ]) }}">
 @method('PUT')    
