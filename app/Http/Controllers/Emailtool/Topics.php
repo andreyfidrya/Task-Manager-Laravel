@@ -64,6 +64,7 @@ class Topics extends Controller
     }
 
     public function search(Request $request){
+        $username = Auth::user()->name;
         // Get the search value from the request
         $search = $request->input('search');
 
@@ -78,7 +79,7 @@ class Topics extends Controller
             ->get();
         
         // Return the search view with the resluts compacted
-        return view('emails.search', compact('topics', 'samples'));
+        return view('emails.search', compact('topics', 'samples', 'username'));
     }
     
 }
