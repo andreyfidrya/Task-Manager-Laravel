@@ -1,4 +1,4 @@
-<x-layouts.porto title="Total Earnings per Month" header="Total Earnings per Month">
+<x-layouts.porto title="Total Earnings per Month" header="Total Earnings per Month" username={{$username}}>
 
 <table class="table">
 <thead>
