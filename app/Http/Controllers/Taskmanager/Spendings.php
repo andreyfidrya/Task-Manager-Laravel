@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Spending;
 use Illuminate\Http\Request;
 use App\Http\Requests\Spendings\Save as SaveRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Spendings extends Controller
 {
@@ -14,10 +15,11 @@ class Spendings extends Controller
      */
     public function index()
     {
+        $username = Auth::user()->name;
         $spendings = Spending::all();
         $sumspent = Spending::all()
         ->sum('amount');
-        return view('spendings.index', compact('spendings', 'sumspent'));
+        return view('spendings.index', compact('spendings', 'sumspent', 'username'));
     }
 
     /**
@@ -25,7 +27,8 @@ class Spendings extends Controller
      */
     public function create()
     {
-        return view('spendings.create');
+        $username = Auth::user()->name;
+        return view('spendings.create', compact('username'));
     }
 
     /**
@@ -51,8 +54,9 @@ class Spendings extends Controller
      */
     public function edit($id)
     {
+        $username = Auth::user()->name;
         $expense = Spending::findOrFail($id);
-        return view('spendings.edit', compact('expense'));
+        return view('spendings.edit', compact('expense', 'username'));
     }
 
     public function update(SaveRequest $request, $id)

@@ -1,4 +1,4 @@
-<x-layouts.porto title="View a Client" header="View a Client">
+<x-layouts.porto title="View a Client" header="View a Client" username={{$username}}>
 
 <b>Client Name: </b>{{ $client->name }}
 <hr>

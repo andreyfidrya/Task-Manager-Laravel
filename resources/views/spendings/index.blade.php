@@ -1,4 +1,4 @@
-<x-layouts.porto title="Total Spendings per Month" header="Total Spendings per Month">
+<x-layouts.porto title="Total Spendings per Month" header="Total Spendings per Month" username={{$username}}>
 <p>
 <a href="{{ route('spendings.create') }}" class="btn btn-success">Add an Expense</a>
 </p>

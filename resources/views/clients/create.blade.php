@@ -1,4 +1,4 @@
-<x-layouts.porto title="Add a New Client" header="Add a New Client">
+<x-layouts.porto title="Add a New Client" header="Add a New Client" username={{$username}}>
     <x-form method="post" action="{{ route('clients.store') }}">
     @include('clients.form-fields')   
       <button class="btn btn-primary">Add a Client</button>

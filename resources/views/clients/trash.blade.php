@@ -1,4 +1,4 @@
-<x-layouts.porto title="Inactive Clients" header="Inactive Clients">
+<x-layouts.porto title="Inactive Clients" header="Inactive Clients" username={{$username}}>
 
 <table class="table">
 <thead>
