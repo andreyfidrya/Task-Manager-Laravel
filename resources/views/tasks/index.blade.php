@@ -23,19 +23,18 @@
 
 <table class="table">
 <thead>
-<tr>
-  <th scope="col"><input type="checkbox" id="checkboxesMain"></th>
-  <th scope="col">Client Name</th>
-  <th scope="col">Task</th>
-  <th scope="col">Word Count</th>
-  <th scope="col">Budget, $USD</th>
-  <th scope="col">Performance</th>
-  <th scope="col">Due date</th>
-  <!-- <th scope="col">Status</th>--> 
-  <th scope="col">Task Status</th>
-  <th scope="col">User</th>
-  <th scope="col">Action</th>       
-</tr>
+  <tr>
+    <th scope="col"><input type="checkbox" id="checkboxesMain"></th>
+    <th scope="col">Client Name</th>
+    <th scope="col">Task</th>
+    <th scope="col">Word Count</th>
+    <th scope="col">Budget, $USD</th>
+    <th scope="col">Performance</th>
+    <th scope="col">Due date</th>
+    <th scope="col">Task Status</th>
+    <th scope="col">User</th>
+    <th scope="col">Action</th>       
+  </tr>
 </thead>
 <tbody>
 

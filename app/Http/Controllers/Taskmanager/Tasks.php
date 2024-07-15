@@ -108,6 +108,13 @@ class Tasks extends Controller
         return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed."]);         
     }
 
+    public function removeMultiForever(Request $request)
+    {
+        $ids = $request->ids;
+        Task::whereIn('id',explode(",",$ids))->forceDelete();
+        return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed forever."]);         
+    }
+
     public function earningsbyclients()
     {
         $performedtasks = Task::onlyTrashed()->get();
