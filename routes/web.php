@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/total-earnings-per-month', [TaskController::class, 'trash'])->name('performedtasks');
         Route::get('/earnings-by-clients-per-month', [TaskController::class, 'earningsbyclients'])->name('earningsbyclients');
         Route::get('/earnings-by-users-per-month', [TaskController::class, 'earningsbyusers'])->name('earningsbyusers');
-
+        
         Route::get('/total-workload-per-week', [TaskController::class, 'totalworkload'])->name('totalworkload');
         Route::get('/workload-per-user-per-week', [TaskController::class, 'workloadperuser'])->name('workloadperuser');
 
@@ -50,7 +50,8 @@ Route::middleware('auth')->group(function(){
         Route::delete('/delete-all', [TaskController::class, 'removeMulti']);
         Route::delete('/delete-all-forever', [TaskController::class, 'removeMultiForever']);       
 
-        Route::resource('spendings', SpendingController::class);        
+        Route::resource('spendings', SpendingController::class);
+        Route::delete('/delete-all-spendings', [TaskController::class, 'removeMultiSpendings']);        
     });
     
     Route::resource('payments', PaymentController::class);
