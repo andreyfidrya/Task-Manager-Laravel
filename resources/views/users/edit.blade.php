@@ -1,4 +1,4 @@
-<x-layouts.porto title="Edit a User" header="Edit an User">
+<x-layouts.porto title="Edit a User" header="Edit an User" username={{$username}}>
 @bind($user)
     <x-form method="post" action="{{ route('users.update', [ $user->id ]) }}">
     @method('PUT')

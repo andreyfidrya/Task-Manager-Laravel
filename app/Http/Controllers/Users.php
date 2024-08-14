@@ -7,19 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Users extends Controller
 {
     public function index()
     {
+        $username = Auth::user()->name;
         return view('users.index', [
             'users' => User::all()
-        ]);
+        ], compact('username'));
     }
 
     public function create()
     {
-        return view('users.create');
+        $username = Auth::user()->name;
+        return view('users.create', compact('username'));
     }
 
     public function store(SaveRequest $request)
@@ -34,14 +37,16 @@ class Users extends Controller
 
     public function show(string $id)
     {
+        $username = Auth::user()->name;
         $user = User::firstOrFail($id);
-        return view('users.show', compact('user'));
+        return view('users.show', compact('user', 'username'));
     }
 
     public function edit(string $id)
     {
+        $username = Auth::user()->name;
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'username'));
     }
 
     public function update(Request $request, $id)
