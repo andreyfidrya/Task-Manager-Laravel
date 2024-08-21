@@ -19,9 +19,7 @@ class Tasks extends Controller
     {
         $statusesArr = TaskStatus::cases();
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        $username = Auth::user()->name;        
-        //$statuses = array_column($statusesArr, 'name');
-        //dd($username);         
+        $username = Auth::user()->name;            
         $tasks = Task::all();                        
         return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses', 'username'));
     }
@@ -31,7 +29,6 @@ class Tasks extends Controller
         $statusesArr = TaskStatus::cases();        
         $statuses = array_column($statusesArr, 'name');
         $username = Auth::user()->name; 
-        //dd($statuses[1]); 
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
@@ -93,10 +90,10 @@ class Tasks extends Controller
         ->sum('budget');
         $sumspent = Spending::all()
         ->sum('amount');
-        // $sumvat = Task::onlyTrashed()
-        // ->sum('vat');
+        $sumvat = Task::onlyTrashed()
+        ->sum('vat');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses', 'username'/*,'sumvat'*/));        
+        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses', 'username','sumvat'));        
     }
 
     public function removeMulti(Request $request)
@@ -140,7 +137,6 @@ class Tasks extends Controller
 
     public function totalworkload()
     {
-       
         $now = Carbon::now();
         $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
         $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');

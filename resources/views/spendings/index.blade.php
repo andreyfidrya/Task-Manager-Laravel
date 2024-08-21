@@ -34,6 +34,8 @@
 </tbody>
 </table>
 Spendings per month: <strong>{{ $sumspent }} USD</strong><br>
+Total amount of vat per month: <strong>{{ $sumvat }} USD</strong><br>
+<h2>Total spendings per month:</h2> <strong>{{ $totalspendings }} USD</strong><br>
 </x-layouts.porto>
 
 <script type = "text/javascript" >

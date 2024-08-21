@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Taskmanager;
 
 use App\Http\Controllers\Controller;
-//use App\Models\Task;
+use App\Models\Task;
 use App\Models\Spending;
 use Illuminate\Http\Request;
 use App\Http\Requests\Spendings\Save as SaveRequest;
@@ -19,9 +19,12 @@ class Spendings extends Controller
         $username = Auth::user()->name;
         $spendings = Spending::all();
         $sumspent = Spending::all()
-        ->sum('amount');        
+        ->sum('amount');
+        $sumvat = Task::onlyTrashed()
+        ->sum('vat');
+        $totalspendings = $sumspent + $sumvat;        
         
-        return view('spendings.index', compact('spendings', 'sumspent', 'username'));
+        return view('spendings.index', compact('spendings', 'sumspent', 'username', 'sumvat', 'totalspendings'));
     }
 
     /**
