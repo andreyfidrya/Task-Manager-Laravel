@@ -11,6 +11,9 @@
 <div class="mb-3">    
     <x-form-input name="budget" label="Budget"/> 
 </div>
+<div class="mb-3">    
+    <x-form-input name="vat" label="Vat (%)"/> 
+</div>
 <div class="mb-3">
     <x-form-textarea name="performance" id="editor" label="Performance"/>
 </div>

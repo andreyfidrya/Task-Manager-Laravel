@@ -41,10 +41,9 @@ class Tasks extends Controller
 
     public function store(SaveRequest $request)
     {
-        // $status = TaskStatus::INPROGRESS;        
-        
+        $vat = $request->budget / 90 * 10 * $request->vat / 100;       
         $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
-        // $data['status'] = $status;
+        $data['vat'] = $vat;
         Task::create($data);
         return redirect()->route('tasks.index');
     }
@@ -53,7 +52,6 @@ class Tasks extends Controller
     {
         $task = Task::findOrFail($id);
         $username = Auth::user()->name;
-        //dd($task->status);        
         return view('tasks.show', compact('task', 'username'));
     }
 
@@ -63,20 +61,19 @@ class Tasks extends Controller
         $statusesArr = TaskStatus::cases();
         $username = Auth::user()->name;                
         $collection  = collect($statusesArr);
-        //dd($collection);
-        //$statuses = array_column($statusesArr, 'name');  
         $statuses = $collection->pluck('name', 'value');        
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
-        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        //dd($taskstatuses);              
-        return view('tasks.edit', compact('task', 'clients', 'users', /*'statuses',*/ 'taskstatuses', 'username'));        
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];                   
+        return view('tasks.edit', compact('task', 'clients', 'users', 'taskstatuses', 'username'));        
     }
 
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', /*'status',*/ 'taskstatus']);
+        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'taskstatus']);
+        $vat = $request->budget / 90 * 10 * $request->vat / 100;
+        $data['vat'] = $vat;
         $task->update($data);
         return redirect()->route('tasks.index');
     }
@@ -96,9 +93,10 @@ class Tasks extends Controller
         ->sum('budget');
         $sumspent = Spending::all()
         ->sum('amount');
+        // $sumvat = Task::onlyTrashed()
+        // ->sum('vat');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        //dd($taskstatuses[0]);
-        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses', 'username'));        
+        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses', 'username'/*,'sumvat'*/));        
     }
 
     public function removeMulti(Request $request)
