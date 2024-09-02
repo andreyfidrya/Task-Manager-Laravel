@@ -38,8 +38,8 @@ class Tasks extends Controller
 
     public function store(SaveRequest $request)
     {
-        $vat = $request->budget / 90 * 10 * $request->vat / 100;       
-        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
+        $vat = $request->budget / 90 * 10 * $request->vatpercentage / 100;       
+        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
         $data['vat'] = $vat;
         Task::create($data);
         return redirect()->route('tasks.index');
@@ -68,8 +68,8 @@ class Tasks extends Controller
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'wordcount', 'budget', 'performance', 'duedate', 'user_id', 'taskstatus']);
-        $vat = $request->budget / 90 * 10 * $request->vat / 100;
+        $data = $request->only(['task', 'wordcount', 'budget', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus']);
+        $vat = $request->budget / 90 * 10 * $request->vatpercentage / 100;
         $data['vat'] = $vat;
         $task->update($data);
         return redirect()->route('tasks.index');
