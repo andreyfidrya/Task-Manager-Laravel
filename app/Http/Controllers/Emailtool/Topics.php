@@ -22,7 +22,7 @@ class Topics extends Controller
     public function create()
     {
         $username = Auth::user()->name;
-        return view('emails.topics.create', 'username');
+        return view('emails.topics.create', compact('username'));
     }
 
     public function store(SaveRequest $request)
