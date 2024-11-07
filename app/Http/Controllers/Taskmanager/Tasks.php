@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Tasks\Save as SaveRequest;
 use App\Enums\Task\Status as TaskStatus;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Tasks extends Controller
 {
@@ -98,9 +99,17 @@ class Tasks extends Controller
 
     public function removeMulti(Request $request)
     {
+        $today = date("Y-m-d");
+
+        DB::table('spendings')->insert([
+            'spending' => 'Withdrawal',
+            'amount' => 1,
+            'date' => $today           
+        ]);        
+        
         $ids = $request->ids;
         Task::whereIn('id',explode(",",$ids))->delete();
-        return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed."]);         
+        return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed."]);       
     }
 
     public function removeMultiSpendings(Request $request)
@@ -108,6 +117,7 @@ class Tasks extends Controller
         $ids = $request->ids;
         Spending::whereIn('id',explode(",",$ids))->delete();
         return response()->json(['status'=>true,'message'=>"Spendings have been successfully removed."]);         
+                 
     }
 
     public function removeMultiForever(Request $request)
