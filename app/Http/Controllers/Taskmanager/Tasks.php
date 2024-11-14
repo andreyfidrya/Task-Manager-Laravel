@@ -117,7 +117,6 @@ class Tasks extends Controller
         $ids = $request->ids;
         Spending::whereIn('id',explode(",",$ids))->delete();
         return response()->json(['status'=>true,'message'=>"Spendings have been successfully removed."]);         
-                 
     }
 
     public function removeMultiForever(Request $request)
