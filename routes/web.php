@@ -49,7 +49,9 @@ Route::middleware('auth')->group(function(){
         Route::put('/{id}/restoretask', [TaskController::class, 'restoretask'])->name('restoretask'); 
         
         Route::delete('/delete-all', [TaskController::class, 'removeMulti']);
-        Route::delete('/delete-all-forever', [TaskController::class, 'removeMultiForever']);       
+        Route::delete('/delete-all-forever', [TaskController::class, 'removeMultiForever']);
+        
+        Route::put('/update-status', [TaskController::class, 'updateStatus'])->name('update-status');
 
         Route::resource('spendings', SpendingController::class);
         Route::delete('/delete-all-spendings', [TaskController::class, 'removeMultiSpendings']);        

@@ -5,21 +5,22 @@
 <button class="btn btn-danger removeAll">Remove Selected Tasks</button>
 </p>
 
-<form method="get" action="">
-<label>Statuses:</label>
-<select name="task_statuses">
-<option value="all_statuses">All statuses</option>
-@foreach($taskstatuses as $taskstatus)
-  @if(isset($_GET['task_statuses'])) 
-    <option value="{{ $taskstatus }}" {{ (  $_GET['task_statuses'] == $taskstatus ) ? 'selected' : ''}}>{{ $taskstatus }}</option>
-  @else  
-    <option value="{{ $taskstatus }}">{{ $taskstatus }}</option>  
-  @endif
-@endforeach
-</select>
-<input type="submit" class="btn btn-info" name="apply_filter" value="Apply Filter">
-<input type="submit" class="btn btn-info" name="empty-filters" value="Empty Filter">
-</form>
+  <form method="get" action="">
+    <label>Filter Statuses:</label>
+    <select name="task_statuses">
+    <option value="all_statuses">All statuses</option>
+    @foreach($taskstatuses as $taskstatus)
+      @if(isset($_GET['task_statuses'])) 
+        <option value="{{ $taskstatus }}" {{ (  $_GET['task_statuses'] == $taskstatus ) ? 'selected' : ''}}>{{ $taskstatus }}</option>
+      @else  
+        <option value="{{ $taskstatus }}">{{ $taskstatus }}</option>  
+      @endif
+    @endforeach
+    </select>
+    <input type="submit" class="btn btn-info" name="apply_filter" value="Apply Filter">
+    <input type="submit" class="btn btn-info" name="empty-filters" value="Empty Filter">
+    <button class="btn btn-info updateStatus">Paid Status for Selected Tasks</button>            
+  </form>
 
 <table class="table">
 <thead>
@@ -146,9 +147,9 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
                 taskIdArr.push($(this).attr('data-id'));
             });
             if (taskIdArr.length <= 0) {
-                alert("Choose min one item to remove.");
+                alert("Choose min one task to remove.");
             } else {
-                if (confirm("Are you sure?")) {
+                if (confirm("Do you want to remove selected tasks?")) {
                     var taskId = taskIdArr.join(",");
                     $.ajax({
                         url: "{{url('/tm/delete-all')}}",
@@ -174,6 +175,38 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
                 }
             }
         });
+        $('.updateStatus').on('click', function(e) {
+            var taskIdArr = [];
+            $(".checkbox:checked").each(function() {
+                taskIdArr.push($(this).attr('data-id'));
+            });
+            if (taskIdArr.length <= 0) {
+                alert("Choose min one task to update status.");
+            } else {
+                if (confirm("Do you want to update status for selected tasks?")) {
+                    var taskId = taskIdArr.join(",");
+                    $.ajax({
+                        url: "{{url('/tm/update-status')}}",
+                        type: 'PUT',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: 'ids=' + taskId,
+                        success: function(response) {
+                          if (data['status'] == true) {                                
+                                alert(data['message']);
+                            } else {
+                                alert('Error occured.');
+                            }
+                        },
+                        error: function(response) {
+                            alert('Not Updated, Try again.');
+                        }
+                    });
+                }
+            }
+        });
+
     }); 
  </script>
 
