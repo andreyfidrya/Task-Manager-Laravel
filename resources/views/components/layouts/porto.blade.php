@@ -198,7 +198,10 @@
 				                            Earnings <span class="mega-sub-nav-toggle toggled float-end" data-toggle="collapse" data-target=".mega-sub-nav-sub-menu-1"></span>
 				                        </a>
 				                        <ul class="nav nav-children">
-				                            <li>
+											<li>
+				                            <x-navs.link route="annualearnings.index">Annual earnings by months</x-navs.link>    
+											</li>
+											<li>
 				                            <x-navs.link route="performedtasks">Total earnings per month</x-navs.link>    
 											</li>
 											<li>

@@ -176,9 +176,9 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
             }
         });
         $('.updateStatus').on('click', function(e) {
-            var taskIdArr = [];
+            var taskIdArr = [];                                 
             $(".checkbox:checked").each(function() {
-                taskIdArr.push($(this).attr('data-id'));
+                taskIdArr.push($(this).attr('data-id'));                                 
             });
             if (taskIdArr.length <= 0) {
                 alert("Choose min one task to update status.");
@@ -191,7 +191,7 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data: 'ids=' + taskId,
+                        data: 'ids=' + taskId, 
                         success: function(response) {
                           if (data['status'] == true) {                                
                                 alert(data['message']);

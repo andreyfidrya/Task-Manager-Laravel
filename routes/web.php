@@ -10,6 +10,7 @@ use App\Http\Controllers\Emailtool\Samples as SampleController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Taskmanager\Spendings as SpendingController;
+use App\Http\Controllers\Taskmanager\Annualearnings as AnnualearningController;
 use App\Http\Controllers\Auth\Session;
 
 /*
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}/destroyclientforever', [ClientController::class, 'destroyclientForever'])->name('removeclientforever');
         Route::put('/{id}/restoreclient', [ClientController::class, 'restoreclient'])->name('restoreclient');
         
+        Route::resource('annualearnings', AnnualearningController::class);
         Route::get('/total-earnings-per-month', [TaskController::class, 'trash'])->name('performedtasks');
         Route::get('/earnings-by-clients-per-month', [TaskController::class, 'earningsbyclients'])->name('earningsbyclients');
         Route::get('/earnings-by-users-per-month', [TaskController::class, 'earningsbyusers'])->name('earningsbyusers');

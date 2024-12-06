@@ -100,7 +100,7 @@ class Tasks extends Controller
     public function updateStatus(Request $request)
     {
         $ids = $request->ids;
-        // $newStatus = $request->get('task_statuses');               
+        // $newStatus = $request->dataStatus;               
         Task::whereIn('id',explode(",",$ids))->update(['taskstatus' => 3]); 
         return redirect()->route('tasks.index'); 
     }
