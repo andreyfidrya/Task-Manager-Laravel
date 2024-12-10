@@ -22,7 +22,8 @@ class Annualearnings extends Controller
      */
     public function create()
     {
-        //
+        $username = Auth::user()->name;
+        return view('annualearnings.create', compact('username'));
     }
 
     /**
