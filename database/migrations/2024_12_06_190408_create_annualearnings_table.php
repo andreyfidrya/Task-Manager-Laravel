@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('annualearnings', function (Blueprint $table) {
             $table->id();
+            $table->string('month');
+            $table->float('amount');
             $table->timestamps();
         });
     }
