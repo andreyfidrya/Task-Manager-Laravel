@@ -9,7 +9,6 @@
   <th scope="col"><input type="checkbox" id="checkboxesMain"></th>
   <th scope="col">Month</th>
   <th scope="col">Amount, $USD</th> 
-  <th scope="col">Date</th> 
   <th scope="col">Action</th>       
 </tr>
 </thead>
