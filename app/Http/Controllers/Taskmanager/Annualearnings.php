@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Taskmanager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Annualearning;
 use Illuminate\Support\Facades\Auth;
 
 class Annualearnings extends Controller
@@ -14,7 +15,8 @@ class Annualearnings extends Controller
     public function index()
     {
         $username = Auth::user()->name;
-        return view('annualearnings.index', compact('username'));
+        $annualearnings = Annualearning::all();
+        return view('annualearnings.index', compact('username', 'annualearnings'));
     }
 
     /**
@@ -31,7 +33,9 @@ class Annualearnings extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(['month', 'amount']);
+        Annualearning::create($data);
+        return redirect()->route('annualearnings.index');
     }
 
     /**
@@ -63,6 +67,8 @@ class Annualearnings extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $annualearning = Annualearning::findOrFail($id);
+        $annualearning->delete();
+        return redirect()->route('annualearnings.index');
     }
 }

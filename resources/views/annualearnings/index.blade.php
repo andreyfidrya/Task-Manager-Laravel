@@ -13,3 +13,22 @@
 </tr>
 </thead>
 </x-layouts.porto>
+<tbody>
+@foreach($annualearnings as $annualearning)
+<tr>  
+  <td><input type="checkbox" class="checkbox" data-id="{{$annualearning->id}}"></td>
+  <td>{{ $annualearning->month }}</td> 
+  <td>{{ $annualearning->amount }}</td>   
+  <td>
+    <a href="{{ route('annualearnings.edit', [ $annualearning->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+    <form method="post" action="{{ route('annualearnings.destroy', [ $annualearning->id ]) }}">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete {{ $annualearning->month }} from anual earnings')">Delete</button>
+    </form>
+  </td>    
+</tr>
+@endforeach
+
+</tbody>
+</table>
