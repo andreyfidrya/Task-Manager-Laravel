@@ -51,7 +51,9 @@ class Annualearnings extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $username = Auth::user()->name;
+        $annualearning = Annualearning::findOrFail($id);
+        return view('annualearnings.edit', compact('annualearning', 'username'));
     }
 
     /**
@@ -59,7 +61,10 @@ class Annualearnings extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $annualearning = Annualearning::findOrFail($id);
+        $data = $request->only(['month', 'amount']);
+        $annualearning->update($data);
+        return redirect()->route('annualearnings.index');
     }
 
     /**
