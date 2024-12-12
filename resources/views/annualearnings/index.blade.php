@@ -3,6 +3,43 @@
 <a href="{{ route('annualearnings.create') }}" class="btn btn-success">Add Monthly Earnings</a>
 <button class="btn btn-danger removeAll">Remove Selected Monthly Earnings</button>
 </p>
+    <div class="chart-data-selector" id="salesSelectorWrapper">
+			<h2>
+				Sales:
+					<strong>
+						<select class="form-control" id="salesSelector">
+							<option value="Porto Admin" selected>Porto Admin</option>
+							<option value="Porto Drupal" >Porto Drupal</option>
+							<option value="Porto Wordpress" >Porto Wordpress</option>
+						</select>
+					</strong>
+			</h2>
+      <div id="salesSelectorItems" class="chart-data-selector-items mt-3">
+				<!-- Flot: Sales Porto Admin -->
+				<div class="chart chart-sm" data-sales-rel="Porto Admin" id="flotDashSales1" class="chart-active" style="height: 203px;"></div>
+					<script>
+						var flotDashSales1Data = [{
+								data: [
+													["January", 600],
+													["February", 740],
+													["March", 570],
+													["April", 800],
+													["May", 880],
+													["June", 620],
+													["Jule", 770],
+													["August", 860],
+                          ["September", 900],
+                          ["October", 1010],
+                          ["November", 1100],
+                          ["December", 1200]                          
+								],
+								color: "#0088cc"
+						}];
+						// See: js/examples/examples.dashboard.js for more settings.
+					</script>		
+				</div>						
+			</div>
+				
 <table class="table">
 <thead>
 <tr>
