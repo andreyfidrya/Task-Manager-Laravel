@@ -16,7 +16,14 @@ class Annualearnings extends Controller
     {
         $username = Auth::user()->name;
         $annualearnings = Annualearning::all();
-        return view('annualearnings.index', compact('username', 'annualearnings'));
+        
+        foreach($annualearnings as $data)
+        {
+            $month[] = $data['month'];
+            $amount[] = $data['amount'];
+        }
+                          
+        return view('annualearnings.index', compact('username', 'annualearnings', 'month', 'amount'));
     }
 
     /**
