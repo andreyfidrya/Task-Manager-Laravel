@@ -52,7 +52,7 @@
       $priorityColor = '#D3D3D3';
       break;
     case '2':
-      $priorityColor = '#3C7AB5';
+      $priorityColor = '#0096FF';
       break;
     case '3':
       $priorityColor = '#008000';
