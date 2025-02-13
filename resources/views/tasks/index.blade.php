@@ -41,9 +41,28 @@
 <tbody>
 
 @foreach($tasks as $task)
-  
+
+  @php
+  $priorityColor = '';
+  switch ($task->taskstatus) {
+    case '0':
+      $priorityColor = '#51A5F4';
+      break;
+    case '1':
+      $priorityColor = '#D3D3D3';
+      break;
+    case '2':
+      $priorityColor = '#3C7AB5';
+      break;
+    case '3':
+      $priorityColor = '#008000';
+      break;
+  }
+  @endphp
+    
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $taskstatuses[$task->taskstatus] && isset($_GET['apply_filter']))  
-    <tr id="sid{{$task->id}}">  
+  
+    <tr bgcolor="{{$priorityColor}}" id="sid{{$task->id}}">  
       <td><input type="checkbox" class="checkbox" data-id="{{$task->id}}" value="{{$task->budget}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
       <td>{{ $task->task }}</td>
@@ -64,10 +83,11 @@
       </form>  
       </td>    
     </tr>  
+    
   @endif
   
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] === 'all_statuses' || !isset($_GET['task_statuses']))
-    <tr id="tr_{{$task->id}}">
+    <tr bgcolor="{{$priorityColor}}" id="tr_{{$task->id}}">
       <td><input type="checkbox" class="checkbox" value="{{$task->budget}}" data-id="{{$task->id}}" onclick="UpdateCost(this);"></td>
       <td><a href="{{ route('clients.show', [ $task->client->slug ]) }}">{{ $task->client->name }}</a></td>
       <td>{{ $task->task }}</td>

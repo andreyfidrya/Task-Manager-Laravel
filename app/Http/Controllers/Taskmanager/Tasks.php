@@ -21,7 +21,8 @@ class Tasks extends Controller
         $statusesArr = TaskStatus::cases();
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         $username = Auth::user()->name;            
-        $tasks = Task::all();                        
+        $tasks = Task::all(); 
+        // dd($tasks);                       
         return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses', 'username'));
     }
     
