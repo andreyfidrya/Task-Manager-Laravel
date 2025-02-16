@@ -15,15 +15,11 @@ class Annualearnings extends Controller
     public function index()
     {
         $username = Auth::user()->name;
-        $annualearnings = Annualearning::all();
-        
-        foreach($annualearnings as $data)
-        {
-            $month[] = $data['month'];
-            $amount[] = $data['amount'];
-        }
-                          
-        return view('annualearnings.index', compact('username', 'annualearnings', 'month', 'amount'));
+        $annualearnings = Annualearning::all();  
+        $annualearningsJSON = json_encode(Annualearning::all()->pluck('amount', 'month'));
+        // dd($annualearningsJSON);      
+                                  
+        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsJSON'));
     }
 
     /**

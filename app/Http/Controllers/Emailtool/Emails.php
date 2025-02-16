@@ -41,7 +41,7 @@ class Emails extends Controller
 
         if($request->seo === 'Yes')
         {
-            $seo = 'I have been working as an assistant of SEO experts for a long time and have experience in writing SEO friendly articles.';
+            $seo = 'I have been working as an assistant of SEO experts for a long time and have experience in writing SEO-optimized content.';
         } else {
             $seo = '';
         }
