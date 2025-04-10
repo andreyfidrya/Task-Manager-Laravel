@@ -33,8 +33,7 @@ class Tasks extends Controller
         $username = Auth::user()->name; 
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
-        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        //dd($taskstatuses[1]);
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];        
         return view('tasks.create', compact('clients', 'users', 'statuses', 'taskstatuses', 'username'));        
     }
 
@@ -44,7 +43,8 @@ class Tasks extends Controller
         $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
         $data['vat'] = $vat;
         Task::create($data);
-        return redirect()->route('tasks.index');
+        toastr()->success('A task has been added successfully!');                
+        return redirect()->route('tasks.index');        
     }
 
     public function show($id)
@@ -81,6 +81,7 @@ class Tasks extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
+        toastr()->success('A task has been removed successfully!');
         return redirect()->route('tasks.index');
     }
 

@@ -40,25 +40,7 @@
 </thead>
 <tbody>
 
-@foreach($tasks as $task)
-
-  @php
-  $priorityColor = '';
-  switch ($task->taskstatus) {
-    case '0':
-      $priorityColor = '#51A5F4';
-      break;
-    case '1':
-      $priorityColor = '#D3D3D3';
-      break;
-    case '2':
-      $priorityColor = '#0096FF';
-      break;
-    case '3':
-      $priorityColor = '#008000';
-      break;
-  }
-  @endphp
+@foreach($tasks as $task)  
     
   @if(isset($_GET['task_statuses']) && $_GET['task_statuses'] !== 'all_statuses' && $_GET['task_statuses'] == $taskstatuses[$task->taskstatus] && isset($_GET['apply_filter']))  
   

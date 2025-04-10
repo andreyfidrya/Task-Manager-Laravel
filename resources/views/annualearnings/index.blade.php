@@ -7,32 +7,32 @@
 			<h2>
 				Anual Earnings:					
 			</h2>
-      <div id="salesSelectorItems" class="chart-data-selector-items mt-3">
+        <div id="salesSelectorItems" class="chart-data-selector-items mt-3">
 				<!-- Flot: Sales Porto Admin -->
 				<div class="chart chart-sm" data-sales-rel="Porto Admin" id="flotDashSales1" class="chart-active" style="height: 203px;"></div>
 					<script>
 						
 						var flotDashSales1Data = [{
 							data: [							
-							["January", 600],
-							["February", 740],
-							["March", 570],
-							["April", 800],
-							["May", 880],
-							["June", 620],
-							["Jule", 770],
-							["August", 860],
-                          	["September", 900],
-                          	["October", 1010],
-                          	["November", 1100],
-                          	["December", 1200]                          
+							["January", 379],
+							["February", 251],
+							["March",  270],
+							["April", 0],
+							["May", 0],
+							["June", 0],
+							["Jule", 0],
+							["August", 0],
+                          	["September", 0],
+                          	["October", 0],
+                          	["November", 0],
+                          	["December", 0]                          
 								],
 							color: "#0088cc"
 						}];
 						// See: js/examples/examples.dashboard.js for more settings.
 					</script>		
 				</div>						
-			</div>
+		</div>
 				
 <table class="table">
 <thead>
