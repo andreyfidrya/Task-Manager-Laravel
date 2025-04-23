@@ -37,6 +37,9 @@
 		<link rel="stylesheet" href="{{ asset('vendor/jquery-ui/jquery-ui.theme.css') }} " />
 		<link rel="stylesheet" href="{{ asset('vendor/bootstrap-multiselect/css/bootstrap-multiselect.css') }}" />
 		<link rel="stylesheet" href="{{ asset('vendor/morris/morris.css') }} " />
+		<link rel="stylesheet" href="{{ asset('vendor/simple-line-icons/css/simple-line-icons.min.css') }} "/>
+		<link rel="stylesheet" href="{{ asset('vendor/owl.carousel/assets/owl.carousel.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('vendor/owl.carousel/assets/owl.theme.default.min.css') }}">
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="{{ asset('css/theme.css') }}" />
@@ -137,7 +140,7 @@
 							<ul class="list-unstyled mb-2">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="bx bx-user-circle"></i> My Profile</a>
+									<a role="menuitem" tabindex="-1" href="{{ route('users.profile') }}"><i class="bx bx-user-circle"></i> My Profile</a>
 								</li>
 								<li>
 								<x-form method="delete" action="{{ route('login.destroy') }}">

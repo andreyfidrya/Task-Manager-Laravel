@@ -66,4 +66,10 @@ class Users extends Controller
     {
         //
     }
+
+    public function profile()
+    {
+        $username = Auth::user()->name;
+        return view('users.profile', compact('username'));
+    }
 }

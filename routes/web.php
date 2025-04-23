@@ -69,7 +69,8 @@ Route::middleware('auth')->group(function(){
         Route::resource('samples', SampleController::class);
     });
     
-    Route::resource('users', UserController::class); 
+    Route::resource('users', UserController::class);
+    Route::get('/user-profile-page/', [ UserController::class, 'profile' ])->name('users.profile'); 
     
     Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
     
