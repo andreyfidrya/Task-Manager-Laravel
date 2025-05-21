@@ -32,7 +32,7 @@ class Samples extends Controller
 
     public function store(SaveRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validated();            
         $sample = Sample::create($data);
         $sample->topics()->sync($data['topics']);
         return redirect()->route('samples.index');

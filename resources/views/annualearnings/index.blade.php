@@ -11,25 +11,25 @@
 				<!-- Flot: Sales Porto Admin -->
 				<div class="chart chart-sm" data-sales-rel="Porto Admin" id="flotDashSales1" class="chart-active" style="height: 203px;"></div>
 					<script>
-						
+						var annualEarningsData = @json($annualearningsJSON);
+
 						var flotDashSales1Data = [{
-							data: [							
-							["January", 379],
-							["February", 251],
-							["March",  270],
-							["April", 0],
-							["May", 0],
-							["June", 0],
-							["Jule", 0],
-							["August", 0],
-                          	["September", 0],
-                          	["October", 0],
-                          	["November", 0],
-                          	["December", 0]                          
-								],
+							data: [
+								["January", annualEarningsData["January"] ?? 0],
+								["February", annualEarningsData["February"] ?? 0],
+								["March", annualEarningsData["March"] ?? 0],
+								["April", annualEarningsData["April"] ?? 0],
+								["May", annualEarningsData["May"] ?? 0],
+								["June", annualEarningsData["June"] ?? 0],
+								["July", annualEarningsData["July"] ?? 0],
+								["August", annualEarningsData["August"] ?? 0],
+								["September", annualEarningsData["September"] ?? 0],
+								["October", annualEarningsData["October"] ?? 0],
+								["November", annualEarningsData["November"] ?? 0],
+								["December", annualEarningsData["December"] ?? 0]
+							],
 							color: "#0088cc"
 						}];
-						// See: js/examples/examples.dashboard.js for more settings.
 					</script>		
 				</div>						
 		</div>
