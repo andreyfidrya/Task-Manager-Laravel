@@ -16,9 +16,9 @@ class Annualearnings extends Controller
     {
         $username = Auth::user()->name;
         $annualearnings = Annualearning::all();  
-        $annualearningsJSON = Annualearning::all()->pluck('amount', 'month');            
+        $annualearningsT = Annualearning::all()->pluck('amount', 'month');            
                                   
-        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsJSON'));
+        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT'));
     }
 
     /**

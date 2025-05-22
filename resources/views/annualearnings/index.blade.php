@@ -5,33 +5,31 @@
 </p>
 <div class="chart-data-selector" id="salesSelectorWrapper">
 			<h2>
-				Anual Earnings:					
+				Total Anual Earnings by Months:					
 			</h2>
         <div id="salesSelectorItems" class="chart-data-selector-items mt-3">
 				<!-- Flot: Bars -->
-										<div class="chart chart-md" id="flotBars"></div>
-										<script type="text/javascript">
-											var annualEarningsData = @json($annualearningsJSON);
+			<div class="chart chart-md" id="flotBars"></div>
+			<script type="text/javascript">
+				var annualEarningsData = @json($annualearningsT);
 
-											var flotBarsData = [
-												["January", annualEarningsData["January"] ?? 0],
-												["February", annualEarningsData["February"] ?? 0],
-												["March", annualEarningsData["March"] ?? 0],
-												["April", annualEarningsData["April"] ?? 0],
-												["May", annualEarningsData["May"] ?? 0],
-												["June", annualEarningsData["June"] ?? 0],
-												["July", annualEarningsData["July"] ?? 0],
-												["August", annualEarningsData["August"] ?? 0],
-												["September", annualEarningsData["September"] ?? 0],
-												["October", annualEarningsData["October"] ?? 0],
-												["November", annualEarningsData["November"] ?? 0],
-												["December", annualEarningsData["December"] ?? 0]
-											];
+				var flotBarsData = [
+					["January", annualEarningsData["January"] ?? 0],
+					["February", annualEarningsData["February"] ?? 0],
+					["March", annualEarningsData["March"] ?? 0],
+					["April", annualEarningsData["April"] ?? 0],
+					["May", annualEarningsData["May"] ?? 0],
+					["June", annualEarningsData["June"] ?? 0],
+					["July", annualEarningsData["July"] ?? 0],
+					["August", annualEarningsData["August"] ?? 0],
+					["September", annualEarningsData["September"] ?? 0],
+					["October", annualEarningsData["October"] ?? 0],
+					["November", annualEarningsData["November"] ?? 0],
+					["December", annualEarningsData["December"] ?? 0]
+				];
 
-											// See: js/examples/examples.charts.js for more settings.
-
-										</script>
-									
+				// See: js/examples/examples.charts.js for more settings.
+			</script>									
 		</div>
 				
 <table class="table">
@@ -39,7 +37,7 @@
 <tr>
   <th scope="col"><input type="checkbox" id="checkboxesMain"></th>
   <th scope="col">Month</th>
-  <th scope="col">Amount, $USD</th> 
+  <th scope="col">Total Amount, $USD</th> 
   <th scope="col">Action</th>       
 </tr>
 </thead>
