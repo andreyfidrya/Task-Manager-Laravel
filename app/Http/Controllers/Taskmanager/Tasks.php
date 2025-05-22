@@ -23,8 +23,7 @@ class Tasks extends Controller
         $username = Auth::user()->name; 
         $user_id = Auth::user()->id;
         $user = User::find($user_id);                   
-        $tasks = Task::all(); 
-        //dd($user->id);                       
+        $tasks = Task::all();                                
         return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses', 'username'));
     }
     
@@ -103,8 +102,7 @@ class Tasks extends Controller
 
     public function updateStatus(Request $request)
     {
-        $ids = $request->ids;
-        // $newStatus = $request->dataStatus;               
+        $ids = $request->ids;                    
         Task::whereIn('id',explode(",",$ids))->update(['taskstatus' => 3]); 
         return redirect()->route('tasks.index'); 
     }
@@ -178,16 +176,6 @@ class Tasks extends Controller
         $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
         $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
         $username = Auth::user()->name;
-
-        /*$wordcountandrey = Task::onlyTrashed()
-        ->where('author', 'Andrey')
-        ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
-        ->sum('wordcount');
-
-        $wordcountelena = Task::onlyTrashed()
-        ->where('author', 'Elena')
-        ->whereBetween('deleted_at', [$weekStartDate, $weekEndDate])
-        ->sum('wordcount');*/
 
         $users = User::orderBy('name', 'ASC')->get();
         return view('workload.workloadperuser', compact('users', 'weekStartDate', 'weekEndDate', 'username'));

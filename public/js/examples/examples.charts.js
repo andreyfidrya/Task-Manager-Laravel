@@ -250,7 +250,7 @@ Theme Version: 	4.1.0
 			data: morrisBarData,
 			xkey: 'y',
 			ykeys: ['a', 'b'],
-			labels: ['Series A', 'Series B'],
+			labels: ['Andrey', 'Elena'],
 			hideHover: true,
 			barColors: ['#0088cc', '#2baab1']
 		});

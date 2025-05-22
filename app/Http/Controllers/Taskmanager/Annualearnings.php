@@ -14,11 +14,14 @@ class Annualearnings extends Controller
      */
     public function index()
     {
-        $username = Auth::user()->name;
+        $username = Auth::user()->name;        
+        
         $annualearnings = Annualearning::all();  
-        $annualearningsT = Annualearning::all()->pluck('amount', 'month');            
-                                  
-        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT'));
+        $annualearningsT = Annualearning::all()->pluck('amount', 'month');
+        $annualearningsA = Annualearning::all()->pluck('andrey', 'month');
+        $annualearningsE = Annualearning::all()->pluck('elena', 'month');
+                
+        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT', 'annualearningsA','annualearningsE'));
     }
 
     /**
@@ -35,7 +38,7 @@ class Annualearnings extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only(['month', 'amount']);
+        $data = $request->only(['month', 'andrey', 'elena', 'amount']);
         Annualearning::create($data);
         return redirect()->route('annualearnings.index');
     }
@@ -64,7 +67,7 @@ class Annualearnings extends Controller
     public function update(Request $request, string $id)
     {
         $annualearning = Annualearning::findOrFail($id);
-        $data = $request->only(['month', 'amount']);
+        $data = $request->only(['month', 'andrey', 'elena', 'amount']);
         $annualearning->update($data);
         return redirect()->route('annualearnings.index');
     }
