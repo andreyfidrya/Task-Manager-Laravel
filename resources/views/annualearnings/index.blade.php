@@ -8,30 +8,29 @@
 				Anual Earnings:					
 			</h2>
         <div id="salesSelectorItems" class="chart-data-selector-items mt-3">
-				<!-- Flot: Sales Porto Admin -->
-				<div class="chart chart-sm" data-sales-rel="Porto Admin" id="flotDashSales1" class="chart-active" style="height: 203px;"></div>
-					<script>
-						var annualEarningsData = @json($annualearningsJSON);
+				<!-- Flot: Bars -->
+										<div class="chart chart-md" id="flotBars"></div>
+										<script type="text/javascript">
 
-						var flotDashSales1Data = [{
-							data: [
-								["January", annualEarningsData["January"] ?? 0],
-								["February", annualEarningsData["February"] ?? 0],
-								["March", annualEarningsData["March"] ?? 0],
-								["April", annualEarningsData["April"] ?? 0],
-								["May", annualEarningsData["May"] ?? 0],
-								["June", annualEarningsData["June"] ?? 0],
-								["July", annualEarningsData["July"] ?? 0],
-								["August", annualEarningsData["August"] ?? 0],
-								["September", annualEarningsData["September"] ?? 0],
-								["October", annualEarningsData["October"] ?? 0],
-								["November", annualEarningsData["November"] ?? 0],
-								["December", annualEarningsData["December"] ?? 0]
-							],
-							color: "#0088cc"
-						}];
-					</script>		
-				</div>						
+											var flotBarsData = [
+												["Jan", 28],
+												["Feb", 42],
+												["Mar", 25],
+												["Apr", 23],
+												["May", 37],
+												["Jun", 33],
+												["Jul", 18],
+												["Aug", 14],
+												["Sep", 18],
+												["Oct", 15],
+												["Nov", 4],
+												["Dec", 7]
+											];
+
+											// See: js/examples/examples.charts.js for more settings.
+
+										</script>
+									
 		</div>
 				
 <table class="table">
@@ -63,3 +62,4 @@
 
 </tbody>
 </table>
+

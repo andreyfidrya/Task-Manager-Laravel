@@ -429,8 +429,7 @@
 
 		<!-- Examples -->
 		<script src="{{ asset('js/examples/examples.dashboard.js') }}"></script>
-
-		
+		<script src="{{ asset('js/examples/examples.charts.js') }}"></script>
 		
 		<script>
 		ClassicEditor

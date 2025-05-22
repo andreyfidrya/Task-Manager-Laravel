@@ -384,6 +384,6 @@ Theme Version: 	4.1.0
 		};
 
 		$('#vectorMapWorld').vectorMap(vectorMapDashOptions);
-	}
+	}	
 
 }).apply(this, [jQuery]);
