@@ -11,20 +11,21 @@
 				<!-- Flot: Bars -->
 										<div class="chart chart-md" id="flotBars"></div>
 										<script type="text/javascript">
+											var annualEarningsData = @json($annualearningsJSON);
 
 											var flotBarsData = [
-												["Jan", 28],
-												["Feb", 42],
-												["Mar", 25],
-												["Apr", 23],
-												["May", 37],
-												["Jun", 33],
-												["Jul", 18],
-												["Aug", 14],
-												["Sep", 18],
-												["Oct", 15],
-												["Nov", 4],
-												["Dec", 7]
+												["January", annualEarningsData["January"] ?? 0],
+												["February", annualEarningsData["February"] ?? 0],
+												["March", annualEarningsData["March"] ?? 0],
+												["April", annualEarningsData["April"] ?? 0],
+												["May", annualEarningsData["May"] ?? 0],
+												["June", annualEarningsData["June"] ?? 0],
+												["July", annualEarningsData["July"] ?? 0],
+												["August", annualEarningsData["August"] ?? 0],
+												["September", annualEarningsData["September"] ?? 0],
+												["October", annualEarningsData["October"] ?? 0],
+												["November", annualEarningsData["November"] ?? 0],
+												["December", annualEarningsData["December"] ?? 0]
 											];
 
 											// See: js/examples/examples.charts.js for more settings.
