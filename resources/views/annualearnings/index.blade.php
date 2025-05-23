@@ -101,7 +101,8 @@
   <th scope="col">Month</th>
   <th scope="col">Andrey</th>
   <th scope="col">Elena</th>
-  <th scope="col">Total Amount, $USD</th> 
+  <th scope="col">Total Amount, $USD</th>
+  <th scope="col">Image</th> 
   <th scope="col">Action</th>       
 </tr>
 </thead>
@@ -113,7 +114,8 @@
   <td>{{ $annualearning->month }}</td>
   <td>{{ $annualearning->andrey }}</td>
   <td>{{ $annualearning->elena }}</td> 
-  <td>{{ $annualearning->amount }}</td>   
+  <td>{{ $annualearning->amount }}</td>
+  <td><img src="{{asset('images')}}/{{$annualearning->image}}"style="max-width:150px"></td>   
   <td>
     <a href="{{ route('annualearnings.edit', [ $annualearning->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
     <form method="post" action="{{ route('annualearnings.destroy', [ $annualearning->id ]) }}">
