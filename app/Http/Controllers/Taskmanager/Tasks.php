@@ -140,11 +140,22 @@ class Tasks extends Controller
     {
         $performedtasks = Task::onlyTrashed()->get();
         $username = Auth::user()->name;
-        $totalsum = Task::onlyTrashed()
-        ->sum('budget');
-
+        $totalsum = Task::onlyTrashed()->sum('budget');
         $clients = Client::orderBy('name', 'ASC')->get();
-        return view('earnings.earningsbyclients', compact('clients', 'totalsum', 'username'));        
+
+        $earningsofclients = [];
+
+        foreach ($clients as $client) {
+            $sum = $client->tasks()->onlyTrashed()->sum('budget');
+            if ($sum > 0) {
+                $earningsofclients[] = [
+                    'name' => $client->name,
+                    'sum' => $sum
+                ];
+            }
+        }
+                
+        return view('earnings.earningsbyclients', compact('clients', 'totalsum', 'username', 'earningsofclients'));        
     }
 
     public function earningsbyusers()
