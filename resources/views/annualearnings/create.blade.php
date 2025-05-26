@@ -1,5 +1,5 @@
 <x-layouts.porto title="Add a New Monthly Earning" header="Add a New Monthly Earning" username={{$username}}>
-    <x-form method="post" action="{{ route('annualearnings.store') }}">
+    <x-form method="post" action="{{ route('annualearnings.store') }}" enctype="multipart/form-data">
     @include('annualearnings.form-fields')   
       <button class="btn btn-primary">Add a New Monthly Earning</button>
     </x-form>

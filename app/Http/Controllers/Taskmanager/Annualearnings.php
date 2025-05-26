@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Taskmanager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Annualearning;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class Annualearnings extends Controller
@@ -29,7 +30,17 @@ class Annualearnings extends Controller
 
     public function store(Request $request)
     {
+        $current_timestamp = Carbon::now()->timestamp;        
         $data = $request->only(['month', 'andrey', 'elena', 'amount']);
+
+        if($request->hasFile('image'))
+        {  
+            $image = $request->file('image');                                               
+            $imageName = $current_timestamp . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);  
+            $data['image'] = $imageName;    
+        }        
+        
         Annualearning::create($data);
         return redirect()->route('annualearnings.index');
     }
