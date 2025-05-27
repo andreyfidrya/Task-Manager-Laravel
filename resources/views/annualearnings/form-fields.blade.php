@@ -15,7 +15,7 @@
 </script>
 @csrf
 <div class="mb-3">    
-    <x-form-input name="month" label="Month"/> 
+    <x-form-select name="month" :options="$months" label="Month" placeholder="Select the month"/> 
 </div>
 <div class="mb-3">    
     <x-form-input id="input1" name="andrey" label="Andrey's monthly earnings"/> 

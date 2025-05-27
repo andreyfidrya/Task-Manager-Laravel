@@ -25,7 +25,10 @@ class Annualearnings extends Controller
     public function create()
     {
         $username = Auth::user()->name;
-        return view('annualearnings.create', compact('username'));
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];        
+        $months = array_combine($months, $months);
+
+        return view('annualearnings.create', compact('username', 'months'));
     }
 
     public function store(Request $request)
@@ -42,6 +45,7 @@ class Annualearnings extends Controller
         }        
         
         Annualearning::create($data);
+        
         return redirect()->route('annualearnings.index');
     }
 
@@ -54,6 +58,7 @@ class Annualearnings extends Controller
     {
         $username = Auth::user()->name;
         $annualearning = Annualearning::findOrFail($id);
+        
         return view('annualearnings.edit', compact('annualearning', 'username'));
     }
 
@@ -62,6 +67,7 @@ class Annualearnings extends Controller
         $annualearning = Annualearning::findOrFail($id);
         $data = $request->only(['month', 'andrey', 'elena', 'amount']);
         $annualearning->update($data);
+        
         return redirect()->route('annualearnings.index');
     }
 
@@ -69,6 +75,7 @@ class Annualearnings extends Controller
     {
         $annualearning = Annualearning::findOrFail($id);
         $annualearning->delete();
+        
         return redirect()->route('annualearnings.index');
     }
 }
