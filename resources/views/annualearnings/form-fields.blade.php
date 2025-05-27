@@ -18,18 +18,27 @@
     <x-form-input name="month" label="Month"/> 
 </div>
 <div class="mb-3">    
-    <x-form-input name="andrey" label="Andrey's monthly earnings"/> 
+    <x-form-input id="input1" name="andrey" label="Andrey's monthly earnings"/> 
 </div>
 <div class="mb-3">    
-    <x-form-input name="elena" label="Elena's monthly earnings"/> 
+    <x-form-input id="input2" name="elena" label="Elena's monthly earnings"/> 
 </div>
 <div class="mb-3">    
-    <x-form-input name="amount" label="Amount"/> 
+    <x-form-input id="result" name="amount" label="Amount" onclick="sumInputs()"/> 
 </div>
 <div class="mb-3">        
     <x-form-input name="image" type="file" label="Image" onchange="previewFile()"/>
     <img style="max-width:150px;margin-top:20px;" id="img-ae"/>     
 </div>
+
+<script>
+    function sumInputs() {
+      const val1 = parseFloat(document.getElementById('input1').value) || 0;
+      const val2 = parseFloat(document.getElementById('input2').value) || 0;
+      const sum = val1 + val2;
+      document.getElementById('result').value = sum;
+    }
+</script>
 
 
 
