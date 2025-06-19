@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Spendings extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $username = Auth::user()->name;
@@ -27,18 +24,12 @@ class Spendings extends Controller
         return view('spendings.index', compact('spendings', 'sumspent', 'username', 'sumvat', 'totalspendings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $username = Auth::user()->name;
         return view('spendings.create', compact('username'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(SaveRequest $request)
     {
         $data = $request->only(['spending', 'amount', 'date']);
@@ -46,17 +37,11 @@ class Spendings extends Controller
         return redirect()->route('spendings.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $username = Auth::user()->name;
@@ -77,5 +62,18 @@ class Spendings extends Controller
         $expense = Spending::findOrFail($id);
         $expense->delete();
         return redirect()->route('spendings.index');
+    }
+
+    public function upload(Request $request)
+    {
+        $data = new Spending;        
+
+        $data->spending = $request->spending;
+        $data->amount = $request->amount;
+        $data->date = $request->date;
+
+        $data->save();
+
+        return response()->json([]);
     }
 }

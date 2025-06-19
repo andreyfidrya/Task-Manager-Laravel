@@ -56,7 +56,9 @@ Route::middleware('auth')->group(function(){
         Route::put('/update-status', [TaskController::class, 'updateStatus'])->name('update-status');
 
         Route::resource('spendings', SpendingController::class);
-        Route::delete('/delete-all-spendings', [TaskController::class, 'removeMultiSpendings']);        
+        Route::delete('/delete-all-spendings', [TaskController::class, 'removeMultiSpendings']); 
+        
+        Route::post('/ajaxupload', [SpendingController::class,'upload']);
     });
     
     Route::resource('payments', PaymentController::class);
