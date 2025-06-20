@@ -1,13 +1,5 @@
 <x-layouts.porto title="Total Spendings per Month" header="Total Spendings per Month" username={{$username}}>
 
-<form action="{{url('/tm/ajaxupload')}}" method="POST" id="addpost">
-  @csrf
-  <input class="mb-3" type="text" name="spending" placeholder="Spendings">
-  <input class="mb-3" type="float" name="amount" placeholder="Amount">
-  <input class="mb-3" type="date" name="date" placeholder="Date">
-  <input class="btn btn-success" type="submit" value="Add">  
-</form>
-
 <p>
 <a href="{{ route('spendings.create') }}" class="btn btn-success">Add an Expense</a>
 <button class="btn btn-danger removeAll">Remove Selected Expenses</button>
@@ -100,31 +92,4 @@ Total amount of vat per month: <strong>{{ $sumvat }} USD</strong><br>
     }); 
  </script>
 
- <script type="text/javascript">
-
-    $(document).ready(function()
-        {
-            
-           $('#addpost').on('submit', function(event)        
-            {
-
-                event.preventDefault();
-
-                jQuery.ajax({
-
-                    url:"{{url('/tm/ajaxupload')}}",
-                    data:jQuery('#addpost').serialize(),
-                    type:'post',
-                    
-                    success:function(result)
-                    {
-                        jQuery('#addpost')[0].reset();
-                    }
-
-                })
-
-            });
-
-        }); 
-
-</script>
+ 

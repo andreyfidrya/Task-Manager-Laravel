@@ -1,9 +1,16 @@
 <x-layouts.porto title="Tasks" header="Tasks" username={{$username}}>
-
-<p>
-<a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
-<button class="btn btn-danger removeAll">Remove Selected Tasks</button>
-</p>
+  <form action="{{url('/tm/ajaxupload')}}" method="POST" id="addpost">
+    @csrf
+    <input class="mb-3" type="text" name="spending" placeholder="Spendings">
+    <input class="mb-3" type="float" name="amount" placeholder="Amount">
+    <input class="mb-3" type="date" name="date" placeholder="Date">
+    <input class="btn btn-success" type="submit" value="Add an Expense">  
+  </form>
+  
+  <p>
+  <a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
+  <button class="btn btn-danger removeAll">Remove Selected Tasks</button>
+  </p>
 
   <form method="get" action="">
     <label>Filter Statuses:</label>
@@ -211,5 +218,34 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
 
     }); 
  </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+        {
+            
+           $('#addpost').on('submit', function(event)        
+            {
+
+                event.preventDefault();
+
+                jQuery.ajax({
+
+                    url:"{{url('/tm/ajaxupload')}}",
+                    data:jQuery('#addpost').serialize(),
+                    type:'post',
+                    
+                    success:function(result)
+                    {
+                        jQuery('#addpost')[0].reset();
+                    }
+
+                })
+
+            });
+
+        }); 
+
+</script>
 
 </x-layouts.porto>
