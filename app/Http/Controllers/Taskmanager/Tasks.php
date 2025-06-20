@@ -23,8 +23,10 @@ class Tasks extends Controller
         $username = Auth::user()->name; 
         $user_id = Auth::user()->id;
         $user = User::find($user_id);                   
-        $tasks = Task::all();                                
-        return view('tasks.index', compact('tasks', 'statusesArr', 'taskstatuses', 'username'));
+        $tasks = Task::all();
+        $clients = Client::all();
+        $users = User::all();                                       
+        return view('tasks.index', compact('tasks', 'clients', 'users', 'statusesArr', 'taskstatuses', 'username'));
     }
     
     public function create()
@@ -182,7 +184,6 @@ class Tasks extends Controller
 
     public function workloadperuser()
     {
-
         $now = Carbon::now();
         $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
         $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
@@ -201,5 +202,27 @@ class Tasks extends Controller
     public function destroytaskForever($id){
         Task::onlyTrashed()->findOrFail($id)->forceDelete(); 
         return redirect()->route('performedtasks');       
+    }
+
+    public function addtasksbyajax(Request $request){
+        $today = date("Y-m-d");
+        
+        $data = new Task;        
+
+        $data->client_id = $request->client_id;
+        $data->task = $request->task;
+        $data->budget = $request->budget;
+        $data->duedate = $request->duedate;
+        $data->user_id = $request->user_id;
+        $data->taskstatus = '3';
+        $data->wordcount = NULL;
+        $data->performance = NULL;
+        $data->vatpercentage = 0;
+        $data->vat = 0;
+        $data->deleted_at = $today;
+
+        $data->save();
+
+        return response()->json([]);       
     }
 }

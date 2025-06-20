@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function(){
         Route::delete('/delete-all-spendings', [TaskController::class, 'removeMultiSpendings']); 
         
         Route::post('/ajaxupload', [SpendingController::class,'upload']);
+        Route::post('/ajaxpaidearnings', [TaskController::class,'addtasksbyajax']);
     });
     
     Route::resource('payments', PaymentController::class);

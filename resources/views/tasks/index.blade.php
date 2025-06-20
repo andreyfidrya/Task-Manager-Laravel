@@ -6,6 +6,26 @@
     <input class="mb-3" type="date" name="date" placeholder="Date">
     <input class="btn btn-success" type="submit" value="Add an Expense">  
   </form>
+
+  <form action="{{url('/tm/ajaxpaidearnings')}}" method="POST" id="addearnings">
+    @csrf
+    <select name="client_id">
+        <option>Select the client</option>
+        @foreach($clients as $client)
+          <option value="{{$client->id}}">{{$client->name}}</option>
+        @endforeach
+    </select>
+    <input class="mb-3" type="text" name="task" placeholder="Task">
+    <input class="mb-3" type="float" name="budget" placeholder="Budget" style="width: 70px;">
+    <input class="mb-3" type="date" name="duedate" placeholder="Due date">    
+    <select name="user_id" style="width: 150px;">
+        <option>Select the user</option>
+        @foreach($users as $user)
+          <option value="{{$user->id}}">{{$user->name}}</option>
+        @endforeach
+    </select>
+    <input class="btn btn-success" type="submit" value="Add Earnings">  
+  </form>
   
   <p>
   <a href="{{ route('tasks.create') }}" class="btn btn-success">Add a Task</a>
@@ -238,6 +258,35 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
                     success:function(result)
                     {
                         jQuery('#addpost')[0].reset();
+                    }
+
+                })
+
+            });
+
+        }); 
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+        {
+            
+           $('#addearnings').on('submit', function(event)        
+            {
+
+                event.preventDefault();
+
+                jQuery.ajax({
+
+                    url:"{{url('/tm/ajaxpaidearnings')}}",
+                    data:jQuery('#addearnings').serialize(),
+                    type:'post',
+                    
+                    success:function(result)
+                    {
+                        jQuery('#addearnings')[0].reset();
                     }
 
                 })
