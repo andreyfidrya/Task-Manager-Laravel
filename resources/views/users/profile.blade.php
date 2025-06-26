@@ -324,11 +324,11 @@
 							<ul class="simple-card-list mb-3">
 								<li class="primary">
 									<h3>{{ $user->tasks()->onlyTrashed()->sum('budget'); }} USD</h3>
-									<p class="text-light">Earnings for {{$currentmonth}}</p>
+									<p class="text-light">Earnings in {{$currentmonth}}</p>
 								</li>
 								<li class="primary">
 									<h3>{{ $earningsforlastMonth->andrey }}</h3>
-									<p class="text-light">Earnings for {{$lastMonth}}</p>
+									<p class="text-light">Earnings in {{$lastMonth}}</p>
 								</li>
 								<li class="primary">
 									<h3>16</h3>
