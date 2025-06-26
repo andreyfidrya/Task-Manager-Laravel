@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use Carbon\Carbon;
+use App\Models\Annualearning;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Users extends Controller
 {
@@ -69,7 +72,18 @@ class Users extends Controller
 
     public function profile()
     {
+        $now = Carbon::now();
+        $currentmonth = \Carbon\Carbon::now()->format('F'); 
+        $lastMonth = Carbon::now()->subMonth()->format('F');               
+        
         $username = Auth::user()->name;
-        return view('users.profile', compact('username'));
+        $userID = Auth::user()->id;
+        $user = User::findOrFail($userID);
+        
+        $earningsforlastMonth = DB::table('annualearnings')
+        ->where('month',$lastMonth)
+        ->first();                
+        
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth'));
     }
 }

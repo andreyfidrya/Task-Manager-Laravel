@@ -8,7 +8,7 @@
 									<div class="thumb-info mb-3">
 										<img src="img/!logged-user.jpg" class="rounded img-fluid" alt="John Doe">
 										<div class="thumb-info-title">
-											<span class="thumb-info-inner">John Doe</span>
+											<span class="thumb-info-inner">{{$user->name}}</span>
 											<span class="thumb-info-type">CEO</span>
 										</div>
 									</div>
@@ -320,15 +320,15 @@
 						</div>
 						<div class="col-xl-3">
 
-							<h4 class="mb-3 mt-0 font-weight-semibold text-dark">Sale Stats</h4>
+							<h4 class="mb-3 mt-0 font-weight-semibold text-dark">Earnings Stats</h4>
 							<ul class="simple-card-list mb-3">
 								<li class="primary">
-									<h3>488</h3>
-									<p class="text-light">Nullam quris ris.</p>
+									<h3>{{ $user->tasks()->onlyTrashed()->sum('budget'); }} USD</h3>
+									<p class="text-light">Earnings for {{$currentmonth}}</p>
 								</li>
 								<li class="primary">
-									<h3>$ 189,000.00</h3>
-									<p class="text-light">Nullam quris ris.</p>
+									<h3>{{ $earningsforlastMonth->andrey }}</h3>
+									<p class="text-light">Earnings for {{$lastMonth}}</p>
 								</li>
 								<li class="primary">
 									<h3>16</h3>
