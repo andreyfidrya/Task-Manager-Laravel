@@ -323,7 +323,7 @@
 							<h4 class="mb-3 mt-0 font-weight-semibold text-dark">Earnings Stats</h4>
 							<ul class="simple-card-list mb-3">
 								<li class="primary">
-									<h3>{{ $user->tasks()->onlyTrashed()->sum('budget'); }} USD</h3>
+									<h3>{{ $user->tasks()->onlyTrashed()->sum('budget') - $totalspendings; }} USD</h3>
 									<p class="text-light">Earnings in {{$currentmonth}}</p>
 								</li>
 								<li class="primary">

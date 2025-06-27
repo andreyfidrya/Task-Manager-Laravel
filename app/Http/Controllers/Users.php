@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Annualearning;
+use App\Models\Spending;
+use App\Models\Task;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -82,8 +84,16 @@ class Users extends Controller
         
         $earningsforlastMonth = DB::table('annualearnings')
         ->where('month',$lastMonth)
-        ->first();                
+        ->first();
         
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth'));
+        $sumspent = Spending::all()
+        ->sum('amount');
+        $sumvat = Task::onlyTrashed()
+        ->sum('vat');
+        $totalspendings = $sumspent + $sumvat;
+        
+        //$earningsforcurrentMonth = $earningsforlastMonth - $totalspendings;
+        
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings'));
     }
 }
