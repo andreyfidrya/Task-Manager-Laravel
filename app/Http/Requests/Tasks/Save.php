@@ -25,6 +25,7 @@ class Save extends FormRequest
             'client_id' => 'required',
             'user_id' => 'required',
             'task' => 'required|min:3',
+            'feepercentage' => 'required',
             'vatpercentage' => 'required',
             'taskstatus' => 'required'
         ];

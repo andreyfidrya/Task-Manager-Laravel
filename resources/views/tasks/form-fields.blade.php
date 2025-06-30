@@ -12,6 +12,9 @@
     <x-form-input name="budget" label="Budget"/> 
 </div>
 <div class="mb-3">    
+    <x-form-input name="feepercentage" label="Fee (%)"/> 
+</div>
+<div class="mb-3">    
     <x-form-input name="vatpercentage" label="Vat (%)"/> 
 </div>
 <div class="mb-3">

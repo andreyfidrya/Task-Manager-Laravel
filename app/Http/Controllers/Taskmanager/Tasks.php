@@ -42,8 +42,8 @@ class Tasks extends Controller
 
     public function store(SaveRequest $request)
     {
-        $vat = $request->budget / 90 * 10 * $request->vatpercentage / 100;       
-        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
+        $vat = $request->budget / (100 - $request->feepercentage) * $request->feepercentage * $request->vatpercentage / 100;       
+        $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'feepercentage', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
         $data['vat'] = $vat;
         Task::create($data);
         toastr()->success('A task has been added successfully!');                
@@ -73,8 +73,8 @@ class Tasks extends Controller
     public function update(SaveRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-        $data = $request->only(['task', 'wordcount', 'budget', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus']);
-        $vat = $request->budget / 90 * 10 * $request->vatpercentage / 100;
+        $data = $request->only(['task', 'wordcount', 'budget', 'feepercentage', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus']);
+        $vat = $request->budget / (100 - $request->feepercentage) * $request->feepercentage * $request->vatpercentage / 100;
         $data['vat'] = $vat;
         $task->update($data);
         return redirect()->route('tasks.index');
@@ -217,6 +217,7 @@ class Tasks extends Controller
         $data->taskstatus = '3';
         $data->wordcount = NULL;
         $data->performance = NULL;
+        $data->feepercentage = 0;
         $data->vatpercentage = 0;
         $data->vat = 0;
         $data->deleted_at = $today;
