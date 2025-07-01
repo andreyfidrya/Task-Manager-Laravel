@@ -1,7 +1,5 @@
 <x-layouts.porto title="Earnings by Clients per Month" header="Earnings by Clients per Month" username={{$username}}>
-
-    
-
+   
     @if(isset($earningsofclients))
       @php      
       $earningsperclients = collect($earningsofclients)->sortBy('sum')->reverse()->toArray();

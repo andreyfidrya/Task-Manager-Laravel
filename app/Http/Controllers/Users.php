@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Annualearning;
 use App\Models\Spending;
 use App\Models\Task;
+use App\Models\Client;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -92,8 +93,23 @@ class Users extends Controller
         ->sum('vat');
         $totalspendings = $sumspent + $sumvat;
         
-        //$earningsforcurrentMonth = $earningsforlastMonth - $totalspendings;
+        $clients = Client::orderBy('name', 'ASC')->get();
+
+        $earningsofclients = [];
+
+        $numberofclients = 0;
+
+        foreach ($clients as $client) {
+            $sum = $client->tasks()->onlyTrashed()->where('user_id',$userID)->sum('budget');
+            if ($sum > 0) {                
+                $earningsofclients[] = [
+                    'name' => $client->name,
+                    'sum' => $sum
+                ];
+            $numberofclients++;    
+            }
+        }        
         
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings'));
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients'));
     }
 }

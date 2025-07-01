@@ -1,5 +1,10 @@
 <x-layouts.porto title="User Profile" header="User Profile" username={{$username}}>
 
+@if(isset($earningsofclients))
+      @php      
+      $earningsperclients = collect($earningsofclients)->sortBy('sum')->reverse()->toArray();
+      @endphp	  
+
 <div class="row">
 						<div class="col-lg-4 col-xl-3 mb-4 mb-xl-0">
 
@@ -331,31 +336,21 @@
 									<p class="text-light">Earnings in {{$lastMonth}}</p>
 								</li>
 								<li class="primary">
-									<h3>16</h3>
-									<p class="text-light">Nullam quris ris.</p>
+									<h3>{{ $numberofclients}}</h3>
+									<p class="text-light">Clients in {{$currentmonth}}</p>
 								</li>
 							</ul>
-
-							<h4 class="mb-3 mt-4 pt-2 font-weight-semibold text-dark">Projects</h4>
-							<ul class="simple-bullet-list mb-3">
-								<li class="red">
-									<span class="title">Porto Template</span>
-									<span class="description truncate">Lorem ipsom dolor sit.</span>
-								</li>
-								<li class="green">
-									<span class="title">Tucson HTML5 Template</span>
-									<span class="description truncate">Lorem ipsom dolor sit amet</span>
-								</li>
+							
+							<h4 class="mb-3 mt-4 pt-2 font-weight-semibold text-dark">Clients</h4>
+							@foreach($earningsperclients as $earningsperclient)
+							<ul class="simple-bullet-list mb-3">								
 								<li class="blue">
-									<span class="title">Porto HTML5 Template</span>
-									<span class="description truncate">Lorem ipsom dolor sit.</span>
-								</li>
-								<li class="orange">
-									<span class="title">Tucson Template</span>
-									<span class="description truncate">Lorem ipsom dolor sit.</span>
-								</li>
+									<span class="title">{{$earningsperclient['name']}}</span>
+									<span class="description truncate"><strong>{{$earningsperclient['name']}}</strong> has generated <strong>{{$earningsperclient['sum']}} USD</strong> in <strong>{{$currentmonth}}</strong> = <strong>{{round($earningsperclient['sum']/($user->tasks()->onlyTrashed()->sum('budget') - $totalspendings)*100)}} %</strong></span>
+								</li>								
 							</ul>
-
+							@endforeach
+@endif
 							<h4 class="mb-3 mt-4 pt-2 font-weight-semibold text-dark">Messages</h4>
 							<ul class="simple-user-list mb-3">
 								<li>
