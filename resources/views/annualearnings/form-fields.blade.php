@@ -18,10 +18,7 @@
     <x-form-select name="month" :options="$months" label="Month" placeholder="Select the month"/> 
 </div>
 <div class="mb-3">    
-    <x-form-input id="input1" name="andrey" label="Andrey's monthly earnings"/> 
-</div>
-<div class="mb-3">    
-    <x-form-input id="input2" name="elena" label="Elena's monthly earnings"/> 
+    <x-form-input id="input1" name="earnings_source" label="Earnings Source"/> 
 </div>
 <div class="mb-3">    
     <x-form-input id="result" name="amount" label="Amount" onclick="sumInputs()"/> 

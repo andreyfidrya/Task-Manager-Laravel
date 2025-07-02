@@ -15,10 +15,10 @@ class Annualearnings extends Controller
         $username = Auth::user()->name;        
         
         $annualearnings = Annualearning::all();  
-        $annualearningsT = Annualearning::all()->pluck('amount', 'month');
-        $annualearningsA = Annualearning::all()->pluck('andrey', 'month');
-        $annualearningsE = Annualearning::all()->pluck('elena', 'month');
-                
+        $annualearningsT = Annualearning::where('earnings_source','Total')->pluck('amount', 'month');
+        $annualearningsA = Annualearning::where('earnings_source','Andrey')->pluck('amount', 'month');
+        $annualearningsE = Annualearning::where('earnings_source','Elena')->pluck('amount', 'month');
+                       
         return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT', 'annualearningsA','annualearningsE'));
     }
 
@@ -34,7 +34,7 @@ class Annualearnings extends Controller
     public function store(Request $request)
     {
         $current_timestamp = Carbon::now()->timestamp;        
-        $data = $request->only(['month', 'andrey', 'elena', 'amount']);
+        $data = $request->only(['month', 'earnings_source', 'amount']);
 
         if($request->hasFile('image'))
         {  
@@ -58,14 +58,16 @@ class Annualearnings extends Controller
     {
         $username = Auth::user()->name;
         $annualearning = Annualearning::findOrFail($id);
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $months = array_combine($months, $months);
         
-        return view('annualearnings.edit', compact('annualearning', 'username'));
+        return view('annualearnings.edit', compact('annualearning', 'username', 'months'));
     }
 
     public function update(Request $request, string $id)
     {
         $annualearning = Annualearning::findOrFail($id);
-        $data = $request->only(['month', 'andrey', 'elena', 'amount']);
+        $data = $request->only(['month', 'earnings_source', 'amount']);
         $annualearning->update($data);
         
         return redirect()->route('annualearnings.index');

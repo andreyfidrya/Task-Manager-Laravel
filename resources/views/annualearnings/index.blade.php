@@ -99,8 +99,7 @@
 <tr>
   <th scope="col"><input type="checkbox" id="checkboxesMain"></th>
   <th scope="col">Month</th>
-  <th scope="col">Andrey</th>
-  <th scope="col">Elena</th>
+  <th scope="col">Earnings Source</th>  
   <th scope="col">Total Amount, $USD</th>
   <th scope="col">Image</th> 
   <th scope="col">Action</th>       
@@ -112,8 +111,7 @@
 <tr>  
   <td><input type="checkbox" class="checkbox" data-id="{{$annualearning->id}}"></td>
   <td>{{ $annualearning->month }}</td>
-  <td>{{ $annualearning->andrey }}</td>
-  <td>{{ $annualearning->elena }}</td> 
+  <td>{{ $annualearning->earnings_source }}</td>   
   <td>{{ $annualearning->amount }}</td>
   <td><img src="{{asset('images')}}/{{$annualearning->image}}"style="max-width:150px"></td>   
   <td>
