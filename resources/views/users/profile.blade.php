@@ -332,7 +332,7 @@
 									<p class="text-light">Earnings in {{$currentmonth}}</p>
 								</li>
 								<li class="primary">
-									<h3>{{ $earningsforlastMonth->andrey }}</h3>
+									<h3>{{ $earningsforlastMonth->amount }}</h3>
 									<p class="text-light">Earnings in {{$lastMonth}}</p>
 								</li>
 								<li class="primary">

@@ -85,7 +85,8 @@ class Users extends Controller
         
         $earningsforlastMonth = DB::table('annualearnings')
         ->where('month',$lastMonth)
-        ->first();
+        ->where('earnings_source',Auth::user()->name)
+        ->first();        
         
         $sumspent = Spending::all()
         ->sum('amount');
