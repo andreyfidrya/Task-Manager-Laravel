@@ -124,55 +124,27 @@
 										<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
 									</div>
 
-									<h2 class="card-title">Popular Posts</h2>
+									<h2 class="card-title">Milestones In Progress</h2>
 								</header>
 								<div class="card-body">
 									<ul class="simple-post-list">
+										@foreach($tasksinprogressforuser as $task)
 										<li>
 											<div class="post-image">
 												<div class="img-thumbnail">
-													<a href="#">
+													<a href="{{ route('clients.show', [ $task->client->slug ]) }}">
 														<img src="img/post-thumb-1.jpg" alt="">
 													</a>
 												</div>
 											</div>
 											<div class="post-info">
-												<a href="#">Nullam Vitae Nibh Un Odiosters</a>
+												<a href="{{ route('tasks.show', [ $task->id ]) }}">{{$task->task}}</a>
 												<div class="post-meta">
 													 Jan 10, 2023
 												</div>
 											</div>
 										</li>
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#">
-														<img src="img/post-thumb-2.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#">Vitae Nibh Un Odiosters</a>
-												<div class="post-meta">
-													 Jan 10, 2023
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#">
-														<img src="img/post-thumb-3.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#">Odiosters Nullam Vitae</a>
-												<div class="post-meta">
-													 Jan 10, 2023
-												</div>
-											</div>
-										</li>
+										@endforeach										
 									</ul>
 								</div>
 							</section>

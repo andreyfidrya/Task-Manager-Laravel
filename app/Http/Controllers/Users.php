@@ -109,8 +109,12 @@ class Users extends Controller
                 ];
             $numberofclients++;    
             }
-        }        
+        }
         
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients'));
+        $tasksinprogressforuser = Task::where('user_id',$userID)->where('taskstatus',0)->get();
+         
+        //dd($tasksinprogressforuser);
+        
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser'));
     }
 }
