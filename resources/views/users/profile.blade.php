@@ -140,7 +140,7 @@
 											<div class="post-info">
 												<a href="{{ route('tasks.show', [ $task->id ]) }}">{{$task->task}}</a>
 												<div class="post-meta">
-													 Jan 10, 2023
+													{{date('M d, Y', strtotime($task->created_at))}}
 												</div>
 											</div>
 										</li>
