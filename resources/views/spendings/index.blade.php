@@ -23,10 +23,10 @@
   <td>{{ $expense->date }}</td> 
   <td>
     <a href="{{ route('spendings.edit', [ $expense->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
-    <form method="post" action="{{ route('spendings.destroy', [ $expense->id ]) }}">
+    <form method="post" onclick="confirmation(event)" action="{{ route('spendings.destroy', [ $expense->id ]) }}">
         @csrf
         @method('DELETE')
-        <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete {{ $expense->spending }} from expenses')">Delete</button>
+        <button class="btn btn-sm btn-danger">Delete</button>
     </form>
   </td>    
 </tr>
@@ -90,6 +90,34 @@ Total amount of vat per month: <strong>{{ $sumvat }} USD</strong><br>
             }
         });
     }); 
- </script>
+</script>
 
- 
+<script type="text/javascript">
+
+        function confirmation(ev)
+        {
+            ev.preventDefault();
+
+            const form = ev.currentTarget; // The clicked form
+
+            swal({
+
+                title:"Are You Sure to Delete This",
+                text:"This delete will be permanent",
+                icon:"warning",
+                buttons: true,
+                dangerMode:true,
+
+            })
+
+            .then((willDelete) => {
+            if (willDelete) {
+                form.submit(); // Submit the form if user confirms
+            }
+        });
+
+        }
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
