@@ -1,7 +1,7 @@
 <x-layouts.porto title="Tasks" header="Tasks" username={{$username}}>
   <form action="{{url('/tm/ajaxupload')}}" method="POST" id="addpost">
     @csrf
-    <div class="content"></div>
+    <div class="content"></div>    
     <input class="mb-3" type="text" name="spending" placeholder="Spendings">
     <input class="mb-3" type="float" name="amount" placeholder="Amount">
     <input class="mb-3" type="date" name="date" placeholder="Date">
@@ -252,8 +252,7 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
 
                 jQuery.ajax({
 
-                    url:"{{url('/tm/ajaxupload')}}",
-                    context: $(".content")
+                    url:"{{url('/tm/ajaxupload')}}",                    
                     data:jQuery('#addpost').serialize(),
                     type:'post',
                     
