@@ -252,13 +252,15 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
 
                 jQuery.ajax({
 
-                    url:"{{url('/tm/ajaxupload')}}",                    
+                    url:"{{url('/tm/ajaxupload')}}",
+                    context: $(".content"),                    
                     data:jQuery('#addpost').serialize(),
                     type:'post',
                     
                     success:function(result)
                     {
-                        jQuery('#addpost')[0].reset();
+                      $(".content").text("Spendings have been added");  
+                      jQuery('#addpost')[0].reset();
                     }
 
                 })
@@ -288,7 +290,7 @@ Total earnings: <input type="text" id="total" disabled="disabled"/>
                     
                     success:function(result)
                     {
-                        $(this).text("Earnings have been added")
+                        $(".content").text("Earnings have been added");
                         jQuery('#addearnings')[0].reset();
                     }
 
