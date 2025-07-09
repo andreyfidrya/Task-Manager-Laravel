@@ -113,8 +113,10 @@ class Users extends Controller
         
         $tasksinprogressforuser = Task::where('user_id',$userID)->where('taskstatus',0)->get();
          
-        //dd($tasksinprogressforuser);
+        $clientsWithAnyTasks = Client::whereHas('tasks', function ($query) use ($userID) {
+        $query->withTrashed()->where('user_id', $userID);
+        })->get();        
         
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser'));
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks'));
     }
 }

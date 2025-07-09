@@ -16,4 +16,9 @@ class Client extends Model
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+    public function tasksIncludingTrashed()
+    {
+        return $this->hasMany(Task::class)->withTrashed();
+    }
 }

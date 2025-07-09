@@ -68,40 +68,21 @@
 
 									<h2 class="card-title">
 										<span class="badge badge-primary label-sm font-weight-normal va-middle me-3">298</span>
-										<span class="va-middle">Friends</span>
+										<span class="va-middle">Active Clients</span>
 									</h2>
 								</header>
 								<div class="card-body">
 									<div class="content">
 										<ul class="simple-user-list">
+											@foreach($clientsWithAnyTasks as $client)
 											<li>
 												<figure class="image rounded">
 													<img src="img/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle">
 												</figure>
-												<span class="title">Joseph Doe Junior</span>
-												<span class="message truncate">Lorem ipsum dolor sit.</span>
+												<span class="title">{{$client->name}}</span>
+												<span class="message truncate">{{ $client->price }}</span>
 											</li>
-											<li>
-												<figure class="image rounded">
-													<img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle">
-												</figure>
-												<span class="title">Joseph Junior</span>
-												<span class="message truncate">Lorem ipsum dolor sit.</span>
-											</li>
-											<li>
-												<figure class="image rounded">
-													<img src="img/!sample-user.jpg" alt="Joe Junior" class="rounded-circle">
-												</figure>
-												<span class="title">Joe Junior</span>
-												<span class="message truncate">Lorem ipsum dolor sit.</span>
-											</li>
-											<li>
-												<figure class="image rounded">
-													<img src="img/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle">
-												</figure>
-												<span class="title">Joseph Doe Junior</span>
-												<span class="message truncate">Lorem ipsum dolor sit.</span>
-											</li>
+											@endforeach
 										</ul>
 										<hr class="dotted short">
 										<div class="text-end">
