@@ -115,8 +115,14 @@ class Users extends Controller
          
         $clientsWithAnyTasks = Client::whereHas('tasks', function ($query) use ($userID) {
         $query->withTrashed()->where('user_id', $userID);
-        })->get();        
+        })->get(); 
         
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks'));
+        $numberofactiveclients = Client::whereHas('tasks', function ($query) use ($userID) {
+        $query->withTrashed()->where('user_id', $userID);
+        })->count();
+
+        // dd($numberofactiveclients);
+        
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients'));
     }
 }

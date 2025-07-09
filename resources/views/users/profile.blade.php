@@ -67,7 +67,7 @@
 									</div>
 
 									<h2 class="card-title">
-										<span class="badge badge-primary label-sm font-weight-normal va-middle me-3">298</span>
+										<span class="badge badge-primary label-sm font-weight-normal va-middle me-3">{{$numberofactiveclients}}</span>
 										<span class="va-middle">Active Clients</span>
 									</h2>
 								</header>
