@@ -73,7 +73,7 @@ class Users extends Controller
         //
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
         $now = Carbon::now();
         $currentmonth = \Carbon\Carbon::now()->format('F'); 
@@ -113,16 +113,21 @@ class Users extends Controller
         
         $tasksinprogressforuser = Task::where('user_id',$userID)->where('taskstatus',0)->get();
          
-        $clientsWithAnyTasks = Client::whereHas('tasks', function ($query) use ($userID) {
+        $clientsWithAnyTasks = $request->ajax() ? Client::whereHas('tasks', function ($query) use ($userID) {
         $query->withTrashed()->where('user_id', $userID);
-        })->get(); 
+        })->get() : Client::whereHas('tasks', function ($query) use ($userID) {
+        $query->withTrashed()->where('user_id', $userID);
+        })->limit(3)->get(); 
         
         $numberofactiveclients = Client::whereHas('tasks', function ($query) use ($userID) {
         $query->withTrashed()->where('user_id', $userID);
         })->count();
 
-        // dd($numberofactiveclients);
+        if ($request->ajax()) {
+        return response()->json($clientsWithAnyTasks);
+        }
         
         return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients'));
     }
+    
 }

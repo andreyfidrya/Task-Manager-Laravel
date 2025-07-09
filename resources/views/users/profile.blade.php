@@ -73,7 +73,7 @@
 								</header>
 								<div class="card-body">
 									<div class="content">
-										<ul class="simple-user-list">
+										<ul class="simple-user-list" id="clientList">
 											@foreach($clientsWithAnyTasks as $client)
 											<li>
 												<figure class="image rounded">
@@ -86,7 +86,7 @@
 										</ul>
 										<hr class="dotted short">
 										<div class="text-end">
-											<a class="text-uppercase text-muted" href="#">(View All)</a>
+											<a class="text-uppercase text-muted" href="#" id="viewAllBtn">(View All)</a>
 										</div>
 									</div>
 								</div>
@@ -303,7 +303,7 @@
 								</li>								
 							</ul>
 							@endforeach
-@endif
+							@endif
 							<h4 class="mb-3 mt-4 pt-2 font-weight-semibold text-dark">Messages</h4>
 							<ul class="simple-user-list mb-3">
 								<li>
@@ -340,3 +340,33 @@
 					</div>					
     
 </x-layouts.porto>
+
+<script>
+document.getElementById('viewAllBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch("{{ route('users.profile') }}", {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const list = document.getElementById('clientList');
+        list.innerHTML = ''; // clear current items
+        data.forEach(client => {
+            list.innerHTML += `
+                <li>
+                    <figure class="image rounded">
+                        <img src="img/!sample-user.jpg" class="rounded-circle">
+                    </figure>
+                    <span class="title">${client.name}</span>
+                    <span class="message truncate">${client.price}</span>
+                </li>
+            `;
+        });
+
+		// Hide the "View All" button after loading
+        document.getElementById('viewAllBtn').style.display = 'none';
+    });
+});
+</script>
