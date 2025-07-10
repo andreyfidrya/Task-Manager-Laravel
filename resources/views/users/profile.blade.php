@@ -290,7 +290,7 @@
 								</li>
 								<li class="primary">
 									<h3>{{ $numberofclients}}</h3>
-									<p class="text-light">Clients in {{$currentmonth}}</p>
+									<p class="text-light">Paying clients in {{$currentmonth}}</p>
 								</li>
 							</ul>
 							
