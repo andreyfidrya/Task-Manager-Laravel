@@ -86,7 +86,7 @@
 										</ul>
 										<hr class="dotted short">
 										<div class="text-end">
-											<a class="text-uppercase text-muted" href="#" id="viewAllBtn">(View All)</a>
+											<a class="text-uppercase text-muted" href="#" id="toggleClientListBtn" style="display: none;">(View All)</a>
 										</div>
 									</div>
 								</div>
@@ -342,31 +342,55 @@
 </x-layouts.porto>
 
 <script>
-document.getElementById('viewAllBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    fetch("{{ route('users.profile') }}", {
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-        const list = document.getElementById('clientList');
-        list.innerHTML = ''; // clear current items
-        data.forEach(client => {
-            list.innerHTML += `
-                <li>
-                    <figure class="image rounded">
-                        <img src="img/!sample-user.jpg" class="rounded-circle">
-                    </figure>
-                    <span class="title">${client.name}</span>
-                    <span class="message truncate">${client.price}</span>
-                </li>
-            `;
-        });
+const clientList = document.getElementById('clientList');
+const toggleBtn = document.getElementById('toggleClientListBtn');
 
-		// Hide the "View All" button after loading
-        document.getElementById('viewAllBtn').style.display = 'none';
+let isExpanded = false;
+let allClients = [];
+
+function renderClients(clients) {
+    clientList.innerHTML = '';
+    clients.forEach(client => {
+        clientList.innerHTML += `
+            <li>
+                <figure class="image rounded">
+                    <img src="img/!sample-user.jpg" class="rounded-circle">
+                </figure>
+                <span class="title">${client.name}</span>
+                <span class="message truncate">${client.price}</span>
+            </li>
+        `;
     });
+}
+
+// Initial fetch
+fetch("{{ route('users.profile') }}", {
+    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+})
+.then(res => res.json())
+.then(data => {
+    allClients = data;
+
+    if (allClients.length > 3) {
+        renderClients(allClients.slice(0, 3));
+        toggleBtn.style.display = 'inline-block'; // Show button
+    } else {
+        renderClients(allClients); // Show all, no toggle
+    }
+});
+
+// Toggle button click
+toggleBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    if (!isExpanded) {
+        renderClients(allClients); // Show all
+        toggleBtn.textContent = '(Minimize)';
+    } else {
+        renderClients(allClients.slice(0, 3)); // Show first 5
+        toggleBtn.textContent = '(View All)';
+    }
+
+    isExpanded = !isExpanded;
 });
 </script>
