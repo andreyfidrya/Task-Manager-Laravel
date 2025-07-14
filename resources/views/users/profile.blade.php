@@ -114,7 +114,7 @@
 											<div class="post-image">
 												<div class="img-thumbnail">
 													<a href="{{ route('clients.show', [ $task->client->slug ]) }}">
-														<img src="img/post-thumb-1.jpg" alt="">
+														<img src="{{asset('images')}}/{{$task->client->image}}" alt="">
 													</a>
 												</div>
 											</div>
