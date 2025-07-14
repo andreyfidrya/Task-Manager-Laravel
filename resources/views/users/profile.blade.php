@@ -89,13 +89,7 @@
 											<a class="text-uppercase text-muted" href="#" id="toggleClientListBtn" style="display: none;">(View All)</a>
 										</div>
 									</div>
-								</div>
-								<div class="card-footer">
-									<div class="input-group">
-										<input type="text" class="form-control" name="s" id="s" placeholder="Search...">
-										<button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
-									</div>
-								</div>
+								</div>								
 							</section>
 
 							<section class="card">
