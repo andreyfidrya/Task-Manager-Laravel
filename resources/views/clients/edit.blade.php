@@ -1,6 +1,6 @@
 <x-layouts.porto title="Edit a client" header="Edit a Clinet" username={{$username}}>
   @bind($client)
-    <x-form method="post" action="{{ route('clients.update', [ $client->id ]) }}">
+    <x-form method="post" action="{{ route('clients.update', [ $client->id ]) }}" enctype="multipart/form-data">
         @method('PUT')
         @include('clients.form-fields')   
       <button class="btn btn-primary">Update a Client</button>

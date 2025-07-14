@@ -11,6 +11,7 @@
   <th scope="col">Client Slug</th>
   <th scope="col">Client Info</th>
   <th scope="col">Client Price</th>
+  <th scope="col">Image</th>
   <th scope="col">Action</th> 
 </tr>
 </thead>
@@ -20,7 +21,8 @@
   <td>{{ $client->name }}</td>
   <td>{{ $client->slug }}</td> 
   <td>{!! $client->info !!}</td>
-  <td>{{ $client->price }}</td>  
+  <td>{{ $client->price }}</td>
+  <td><img src="{{asset('images')}}/{{$client->image}}"style="max-width:150px"></td>  
 <td>
   <a href="{{ route('clients.show', [ $client->slug ]) }}" class="btn btn-info">View</a>
   <a href="{{ route('clients.edit', [ $client->id ]) }}" class="btn btn-sm btn-primary">Edit</a>

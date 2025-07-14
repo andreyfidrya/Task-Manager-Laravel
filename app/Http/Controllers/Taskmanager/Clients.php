@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Taskmanager;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Requests\Clients\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,17 @@ class Clients extends Controller
 
     public function store(SaveRequest $request)
     {
+        $current_timestamp = Carbon::now()->timestamp;
         $data = $request->only(['name', 'slug', 'info', 'price']);
+        
+        if($request->hasFile('image'))
+        {  
+            $image = $request->file('image');                                               
+            $imageName = $current_timestamp . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);  
+            $data['image'] = $imageName;    
+        }
+           
         Client::create($data);
         return redirect()->route('clients.index');
     }
@@ -47,7 +58,17 @@ class Clients extends Controller
     public function update(SaveRequest $request, string $id)
     {
         $client = Client::findOrFail($id);
+        $current_timestamp = Carbon::now()->timestamp;
         $data = $request->only(['name', 'slug', 'info', 'price']);
+
+        if($request->hasFile('image'))
+        {  
+            $image = $request->file('image');                                               
+            $imageName = $current_timestamp . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);  
+            $data['image'] = $imageName;    
+        }
+        
         $client->update($data);
         return redirect()->route('clients.index');
     }
