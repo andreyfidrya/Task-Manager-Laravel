@@ -77,7 +77,7 @@
 											@foreach($clientsWithAnyTasks as $client)
 											<li>
 												<figure class="image rounded">
-													<img src="img/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle">
+													<img src="{{asset('images')}}/{{$client->image}}" width="35" height="35" class="rounded-circle">
 												</figure>
 												<span class="title">{{$client->name}}</span>
 												<span class="message truncate">{{ $client->price }}</span>
@@ -354,7 +354,7 @@ function renderClients(clients) {
         clientList.innerHTML += `
             <li>
                 <figure class="image rounded">
-                    <img src="img/!sample-user.jpg" class="rounded-circle">
+                    <img src="images/${client.image}" width="35" height="35" class="rounded-circle">
                 </figure>
                 <span class="title">${client.name}</span>
                 <span class="message truncate">${client.price}</span>
