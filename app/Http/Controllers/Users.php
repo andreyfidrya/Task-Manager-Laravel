@@ -33,7 +33,7 @@ class Users extends Controller
 
     public function store(SaveRequest $request)
     {
-        $data = $request->only(['name', 'email']);
+        $data = $request->only(['name', 'email', 'about']);
         $password = Hash::make($request->password);
         $data['password'] = $password;           
 
@@ -63,14 +63,16 @@ class Users extends Controller
         ]);
         
         $user = User::findOrFail($id);
-        $data = $request->only(['name', 'email']);
+        $data = $request->only(['name', 'email', 'about']);
         $user->update($data);
         return redirect()->route('users.index');
     }
 
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index');
     }
 
     public function profile(Request $request)

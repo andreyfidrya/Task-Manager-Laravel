@@ -9,12 +9,14 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>About</th>
                 <th>Actions</th>
             </tr>
             @foreach($users as $user)
             <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->about }}</td>
                 <td>
                 <a href="route('users.show', [ $user->id ])" class="btn btn-info">View</a>
                 <a href="{{ route('users.edit', [ $user->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
