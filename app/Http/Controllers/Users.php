@@ -127,7 +127,7 @@ class Users extends Controller
 
         if ($request->ajax()) {
         return response()->json($clientsWithAnyTasks);
-        }
+        }        
             
         return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients'));
     }

@@ -43,10 +43,15 @@
 									<hr class="dotted short">
 
 									<h5 class="mb-2 mt-3">About</h5>
-									<p class="text-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis vulputate quam. Interdum et malesuada</p>
-									<div class="clearfix">
-										<a class="text-uppercase text-muted float-end" href="#">(View All)</a>
-									</div>
+									<p class="text-2" id="aboutText">
+										{{ \Illuminate\Support\Str::limit($user->about, 105) }}
+									</p>
+
+									@if(strlen($user->about) > 105)
+										<div class="clearfix">
+											<a class="text-uppercase text-muted float-end" href="#" id="toggleAbout">(View All)</a>
+										</div>
+									@endif
 
 									<hr class="dotted short">
 
@@ -388,3 +393,25 @@ toggleBtn.addEventListener('click', function(e) {
     isExpanded = !isExpanded;
 });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fullText = @json($user->about);
+        const shortText = fullText.slice(0, 105);
+        const aboutText = document.getElementById('aboutText');
+        const toggleLink = document.getElementById('toggleAbout');
+        let expanded = false;
+
+        toggleLink.addEventListener('click', function(e) {
+            	e.preventDefault();
+                if (expanded) {
+                    aboutText.textContent = shortText + '...';
+                    toggleLink.textContent = '(View All)';
+                } else {
+                    aboutText.textContent = fullText;
+                    toggleLink.textContent = '(Minimize)';
+                }
+                expanded = !expanded;
+            });
+        });
+    </script>
