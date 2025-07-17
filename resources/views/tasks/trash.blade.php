@@ -3,6 +3,35 @@ Earnings per month: <strong>{{$sum}} USD</strong><br>
 Spendings per month: <strong>{{ $sumspent }} USD</strong><br>
 Total amount of vat per month: <strong>{{ $sumvat }} USD</strong><br>
 <h2>Profits per month: <strong>{{ $sum - $sumspent - $sumvat }} USD</strong><br></h2>
+<h1>USD Exchange Rate (NBU)</h1>
+  <div id="usd-info">Loading...</div>
+
+<script>
+
+    const profitsUsd = {{ $sum - $sumspent - $sumvat }};    
+
+    fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/dollar_info?json')
+        .then(response => response.json())
+        .then(data => {
+            // Assuming only one item is returned in the array
+            const usd = data[0];
+            const container = document.getElementById('usd-info');
+            container.innerHTML = `
+            <p><strong>Currency Code:</strong> ${usd.cc}</p>
+            <p><strong>Exchange Rate:</strong> ${usd.rate}</p>
+            <p><strong>Date:</strong> ${usd.exchangedate}</p>
+            `;
+
+            // Calculate and display profits in UAH
+            const profitsUah = (profitsUsd * usd.rate).toFixed(0);
+            document.getElementById('profit-uah').innerText = `${profitsUah} UAH`;
+        })
+        .catch(error => {
+            document.getElementById('usd-info').innerText = 'Failed to load data.';
+            console.error('Error fetching data:', error);
+        });
+</script>
+<h2>Profits in UAH: <strong id="profit-uah">Loading...</strong></h2>
 <p>
 <button class="btn btn-danger removeAll">Remove Selected Tasks</button>
 </p>
