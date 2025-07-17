@@ -216,39 +216,72 @@
 
 									</div>
 									<div id="edit" class="tab-pane">
-
-										<form class="p-3">
-											<h4 class="mb-3 font-weight-semibold text-dark">Personal Information</h4>
+									
+										<form class="p-3" method="post" action="{{url('/updatepersonalinfo')}}" id="updatepersonalinfo">
+											@csrf											
+											<div class="content"></div>										
+											<h4 class="mb-3 font-weight-semibold text-dark">Personal Information</h4>											
 											<div class="row row mb-4">
 												<div class="form-group col">
 													<label for="inputAddress">Address</label>
-													<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+													<input type="text" name="address" class="form-control" id="inputAddress" value="{{ $user->address }}">
 												</div>
 											</div>
 											<div class="row mb-4">
 												<div class="form-group col">
 													<label for="inputAddress2">Address 2</label>
-													<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+													<input type="text" name="address2" class="form-control" id="inputAddress2" value="{{ $user->address2 }}">
 												</div>
 											</div>
 											<div class="row">
-												<div class="form-group col-md-6">
+												<div class="form-group col-md-4">
 													<label for="inputCity">City</label>
-													<input type="text" class="form-control" id="inputCity">
+													<input type="text" name="city" class="form-control" id="inputCity" value="{{ $user->city }}">
 												</div>
-												<div class="form-group col-md-4 border-top-0 pt-0">
+												<div class="form-group col-md-5 border-top-0 pt-0">
 													<label for="inputState">State</label>
-													<select id="inputState" class="form-control">
-														<option selected>Choose...</option>
-														<option>...</option>
+													<select name="state" id="inputState" class="form-control">
+														<option disabled {{ $user->state == null ? 'selected' : '' }}>Choose...</option>
+														<option {{ $user->state == 'Cherkasy Oblast' ? 'selected' : '' }}>Cherkasy Oblast</option>
+														<option {{ $user->state == 'Chernihiv Oblast' ? 'selected' : '' }}>Chernihiv Oblast</option>
+														<option {{ $user->state == 'Chernivtsi Oblast' ? 'selected' : '' }}>Chernivtsi Oblast</option>
+														<option {{ $user->state == 'Dnipropetrovsk Oblast' ? 'selected' : '' }}>Dnipropetrovsk Oblast</option>
+														<option {{ $user->state == 'Donetsk Oblast' ? 'selected' : '' }}>Donetsk Oblast</option>
+														<option {{ $user->state == 'Ivano-Frankivsk Oblast' ? 'selected' : '' }}>Ivano-Frankivsk Oblast</option>
+														<option {{ $user->state == 'Kharkiv Oblast' ? 'selected' : '' }}>Kharkiv Oblast</option>
+														<option {{ $user->state == 'Kherson Oblast' ? 'selected' : '' }}>Kherson Oblast</option>
+														<option {{ $user->state == 'Khmelnytskyi Oblast' ? 'selected' : '' }}>Khmelnytskyi Oblast</option>
+														<option {{ $user->state == 'Kirovohrad Oblast' ? 'selected' : '' }}>Kirovohrad Oblast</option>
+														<option {{ $user->state == 'Kyiv Oblast' ? 'selected' : '' }}>Kyiv Oblast</option>
+														<option {{ $user->state == 'Luhansk Oblast' ? 'selected' : '' }}>Luhansk Oblast</option>
+														<option {{ $user->state == 'Lviv Oblast' ? 'selected' : '' }}>Lviv Oblast</option>
+														<option {{ $user->state == 'Mykolaiv Oblast' ? 'selected' : '' }}>Mykolaiv Oblast</option>
+														<option {{ $user->state == 'Odesa Oblast' ? 'selected' : '' }}>Odesa Oblast</option>
+														<option {{ $user->state == 'Poltava Oblast' ? 'selected' : '' }}>Poltava Oblast</option>
+														<option {{ $user->state == 'Rivne Oblast' ? 'selected' : '' }}>Rivne Oblast</option>
+														<option {{ $user->state == 'Sumy Oblast' ? 'selected' : '' }}>Sumy Oblast</option>
+														<option {{ $user->state == 'Ternopil Oblast' ? 'selected' : '' }}>Ternopil Oblast</option>
+														<option {{ $user->state == 'Vinnytsia Oblast' ? 'selected' : '' }}>Vinnytsia Oblast</option>
+														<option {{ $user->state == 'Volyn Oblast' ? 'selected' : '' }}>Volyn Oblast</option>
+														<option {{ $user->state == 'Zakarpattia Oblast' ? 'selected' : '' }}>Zakarpattia Oblast</option>
+														<option {{ $user->state == 'Zaporizhzhia Oblast' ? 'selected' : '' }}>Zaporizhzhia Oblast</option>
+														<option {{ $user->state == 'Zhytomyr Oblast' ? 'selected' : '' }}>Zhytomyr Oblast</option>
 													</select>
 												</div>
-												<div class="form-group col-md-2 border-top-0 pt-0">
+												<div class="form-group col-md-3 border-top-0 pt-0">
 													<label for="inputZip">Zip</label>
-													<input type="text" class="form-control" id="inputZip">
+													<input type="text" name="zip" class="form-control" id="inputZip" value="{{ $user->zip }}">
 												</div>
 											</div>
 
+											<div class="row">
+												<div class="col-md-12 text-end mt-3">
+													<button type="submit" class="btn btn-primary modal-confirm">Save</button>
+												</div>
+											</div>
+										</form>
+										
+										<form class="p-3">
 											<hr class="dotted tall">
 
 											<h4 class="mb-3 font-weight-semibold text-dark">Change Password</h4>
@@ -268,7 +301,6 @@
 													<button class="btn btn-primary modal-confirm">Save</button>
 												</div>
 											</div>
-
 										</form>
 
 									</div>
@@ -414,4 +446,34 @@ toggleBtn.addEventListener('click', function(e) {
                 expanded = !expanded;
             });
         });
-    </script>
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+        {
+            
+           $('#updatepersonalinfo').on('submit', function(event)        
+            {
+
+                event.preventDefault();
+
+				jQuery.ajax({
+
+                    url:"{{url('/updatepersonalinfo')}}",
+                    context: $(".content"),                    
+                    data:jQuery('#updatepersonalinfo').serialize(),
+                    type:'post',
+                    
+                    success:function(result)
+                    {
+                      $(".content").text("Personal information has been updated!");
+                    }
+
+                })
+
+            });
+
+        }); 
+
+</script>

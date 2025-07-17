@@ -131,5 +131,21 @@ class Users extends Controller
             
         return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients'));
     }
+
+    public function updatepersonalinfo(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        
+        $user->address = $request->address;
+        $user->address2 = $request->address2;
+        $user->city = $request->city;
+        $user->state = $request->state;
+        $user->zip = $request->zip;
+
+        $user->save();
+
+        return response()->json([]);
+    }
     
 }

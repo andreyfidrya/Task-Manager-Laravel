@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function(){
     
     Route::resource('users', UserController::class);
     Route::get('/user-profile-page/', [ UserController::class, 'profile' ])->name('users.profile'); 
+    Route::post('/updatepersonalinfo/', [UserController::class,'updatepersonalinfo'])->name('users.profile.personalinfo.update');
     
     Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
     
