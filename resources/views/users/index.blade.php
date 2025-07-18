@@ -10,6 +10,11 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>About</th>
+                <th>Address</th>
+                <th>Address 2</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
                 <th>Actions</th>
             </tr>
             @foreach($users as $user)
@@ -17,6 +22,11 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->about }}</td>
+                <td>{{ $user->address }}</td>
+                <td>{{ $user->address2 }}</td>
+                <td>{{ $user->city }}</td>
+                <td>{{ $user->state }}</td>
+                <td>{{ $user->zip }}</td>
                 <td>
                 <a href="route('users.show', [ $user->id ])" class="btn btn-info">View</a>
                 <a href="{{ route('users.edit', [ $user->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
