@@ -231,7 +231,7 @@
 									
 										<form class="p-3" method="post" action="{{url('/updatepersonalinfo')}}" id="updatepersonalinfo">
 											@csrf											
-											<div class="content"></div>										
+											<div class="personalinfo-content"></div>										
 											<h4 class="mb-3 font-weight-semibold text-dark">Personal Information</h4>											
 											
 											<div class="row row mb-4">
@@ -486,13 +486,13 @@ toggleBtn.addEventListener('click', function(e) {
 				jQuery.ajax({
 
                     url:"{{url('/updatepersonalinfo')}}",
-                    context: $(".content"),                    
+                    context: $(".personalinfo-content"),                    
                     data:jQuery('#updatepersonalinfo').serialize(),
                     type:'post',
                     
                     success:function(result)
                     {
-                      $(".content").text("Personal information has been updated!");
+                      $(".personalinfo-content").text("Personal information has been updated!");
                     }
 
                 })
