@@ -221,6 +221,13 @@
 											@csrf											
 											<div class="content"></div>										
 											<h4 class="mb-3 font-weight-semibold text-dark">Personal Information</h4>											
+											
+											<div class="row row mb-4">
+												<div class="form-group col">
+													<label for="inputPhone">Phone</label>
+													<input type="text" name="phone" class="form-control" id="inputPhone" value="{{ $user->phone }}">
+												</div>
+											</div>
 											<div class="row row mb-4">
 												<div class="form-group col">
 													<label for="inputAddress">Address</label>

@@ -10,6 +10,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>About</th>
+                <th>Phone</th>
                 <th>Address</th>
                 <th>Address 2</th>
                 <th>City</th>
@@ -22,6 +23,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->about }}</td>
+                <td>{{ $user->phone }}</td>
                 <td>{{ $user->address }}</td>
                 <td>{{ $user->address2 }}</td>
                 <td>{{ $user->city }}</td>

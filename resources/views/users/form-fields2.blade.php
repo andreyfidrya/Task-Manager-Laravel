@@ -9,6 +9,9 @@
     <x-form-textarea name="about" label="About"/> 
 </div>
 <div class="mb-3">    
+    <x-form-input name="phone" label="Phone"/> 
+</div>
+<div class="mb-3">    
     <x-form-textarea name="address" label="Address"/> 
 </div>
 <div class="mb-3">    
