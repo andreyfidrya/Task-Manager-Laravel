@@ -143,7 +143,7 @@
 								</ul>
 								<script>
 									document.addEventListener('DOMContentLoaded', function () {
-										const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+										const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');										
 										tabButtons.forEach(button => {
 											button.addEventListener('click', function () {
 												const targetId = button.getAttribute('data-bs-target');
@@ -236,10 +236,16 @@
 											
 											<div class="row row mb-4">
 												<div class="form-group col">
+													<label for="inputPhone">About</label>
+													<textarea type="text" name="about" class="form-control" id="inputAbout">{{ $user->about }}</textarea>
+												</div>
+											</div>
+											<div class="row row mb-4">
+												<div class="form-group col">
 													<label for="inputPhone">Phone</label>
 													<input type="text" name="phone" class="form-control" id="inputPhone" value="{{ $user->phone }}">
 												</div>
-											</div>
+											</div>											
 											<div class="row row mb-4">
 												<div class="form-group col">
 													<label for="inputAddress">Address</label>

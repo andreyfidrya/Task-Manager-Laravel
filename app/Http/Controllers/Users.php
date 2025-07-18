@@ -138,6 +138,7 @@ class Users extends Controller
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
         
+        $user->about = $request->about;
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->address2 = $request->address2;
