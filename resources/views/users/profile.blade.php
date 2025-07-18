@@ -134,13 +134,25 @@
 
 							<div class="tabs">
 								<ul class="nav nav-tabs tabs-primary">
-									<li class="nav-item active">
-										<button class="nav-link" data-bs-target="#overview" data-bs-toggle="tab">Overview</button>
+									<li class="nav-item">
+										<button class="nav-link active" data-bs-target="#overview" data-bs-toggle="tab">Overview</button>
 									</li>
 									<li class="nav-item">
 										<button class="nav-link" data-bs-target="#edit" data-bs-toggle="tab">Edit</button>
 									</li>
 								</ul>
+								<script>
+									document.addEventListener('DOMContentLoaded', function () {
+										const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+										tabButtons.forEach(button => {
+											button.addEventListener('click', function () {
+												const targetId = button.getAttribute('data-bs-target');
+												const tab = new bootstrap.Tab(button);
+												tab.show();
+											});
+										});
+									});
+								</script>
 								<div class="tab-content">
 									<div id="overview" class="tab-pane active">
 
