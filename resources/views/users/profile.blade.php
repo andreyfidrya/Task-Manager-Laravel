@@ -35,7 +35,7 @@
 												<li class="completed">Update Profile Picture</li>
 												<li class="completed">Change Personal Information</li>
 												<li>Update Social Media</li>
-												<li>Follow Someone</li>
+												<li>Get Active Clients</li>
 											</ul>
 										</div>
 									</div>
@@ -306,18 +306,26 @@
 											</div>
 										</form>
 										
-										<form class="p-3">
+										<form class="p-3" action="{{route('user.account.security.update')}}" method="post">
+											@csrf
+											@method('PUT')
 											<hr class="dotted tall">
 
 											<h4 class="mb-3 font-weight-semibold text-dark">Change Password</h4>
+											<div class="row mb-4">
+												<div class="form-group col">
+													<label for="oldPassword">Old Password</label>
+													<input type="password" name="old_password" class="form-control" id="oldPassword" placeholder="Password">
+												</div>
+											</div>
 											<div class="row">
 												<div class="form-group col-md-6">
-													<label for="inputPassword4">New Password</label>
-													<input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+													<label for="newPassword4">New Password</label>
+													<input type="password" name="new_password" class="form-control" id="inputPassword4" placeholder="Password">
 												</div>
 												<div class="form-group col-md-6 border-top-0 pt-0">
 													<label for="inputPassword5">Re New Password</label>
-													<input type="password" class="form-control" id="inputPassword5" placeholder="Password">
+													<input type="password" name="new_password_confirmation" class="form-control" id="inputPassword5" placeholder="Password">
 												</div>
 											</div>
 

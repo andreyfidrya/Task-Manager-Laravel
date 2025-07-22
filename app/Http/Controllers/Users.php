@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules;
 
 class Users extends Controller
 {
@@ -149,6 +150,21 @@ class Users extends Controller
         $user->save();
 
         return response()->json([]);
+    }
+
+    public function account_security_update(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required|current_password',
+            'new_password' => ['required','confirmed', Rules\Password::defaults()],
+            'new_password_confirmation' => 'required'           
+        ]);
+
+        $request->user()->forceFill([
+            'password' => Hash::make($request->new_password)            
+        ])->save();
+
+        return redirect()->route('users.profile');
     }
     
 }
