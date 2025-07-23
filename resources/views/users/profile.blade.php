@@ -6,6 +6,10 @@
     </div>
 @endif
 
+@error('title')
+	<div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
 @if(isset($earningsofclients))
       @php      
       $earningsperclients = collect($earningsofclients)->sortBy('sum')->reverse()->toArray();
@@ -378,11 +382,7 @@
 
 											<hr class="dotted tall">
 											<h4 class="mb-3 font-weight-semibold text-dark">Change Password</h4>
-											@if (session('status'))
-												<div class="alert alert-success">
-													{{ session('status') }}
-												</div>
-											@endif
+											
 											<div class="row mb-4">
 												<div class="form-group col">
 													<label for="oldPassword">Old Password</label>
