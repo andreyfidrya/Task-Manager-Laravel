@@ -180,5 +180,27 @@ class Users extends Controller
 
         return redirect()->route('users.profile')->with('status', 'Password has been changed!');
     }
+
+    public function updateProfileImage(Request $request)
+    {
+    $request->validate([
+        'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $user = auth()->user();
+
+    $imageName = time() . '.' . $request->profile_image->extension();
+    $request->profile_image->move(public_path('images/profiles'), $imageName);
+
+    // Optional: delete old image
+    if ($user->profile_image && file_exists(public_path('images/profiles/' . $user->profile_image))) {
+        unlink(public_path('images/profiles/' . $user->profile_image));
+    }
+
+    $user->profile_image = $imageName;
+    $user->save();
+
+    return back()->with('status', 'Profile image updated successfully!');
+    }
     
 }

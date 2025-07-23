@@ -21,7 +21,7 @@
 							<section class="card">
 								<div class="card-body">
 									<div class="thumb-info mb-3">
-										<img src="img/!logged-user.jpg" class="rounded img-fluid" alt="John Doe">
+										<img src="{{ $user->profile_image ? asset('images/profiles/' . $user->profile_image) : asset('img/!logged-user.jpg') }}" class="rounded img-fluid" alt="{{ $user->name }}">
 										<div class="thumb-info-title">
 											<span class="thumb-info-inner">{{$user->name}}</span>
 											<span class="thumb-info-type">CEO</span>
@@ -343,6 +343,34 @@
 													});
 
 												});
+										</script>
+
+										<form class="p-3" method="post" action="{{ url('/updateprofileimage') }}" enctype="multipart/form-data">
+											@csrf
+											<div class="mb-3">
+												<label for="profile_image" class="form-label">Upload New Profile Image</label>
+												<input class="form-control" type="file" id="profile_image" name="profile_image" onchange="previewFile(this)">
+												<img style="max-width:150px;margin-top:20px;" id="img-profile"/>
+											</div>
+											<div class="text-end">
+												<button type="submit" class="btn btn-primary">Upload</button>
+											</div>
+										</form>
+
+										<script language=javascript>
+											function previewFile(input){
+												var preview = document.querySelector('#img-profile');
+												var file = input.files[0];
+												var reader = new FileReader();
+												reader.onloadend = function () {
+													preview.src = reader.result;
+												}
+												if (file) {
+													reader.readAsDataURL(file);
+												} else {
+													preview.src = "";
+												}
+											}
 										</script>
 										
 										<form class="p-3" method="post" action="{{url('/updatesocialmedia')}}" id="updatesocialmedia">

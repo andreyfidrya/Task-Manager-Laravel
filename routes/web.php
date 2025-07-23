@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/updatepersonalinfo/', [UserController::class,'updatepersonalinfo'])->name('users.profile.personalinfo.update');
     Route::post('/updatesocialmedia/', [UserController::class,'updatesocialmedia'])->name('users.profile.socialmedia.update');
     Route::put('/account-security/update', [UserController::class, 'account_security_update'])->name('user.account.security.update');
+    Route::post('/updateprofileimage', [UserController::class, 'updateProfileImage'])->name('user.update.profile.image');
     
     Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
     
