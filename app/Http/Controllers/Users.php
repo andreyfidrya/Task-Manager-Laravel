@@ -152,6 +152,20 @@ class Users extends Controller
         return response()->json([]);
     }
 
+    public function updatesocialmedia(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        
+        $user->facebook = $request->facebook;
+        $user->twitter = $request->twitter;
+        $user->linkedin = $request->linkedin;        
+
+        $user->save();
+
+        return response()->json([]);
+    }
+
     public function account_security_update(Request $request)
     {
         $request->validate([
@@ -164,7 +178,7 @@ class Users extends Controller
             'password' => Hash::make($request->new_password)            
         ])->save();
 
-        return redirect()->route('users.profile');
+        return redirect()->route('users.profile')->with('status', 'Password has been changed!');
     }
     
 }

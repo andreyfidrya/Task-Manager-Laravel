@@ -1,5 +1,11 @@
 <x-layouts.porto title="User Profile" header="User Profile" username={{$username}}>
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 @if(isset($earningsofclients))
       @php      
       $earningsperclients = collect($earningsofclients)->sortBy('sum')->reverse()->toArray();
@@ -232,7 +238,7 @@
 										<form class="p-3" method="post" action="{{url('/updatepersonalinfo')}}" id="updatepersonalinfo">
 											@csrf											
 											<div class="personalinfo-content"></div>										
-											<h4 class="mb-3 font-weight-semibold text-dark">Personal Information</h4>											
+											<h4 class="mb-3 font-weight-semibold text-dark">Change Personal Information</h4>											
 											
 											<div class="row row mb-4">
 												<div class="form-group col">
@@ -305,13 +311,78 @@
 												</div>
 											</div>
 										</form>
+
+										<script type="text/javascript">
+
+											$(document).ready(function()
+												{
+													
+												$('#updatepersonalinfo').on('submit', function(event)        
+													{
+
+														event.preventDefault();
+
+														jQuery.ajax({
+
+															url:"{{url('/updatepersonalinfo')}}",
+															context: $(".personalinfo-content"),                    
+															data:jQuery('#updatepersonalinfo').serialize(),
+															type:'post',
+															
+															success:function(result)
+															{
+															$(".personalinfo-content").text("Personal information has been updated!");
+															}
+
+														})
+
+													});
+
+												});
+										</script>
 										
+										<form class="p-3" method="post" action="{{url('/updatesocialmedia')}}" id="updatesocialmedia">
+											@csrf											
+											<hr class="dotted tall">
+											<h4 class="mb-3 font-weight-semibold text-dark">Update Social Media</h4>
+											<div class="socialmedia-content"></div>
+											<div class="row row mb-4">
+												<div class="form-group col">
+													<label for="inputPhone">Facebook</label>
+													<input type="url" name="facebook" class="form-control" value="{{ $user->facebook }}">
+												</div>
+											</div>
+											<div class="row row mb-4">
+												<div class="form-group col">
+													<label for="inputPhone">Twitter</label>
+													<input type="url" name="twitter" class="form-control" value="{{ $user->twitter }}">
+												</div>
+											</div>
+											<div class="row row mb-4">
+												<div class="form-group col">
+													<label for="inputPhone">LinkedIn</label>
+													<input type="url" name="linkedin" class="form-control" value="{{ $user->linkedin }}">
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-md-12 text-end mt-3">
+													<button type="submit" class="btn btn-primary modal-confirm">Save</button>
+												</div>
+											</div>
+										</form>
+
 										<form class="p-3" action="{{route('user.account.security.update')}}" method="post">
 											@csrf
 											@method('PUT')
-											<hr class="dotted tall">
 
+											<hr class="dotted tall">
 											<h4 class="mb-3 font-weight-semibold text-dark">Change Password</h4>
+											@if (session('status'))
+												<div class="alert alert-success">
+													{{ session('status') }}
+												</div>
+											@endif
 											<div class="row mb-4">
 												<div class="form-group col">
 													<label for="oldPassword">Old Password</label>
@@ -331,11 +402,41 @@
 
 											<div class="row">
 												<div class="col-md-12 text-end mt-3">
-													<button class="btn btn-primary modal-confirm">Save</button>
+													<button type="submit" class="btn btn-primary modal-confirm">Save</button>
 												</div>
 											</div>
 										</form>
 
+										<script type="text/javascript">
+
+											$(document).ready(function()
+												{
+													
+												$('#updatesocialmedia').on('submit', function(event)        
+													{
+
+														event.preventDefault();
+
+														jQuery.ajax({
+
+															url:"{{url('/updatesocialmedia')}}",
+															context: $(".socialmedia-content"),                    
+															data:jQuery('#updatesocialmedia').serialize(),
+															type:'post',
+															
+															success:function(result)
+															{
+															$(".socialmedia-content").text("Social media has been updated!");
+															}
+
+														})
+
+													});
+
+												}); 
+
+										</script>
+										
 									</div>
 								</div>
 							</div>
@@ -481,32 +582,4 @@ toggleBtn.addEventListener('click', function(e) {
         });
 </script>
 
-<script type="text/javascript">
 
-    $(document).ready(function()
-        {
-            
-           $('#updatepersonalinfo').on('submit', function(event)        
-            {
-
-                event.preventDefault();
-
-				jQuery.ajax({
-
-                    url:"{{url('/updatepersonalinfo')}}",
-                    context: $(".personalinfo-content"),                    
-                    data:jQuery('#updatepersonalinfo').serialize(),
-                    type:'post',
-                    
-                    success:function(result)
-                    {
-                      $(".personalinfo-content").text("Personal information has been updated!");
-                    }
-
-                })
-
-            });
-
-        }); 
-
-</script>
