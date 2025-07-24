@@ -129,9 +129,27 @@ class Users extends Controller
 
         if ($request->ajax()) {
         return response()->json($clientsWithAnyTasks);
-        }        
+        }     
+              
+        $profilecompletion = 0;
+
+        if ($user->profile_image) {
+            $profilecompletion += 25;
+        }
+
+        if ($user->about && $user->phone && $user->address && $user->address2 && $user->city && $user->state && $user->zip) {
+            $profilecompletion += 25;
+        }
+
+        if ($user->facebook || $user->twitter || $user->linkedin) {
+            $profilecompletion += 25;
+        }
+
+        if ($numberofactiveclients > 0) {
+            $profilecompletion += 25;
+        }    
             
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients'));
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion'));
     }
 
     public function updatepersonalinfo(Request $request)

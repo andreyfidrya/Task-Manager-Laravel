@@ -35,17 +35,17 @@
 										</div>
 										<div class="widget-content-collapsed">
 											<div class="progress progress-xs light">
-												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-													60%
+												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$profilecompletion}}%;">
+													
 												</div>
 											</div>
 										</div>
 										<div class="widget-content-expanded">
 											<ul class="simple-todo-list mt-3">
-												<li class="completed">Update Profile Picture</li>
-												<li class="completed">Change Personal Information</li>
-												<li>Update Social Media</li>
-												<li>Get Active Clients</li>
+												<li @if($user->profile_image) class="completed" @endif>Update Profile Picture</li>
+												<li @if($user->about && $user->phone && $user->address && $user->address2 && $user->city && $user->state && $user->zip) class="completed" @endif">Change Personal Information</li>
+												<li @if($user->facebook || $user->twitter || $user->linkedin) class="completed" @endif">Update Social Media</li>
+												<li @if($numberofactiveclients > 0) class="completed" @endif>Get Active Clients </li>
 											</ul>
 										</div>
 									</div>
@@ -347,6 +347,7 @@
 
 										<form class="p-3" method="post" action="{{ url('/updateprofileimage') }}" enctype="multipart/form-data">
 											@csrf
+											<h4 class="mb-3 font-weight-semibold text-dark">Profile Image</h4>
 											<div class="mb-3">
 												<label for="profile_image" class="form-label">Upload New Profile Image</label>
 												<input class="form-control" type="file" id="profile_image" name="profile_image" onchange="previewFile(this)">
