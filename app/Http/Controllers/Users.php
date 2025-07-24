@@ -10,6 +10,7 @@ use App\Models\Annualearning;
 use App\Models\Spending;
 use App\Models\Task;
 use App\Models\Client;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -220,5 +221,18 @@ class Users extends Controller
 
     return back()->with('status', 'Profile image updated successfully!');
     }
-    
+
+    public function updateProfileStatus(Request $request)
+    {
+        $userId = Auth::user()->id;
+
+        $data = new Chat;
+
+        $data->user_id = $userId;
+        $data->message = $request->message; 
+
+        $data->save();
+
+        return response()->json([]);
+    }
 }

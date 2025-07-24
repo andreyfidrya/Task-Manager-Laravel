@@ -171,25 +171,53 @@
 											<h4 class="mb-3 font-weight-semibold text-dark">Update Status</h4>
 
 											<section class="simple-compose-box mb-3">
-												<form method="get" action="/">
-													<textarea name="message-text" data-plugin-textarea-autosize placeholder="What's on your mind?" rows="1"></textarea>
+												<form method="post" action="{{url('/updatestatus')}}" id="updatestatus">
+													@csrf
+													<textarea name="message" data-plugin-textarea-autosize placeholder="What's on your mind?" rows="1"></textarea>												
+													<div class="compose-box-footer">
+														<ul class="compose-toolbar">
+															<li>
+																<a href="#"><i class="fas fa-camera"></i></a>
+															</li>
+															<li>
+																<a href="#"><i class="fas fa-map-marker-alt"></i></a>
+															</li>
+														</ul>
+														<ul class="compose-btn">
+															<li>
+																<button type="submit" class="btn btn-primary btn-xs">Post</button>
+															</li>
+														</ul>
+													</div>
 												</form>
-												<div class="compose-box-footer">
-													<ul class="compose-toolbar">
-														<li>
-															<a href="#"><i class="fas fa-camera"></i></a>
-														</li>
-														<li>
-															<a href="#"><i class="fas fa-map-marker-alt"></i></a>
-														</li>
-													</ul>
-													<ul class="compose-btn">
-														<li>
-															<a href="#" class="btn btn-primary btn-xs">Post</a>
-														</li>
-													</ul>
-												</div>
 											</section>
+												<script type="text/javascript">
+
+													$(document).ready(function()
+														{
+															
+														$('#updatestatus').on('submit', function(event)        
+															{
+
+																event.preventDefault();
+
+																jQuery.ajax({
+
+																	url:"{{url('/updatestatus')}}",																	                    
+																	data:jQuery('#updatestatus').serialize(),
+																	type:'post',
+																	
+																	success:function(result)
+																	{
+																		jQuery('#updatestatus')[0].reset();
+																	}
+																
+																})
+
+															});
+
+														});
+												</script>
 
 											<h4 class="mb-3 pt-4 font-weight-semibold text-dark">Timeline</h4>
 
