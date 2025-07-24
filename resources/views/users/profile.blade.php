@@ -244,7 +244,7 @@
 													<ol class="tm-items" id="timeline-items">
 														<li>
 															<div class="tm-box">
-																<p class="text-muted mb-0">7 months ago.</p>
+																<p class="text-muted mb-0">7 months ago</p>
 																<p>
 																	It's awesome when we find a good solution for our projects, Porto Admin is <span class="text-primary">#awesome</span>
 																</p>
