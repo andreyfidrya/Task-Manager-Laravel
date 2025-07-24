@@ -209,6 +209,21 @@
 																	
 																	success:function(result)
 																	{
+																		const now = new Date();
+																		const postedAt = now.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+																		// Insert new message into timeline
+																		const newStatus = `
+																			<li>
+																				<div class="tm-box">
+																					<p class="text-muted mb-0">Just now</p>
+																					<p>${jQuery('#updatestatus textarea[name="message"]').val()}</p>
+																				</div>
+																			</li>
+																		`;
+
+																		// Prepend new item to timeline
+																		$('#timeline-items').prepend(newStatus);
 																		jQuery('#updatestatus')[0].reset();
 																	}
 																
@@ -226,7 +241,7 @@
 													<div class="tm-title">
 														<h5 class="m-0 pt-2 pb-2 text-dark font-weight-semibold text-uppercase">November 2023</h5>
 													</div>
-													<ol class="tm-items">
+													<ol class="tm-items" id="timeline-items">
 														<li>
 															<div class="tm-box">
 																<p class="text-muted mb-0">7 months ago.</p>
@@ -234,31 +249,7 @@
 																	It's awesome when we find a good solution for our projects, Porto Admin is <span class="text-primary">#awesome</span>
 																</p>
 															</div>
-														</li>
-														<li>
-															<div class="tm-box">
-																<p class="text-muted mb-0">7 months ago.</p>
-																<p>
-																	What is your biggest developer pain point?
-																</p>
-															</div>
-														</li>
-														<li>
-															<div class="tm-box">
-																<p class="text-muted mb-0">7 months ago.</p>
-																<p>
-																	Checkout! How cool is that!
-																</p>
-																<div class="thumbnail-gallery">
-																	<a class="img-thumbnail lightbox" href="img/projects/project-4.jpg" data-plugin-options='{ "type":"image" }'>
-																		<img class="img-fluid" width="215" src="img/projects/project-4.jpg">
-																		<span class="zoom">
-																			<i class="bx bx-search"></i>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</li>
+														</li>														
 													</ol>
 												</div>
 											</div>
