@@ -237,4 +237,19 @@ class Users extends Controller
 
         return response()->json([]);
     }
+
+    public function UserProfileMessages()
+    {
+        $username = Auth::user()->name;
+        $chats = Chat::with('user')->get();
+        
+        return view('users.messages', compact('username','chats'));
+    }
+
+    public function MessagesDelete($id)
+    {
+        $chat = Chat::findOrFail($id);
+        $chat->delete();
+        return redirect()->route('user.profile.messages');
+    }
 }

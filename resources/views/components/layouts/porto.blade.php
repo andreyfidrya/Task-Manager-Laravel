@@ -275,6 +275,9 @@
 				                            <li>
 												<x-navs.link route="users.index">All users</x-navs.link>
 											</li>
+											<li>
+												<x-navs.link route="user.profile.messages">Messages in timeline</x-navs.link>
+											</li>
 				                            <li class="nav-parent">
 				                                <a>
 				                                    Users by roles
@@ -287,14 +290,9 @@
 				                                    </li>
 				                                    <li>
 				                                        <a class="nav-link" href="layouts-boxed-fixed-header.html">
-				                                            Moderators
+				                                            Users
 				                                        </a>
-				                                    </li>
-													<li>
-				                                        <a class="nav-link" href="layouts-boxed-fixed-header.html">
-				                                            Guests
-				                                        </a>
-				                                    </li>
+				                                    </li>													
 				                                </ul>
 				                            </li>
 				                            <li class="nav-parent">

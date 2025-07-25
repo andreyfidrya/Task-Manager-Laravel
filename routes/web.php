@@ -79,6 +79,8 @@ Route::middleware('auth')->group(function(){
     Route::put('/account-security/update', [UserController::class, 'account_security_update'])->name('user.account.security.update');
     Route::post('/updateprofileimage', [UserController::class, 'updateProfileImage'])->name('user.update.profile.image');
     Route::post('/updatestatus', [UserController::class, 'updateProfileStatus'])->name('user.update.profile.image');
+    Route::get('/profilemessages', [UserController::class, 'UserProfileMessages'])->name('user.profile.messages');
+    Route::delete('/profilemessages/{id}', [UserController::class, 'MessagesDelete'])->name('messages.delete');
     
     Route::get('/search/', [ TopicController::class, 'search' ])->name('search');
     
