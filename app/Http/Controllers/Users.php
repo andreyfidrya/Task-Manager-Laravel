@@ -148,9 +148,11 @@ class Users extends Controller
 
         if ($numberofactiveclients > 0) {
             $profilecompletion += 25;
-        }    
+        } 
+        
+        $chats = Chat::where('user_id', $userID)->orderBy('created_at', 'desc')->get();        
             
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion'));
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion', 'chats'));
     }
 
     public function updatepersonalinfo(Request $request)
