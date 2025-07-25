@@ -239,13 +239,13 @@
 											<div class="timeline timeline-simple mt-3 mb-3">
 												<div class="tm-body">
 													<div class="tm-title">
-														<h5 class="m-0 pt-2 pb-2 text-dark font-weight-semibold text-uppercase">November 2023</h5>
+														<h5 class="m-0 pt-2 pb-2 text-dark font-weight-semibold text-uppercase">{{ \Carbon\Carbon::now()->format('F Y') }}</h5>
 													</div>
 													@foreach($chats as $chat)
 													<ol class="tm-items" id="timeline-items">
 														<li>
 															<div class="tm-box">
-																<p class="text-muted mb-0">7 months ago</p>
+																<p class="text-muted mb-0">{{ $chat->created_at->diffForHumans() }}</p>
 																<p>
 																	{{$chat->message}} 
 																</p>
