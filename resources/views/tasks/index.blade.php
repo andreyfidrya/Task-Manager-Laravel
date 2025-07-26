@@ -1,4 +1,4 @@
-<x-layouts.porto title="Tasks" header="Tasks" username={{$username}}>
+<x-layouts.porto title="Tasks" header="Tasks" username={{$username}} profile_image={{$profile_image}}>
   <form action="{{url('/tm/ajaxupload')}}" method="POST" id="addpost">
     @csrf
     <div class="content"></div>    

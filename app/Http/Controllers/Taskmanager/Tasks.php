@@ -20,13 +20,15 @@ class Tasks extends Controller
     {
         $statusesArr = TaskStatus::cases();
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        $username = Auth::user()->name; 
+        $username = Auth::user()->name;        
         $user_id = Auth::user()->id;
-        $user = User::find($user_id);                   
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;                   
         $tasks = Task::all();
         $clients = Client::all();
-        $users = User::all();                                       
-        return view('tasks.index', compact('tasks', 'clients', 'users', 'statusesArr', 'taskstatuses', 'username'));
+        $users = User::all();
+
+        return view('tasks.index', compact('tasks', 'clients', 'users', 'profile_image', 'statusesArr', 'taskstatuses', 'username'));
     }
     
     public function create()
@@ -34,10 +36,14 @@ class Tasks extends Controller
         $statusesArr = TaskStatus::cases();        
         $statuses = array_column($statusesArr, 'name');
         $username = Auth::user()->name; 
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
         $users = User::orderBy('name')->pluck('name', 'id');
         $clients = Client::orderBy('name')->pluck('name', 'id');
-        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];        
-        return view('tasks.create', compact('clients', 'users', 'statuses', 'taskstatuses', 'username'));        
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
+
+        return view('tasks.create', compact('clients', 'users', 'profile_image', 'statuses', 'taskstatuses', 'username', 'profile_image'));        
     }
 
     public function store(SaveRequest $request)
@@ -45,8 +51,10 @@ class Tasks extends Controller
         $vat = $request->budget / (100 - $request->feepercentage) * $request->feepercentage * $request->vatpercentage / 100;       
         $data = $request->only(['client_id', 'task', 'wordcount', 'budget', 'feepercentage', 'vatpercentage', 'performance', 'duedate', 'user_id', 'taskstatus', 'status']);
         $data['vat'] = $vat;
+        
         Task::create($data);
-        toastr()->success('A task has been added successfully!');                
+        toastr()->success('A task has been added successfully!');
+
         return redirect()->route('tasks.index');        
     }
 
@@ -54,20 +62,29 @@ class Tasks extends Controller
     {
         $task = Task::findOrFail($id);
         $username = Auth::user()->name;
-        return view('tasks.show', compact('task', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('tasks.show', compact('task', 'profile_image', 'username'));
     }
 
     public function edit($id)
     {
         $task = Task::findOrFail($id);
         $statusesArr = TaskStatus::cases();
-        $username = Auth::user()->name;                
+        $username = Auth::user()->name; 
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;               
         $collection  = collect($statusesArr);
         $statuses = $collection->pluck('name', 'value');        
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
-        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];                   
-        return view('tasks.edit', compact('task', 'clients', 'users', 'taskstatuses', 'username'));        
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];  
+
+        return view('tasks.edit', compact('task', 'clients', 'users', 'profile_image', 'taskstatuses', 'username'));        
     }
 
     public function update(SaveRequest $request, $id)
@@ -77,6 +94,7 @@ class Tasks extends Controller
         $vat = $request->budget / (100 - $request->feepercentage) * $request->feepercentage * $request->vatpercentage / 100;
         $data['vat'] = $vat;
         $task->update($data);
+
         return redirect()->route('tasks.index');
     }
 
@@ -85,6 +103,7 @@ class Tasks extends Controller
         $task = Task::findOrFail($id);
         $task->delete();
         toastr()->success('A task has been removed successfully!');
+
         return redirect()->route('tasks.index');
     }
 
@@ -99,13 +118,18 @@ class Tasks extends Controller
         $sumvat = Task::onlyTrashed()
         ->sum('vat');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
-        return view('tasks.trash', compact('performedtasks', 'sum', 'sumspent', 'taskstatuses', 'username','sumvat'));        
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('tasks.trash', compact('performedtasks', 'profile_image', 'sum', 'sumspent', 'taskstatuses', 'username','sumvat'));        
     }
 
     public function updateStatus(Request $request)
     {
         $ids = $request->ids;                    
         Task::whereIn('id',explode(",",$ids))->update(['taskstatus' => 3]); 
+
         return redirect()->route('tasks.index'); 
     }
 
@@ -121,6 +145,7 @@ class Tasks extends Controller
         
         $ids = $request->ids;
         Task::whereIn('id',explode(",",$ids))->delete();
+
         return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed."]);       
     }
 
@@ -128,6 +153,7 @@ class Tasks extends Controller
     {
         $ids = $request->ids;
         Spending::whereIn('id',explode(",",$ids))->delete();
+
         return response()->json(['status'=>true,'message'=>"Spendings have been successfully removed."]);         
     }
 
@@ -135,6 +161,7 @@ class Tasks extends Controller
     {
         $ids = $request->ids;
         Task::whereIn('id',explode(",",$ids))->forceDelete();
+
         return response()->json(['status'=>true,'message'=>"Tasks have been successfully removed forever."]);         
     }
 
@@ -142,6 +169,9 @@ class Tasks extends Controller
     {
         $performedtasks = Task::onlyTrashed()->get();
         $username = Auth::user()->name;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
         $totalsum = Task::onlyTrashed()->sum('budget');
         $clients = Client::orderBy('name', 'ASC')->get();
 
@@ -157,14 +187,18 @@ class Tasks extends Controller
             }
         }
                 
-        return view('earnings.earningsbyclients', compact('clients', 'totalsum', 'username', 'earningsofclients'));        
+        return view('earnings.earningsbyclients', compact('clients', 'totalsum', 'username', 'profile_image', 'earningsofclients'));        
     }
 
     public function earningsbyusers()
     {        
         $users = User::orderBy('name', 'ASC')->get();
         $username = Auth::user()->name;
-        return view('earnings.earningsbyusers', compact('users', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('earnings.earningsbyusers', compact('users', 'profile_image', 'username'));
     }
 
     public function totalworkload()
@@ -179,7 +213,11 @@ class Tasks extends Controller
         
         $username = Auth::user()->name;
 
-        return view('workload.totalworkload', compact('totalwordcount', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('workload.totalworkload', compact('totalwordcount', 'profile_image', 'username'));
     }
 
     public function workloadperuser()
@@ -190,7 +228,12 @@ class Tasks extends Controller
         $username = Auth::user()->name;
 
         $users = User::orderBy('name', 'ASC')->get();
-        return view('workload.workloadperuser', compact('users', 'weekStartDate', 'weekEndDate', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('workload.workloadperuser', compact('users', 'profile_image', 'weekStartDate', 'weekEndDate', 'username'));
     }
 
     public function restoretask($id){
