@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Sample;
 use App\Models\Email;
+use App\Models\User;
 use App\Http\Requests\Topics\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,13 +17,23 @@ class Topics extends Controller
     {
         $username = Auth::user()->name;
         $topics = Topic::orderBy('name')->paginate(10);
-        return view('emails.topics.index', compact('topics', 'username'));
+        
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.topics.index', compact('topics', 'username', 'profile_image'));
     }
 
     public function create()
     {
         $username = Auth::user()->name;
-        return view('emails.topics.create', compact('username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.topics.create', compact('username', 'profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -30,7 +41,7 @@ class Topics extends Controller
         $username = Auth::user()->name;
         $data = $request->only(['slug', 'name']);
         Topic::create($data);
-        return redirect()->route('topics.index', 'username');
+        return redirect()->route('topics.index');
     }
 
     public function show($slug)
@@ -38,14 +49,24 @@ class Topics extends Controller
         $username = Auth::user()->name;
         $topic = Topic::where('slug', $slug)->firstOrFail();
         $email = Email::first();
-        return view('emails.topics.show', compact('topic', 'email', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.topics.show', compact('topic', 'email', 'username', 'profile_image'));
     }
 
     public function edit($id)
     {
         $username = Auth::user()->name;
         $topic = Topic::findOrFail($id);
-        return view('emails.topics.edit', compact('topic', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.topics.edit', compact('topic', 'username', 'profile_image'));
     }
 
     public function update(SaveRequest $request, $id)
