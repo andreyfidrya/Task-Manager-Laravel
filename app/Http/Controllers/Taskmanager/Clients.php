@@ -15,13 +15,19 @@ class Clients extends Controller
     {
         $username = Auth::user()->name;
         $clients = Client::orderBy('name', 'ASC')->get();
-        return view('clients.index', compact('clients', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('clients.index', compact('clients', 'username','profile_image'));
     }
 
     public function create()
     {
         $username = Auth::user()->name;
-        return view('clients.create', compact('username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('clients.create', compact('username','profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -45,14 +51,20 @@ class Clients extends Controller
     {
         $username = Auth::user()->name;
         $client = Client::where('slug', $slug)->firstOrFail();
-        return view('clients.show', compact('client', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('clients.show', compact('client', 'username','profile_image'));
     }
 
     public function edit($id)
     {
         $username = Auth::user()->name;
         $client = Client::findOrFail($id);
-        return view('clients.edit', compact('client', 'username')); 
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('clients.edit', compact('client', 'username','profile_image')); 
     }
 
     public function update(SaveRequest $request, string $id)
@@ -84,6 +96,9 @@ class Clients extends Controller
     {
         $username = Auth::user()->name;
         $inactiveclients = Client::orderBy('name', 'ASC')->onlyTrashed()->get();
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
         return view('clients.trash', compact('inactiveclients', 'username'));
     }
 
