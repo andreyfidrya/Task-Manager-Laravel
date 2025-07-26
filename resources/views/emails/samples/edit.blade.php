@@ -1,4 +1,4 @@
-<x-layouts.porto title="Edit a sample" header="Edit a sample" username={{$username}}>
+<x-layouts.porto title="Edit a sample" header="Edit a sample" username={{$username}} profile_image={{$profile_image}}>
 @bind($sample)
     <x-form method="post" action="{{ route('samples.update', [ $sample->id ]) }}">
         @method('PUT')

@@ -8,6 +8,7 @@ use App\Http\Requests\Samples\Save as SaveRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sample;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class Samples extends Controller
@@ -16,17 +17,26 @@ class Samples extends Controller
     {
         $username = Auth::user()->name;
         $samples = Sample::paginate(10);
-        return view('emails.samples.index', compact('samples', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.samples.index', compact('samples', 'username', 'profile_image'));
     }
 
     public function create()
     {
         $username = Auth::user()->name;
-        $size = DB::table('topics')->count();        
+        $size = DB::table('topics')->count();
+        
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
 
         return view('emails.samples.create', [
             'topics' => Topic::orderBy('name')->pluck('name', 'id'),                                               
-        ], compact('size', 'username'));
+        ], compact('size', 'username', 'profile_image'));
         
     }
 
@@ -35,6 +45,11 @@ class Samples extends Controller
         $data = $request->validated();            
         $sample = Sample::create($data);
         $sample->topics()->sync($data['topics']);
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
         return redirect()->route('samples.index');
     }
 
@@ -49,7 +64,12 @@ class Samples extends Controller
         $size = DB::table('topics')->count();
         $sample = Sample::findOrFail($id);
         $topics = Topic::orderBy('name')->pluck('name', 'id');
-        return view('emails.samples.edit', compact('sample', 'topics', 'size', 'username'));        
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.samples.edit', compact('sample', 'topics', 'size', 'username', 'profile_image'));        
     }
 
     public function update(SaveRequest $request, $id)
