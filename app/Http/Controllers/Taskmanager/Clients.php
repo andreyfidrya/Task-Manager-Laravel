@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Taskmanager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests\Clients\Save as SaveRequest;
@@ -99,7 +100,7 @@ class Clients extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('clients.trash', compact('inactiveclients', 'username'));
+        return view('clients.trash', compact('inactiveclients', 'username','profile_image'));
     }
 
     public function restoreclient($id){
