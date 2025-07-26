@@ -1,4 +1,4 @@
-<x-layouts.porto title="Earnings by Clients per Month" header="Earnings by Clients per Month" username={{$username}}>
+<x-layouts.porto title="Earnings by Clients per Month" header="Earnings by Clients per Month" username={{$username}} profile_image={{$profile_image}}>
    
     @if(isset($earningsofclients))
       @php      
