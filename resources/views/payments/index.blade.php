@@ -1,4 +1,4 @@
-<x-layouts.porto title="Payments" header="Regular Payments" username={{$username}}>
+<x-layouts.porto title="Payments" header="Regular Payments" username={{$username}} profile_image={{$profile_image}}>
 
   <p>
     <a href="{{ route('payments.create') }}" class="btn btn-success">Add a Payment</a>

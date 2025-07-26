@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Regularpayments;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
 use App\Http\Requests\Payments\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,11 +40,15 @@ class Payments extends Controller
         $payment->amount = $amount;    
         $payment->duedate = $duedate;    
         $payment->daysleft = $daysleft;
-        $payment->save();    
+        $payment->save(); 
+        
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
 
         }
           
-        return view('payments.index', compact('payments', 'username'));
+        return view('payments.index', compact('payments', 'username', 'profile_image'));
     }
 
     /**
@@ -52,7 +57,12 @@ class Payments extends Controller
     public function create()
     {
         $username = Auth::user()->name;
-        return view('payments.create', compact('username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('payments.create', compact('username', 'profile_image'));
     }
 
     /**
@@ -114,7 +124,12 @@ class Payments extends Controller
     {
         $username = Auth::user()->name;
         $payment = Payment::findOrFail($id);
-        return view('payments.edit', compact('payment', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('payments.edit', compact('payment', 'username', 'profile_image'));
     }
 
     /**
