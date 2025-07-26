@@ -1,4 +1,4 @@
-<x-layouts.porto title="Add an Expense" header="Add an Expense" username={{$username}}>
+<x-layouts.porto title="Add an Expense" header="Add an Expense" username={{$username}} profile_image={{$profile_image}}>
 
     <form method="post" action="{{ route('spendings.store') }}">
         @include('spendings.form-fields')   

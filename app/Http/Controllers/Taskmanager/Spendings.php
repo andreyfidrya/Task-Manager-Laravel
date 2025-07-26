@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Taskmanager;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Spending;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Spendings\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,15 +20,22 @@ class Spendings extends Controller
         ->sum('amount');
         $sumvat = Task::onlyTrashed()
         ->sum('vat');
-        $totalspendings = $sumspent + $sumvat;        
+        $totalspendings = $sumspent + $sumvat; 
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;       
         
-        return view('spendings.index', compact('spendings', 'sumspent', 'username', 'sumvat', 'totalspendings'));
+        return view('spendings.index', compact('spendings', 'sumspent', 'username', 'sumvat', 'totalspendings', 'profile_image'));
     }
 
     public function create()
     {
         $username = Auth::user()->name;
-        return view('spendings.create', compact('username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('spendings.create', compact('username', 'profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -46,7 +54,10 @@ class Spendings extends Controller
     {
         $username = Auth::user()->name;
         $expense = Spending::findOrFail($id);
-        return view('spendings.edit', compact('expense', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('spendings.edit', compact('expense', 'username', 'profile_image'));
     }
 
     public function update(SaveRequest $request, $id)

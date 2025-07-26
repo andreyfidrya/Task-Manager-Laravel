@@ -1,4 +1,4 @@
-<x-layouts.porto title="Expenses" header="Edit an Expense" username={{$username}}>
+<x-layouts.porto title="Expenses" header="Edit an Expense" username={{$username}} profile_image={{$profile_image}}>
 @bind($expense)
     <x-form method="post" action="{{ route('spendings.update', [ $expense->id ]) }}">
         @method('PUT')
