@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Taskmanager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Annualearning;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +19,12 @@ class Annualearnings extends Controller
         $annualearningsT = Annualearning::where('earnings_source','Total')->pluck('amount', 'month');
         $annualearningsA = Annualearning::where('earnings_source','Andrey')->pluck('amount', 'month');
         $annualearningsE = Annualearning::where('earnings_source','Elena')->pluck('amount', 'month');
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
                        
-        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT', 'annualearningsA','annualearningsE'));
+        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT', 'annualearningsA','annualearningsE','profile_image'));
     }
 
     public function create()
@@ -28,7 +33,11 @@ class Annualearnings extends Controller
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];        
         $months = array_combine($months, $months);
 
-        return view('annualearnings.create', compact('username', 'months'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('annualearnings.create', compact('username', 'months', 'profile_image'));
     }
 
     public function store(Request $request)
@@ -60,8 +69,12 @@ class Annualearnings extends Controller
         $annualearning = Annualearning::findOrFail($id);
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $months = array_combine($months, $months);
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
         
-        return view('annualearnings.edit', compact('annualearning', 'username', 'months'));
+        return view('annualearnings.edit', compact('annualearning', 'username', 'months', 'profile_image'));
     }
 
     public function update(Request $request, string $id)
