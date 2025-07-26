@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Email;
 use App\Models\Sample;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Emails\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -15,15 +16,25 @@ class Emails extends Controller
     public function index()
     {
         $username = Auth::user()->name;
-        $email = Email::first();               
-        return view('emails.index', compact('email', 'username'));
+        $email = Email::first();  
+        
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.index', compact('email', 'username', 'profile_image'));
     }
 
     public function edit()
     {
         $username = Auth::user()->name;
         $email = Email::first();
-        return view('emails.edit', compact('email', 'username'));
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        return view('emails.edit', compact('email', 'username', 'profile_image'));
     }
 
     public function update(SaveRequest $request, $id)
