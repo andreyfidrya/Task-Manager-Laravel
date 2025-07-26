@@ -1,4 +1,4 @@
-<x-layouts.porto title="Add a New User" header="Add a New User" username={{$username}}>
+<x-layouts.porto title="Add a New User" header="Add a New User" username={{$username}} profile_image={{$profile_image}}>
     <x-form method="post" action="{{ route('users.store') }}">
     @include('users.form-fields')   
       <button class="btn btn-primary">Add a User</button>

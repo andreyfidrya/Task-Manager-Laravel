@@ -1,4 +1,4 @@
-<x-layouts.porto title="Users" header="Users" username={{$username}}>
+<x-layouts.porto title="Users" header="Users" username={{$username}} profile_image={{$profile_image}}>
 
     <p>
     <a href="{{ route('users.create') }}" class="btn btn-success">Add a User</a>

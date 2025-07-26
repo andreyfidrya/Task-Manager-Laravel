@@ -1,4 +1,4 @@
-<x-layouts.porto title="User Profile" header="User Profile" username={{$username}}>
+<x-layouts.porto title="User Profile" header="User Profile" username={{$username}} profile_image={{$profile_image}}>
 
 @if (session('status'))
     <div class="alert alert-success">

@@ -22,15 +22,21 @@ class Users extends Controller
     public function index()
     {
         $username = Auth::user()->name;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
         return view('users.index', [
             'users' => User::all()
-        ], compact('username'));
+        ], compact('username', 'profile_image'));
     }
 
     public function create()
     {
         $username = Auth::user()->name;
-        return view('users.create', compact('username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('users.create', compact('username', 'profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -47,14 +53,20 @@ class Users extends Controller
     {
         $username = Auth::user()->name;
         $user = User::firstOrFail($id);
-        return view('users.show', compact('user', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('users.show', compact('user', 'username', 'profile_image'));
     }
 
     public function edit(string $id)
     {
         $username = Auth::user()->name;
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user', 'username'));
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+        return view('users.edit', compact('user', 'username', 'profile_image'));
     }
 
     public function update(Request $request, $id)
@@ -87,6 +99,7 @@ class Users extends Controller
         $username = Auth::user()->name;
         $userID = Auth::user()->id;
         $user = User::findOrFail($userID);
+        $profile_image = $user->profile_image;
         
         $earningsforlastMonth = DB::table('annualearnings')
         ->where('month',$lastMonth)
@@ -152,7 +165,7 @@ class Users extends Controller
         
         $chats = Chat::where('user_id', $userID)->orderBy('created_at', 'desc')->get();        
             
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion', 'chats'));
+        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion', 'chats', 'profile_image'));
     }
 
     public function updatepersonalinfo(Request $request)
@@ -241,9 +254,12 @@ class Users extends Controller
     public function UserProfileMessages()
     {
         $username = Auth::user()->name;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
         $chats = Chat::with('user')->get();
         
-        return view('users.messages', compact('username','chats'));
+        return view('users.messages', compact('username','chats','profile_image'));
     }
 
     public function MessagesDelete($id)

@@ -1,4 +1,4 @@
-<x-layouts.porto title="Messages" header="Messages" username={{$username}}>
+<x-layouts.porto title="Messages" header="Messages" username={{$username}} profile_image={{$profile_image}}>
     <table class="table table-bordered">
         <tbody>
             <tr>
