@@ -129,7 +129,7 @@
 						<li>
 							<a href="#" class="dropdown-toggle notification-icon" data-bs-toggle="dropdown">
 								<i class="bx bx-bell"></i>
-								<span class="badge">3</span>
+								<span class="badge"></span>
 							</a>
 
 							<div class="dropdown-menu notification-menu">
@@ -229,7 +229,7 @@
 				<!-- start: sidebar -->
 				<aside id="sidebar-left" class="sidebar-left">
 
-				 <div class="sidebar-header">
+				 	<div class="sidebar-header">
 				        <div class="sidebar-title">
 				            Navigation
 				        </div>
@@ -335,7 +335,7 @@
 				                    </li>  
 									<li class="nav-parent">
 				                        <a class="nav-link" href="#">
-				                            <i class="bx bx-layout" aria-hidden="true"></i>
+				                            <i class="bx bx-cube" aria-hidden="true"></i>
 				                            <span>Users</span>
 				                        </a>
 				                        <ul class="nav nav-children">
@@ -383,9 +383,15 @@
 				                                        </a>
 				                                    </li>
 				                                </ul>
-				                            </li>
+				                            </li>										
 				                        </ul>
-				                    </li>  			                
+				                    </li> 
+									<li class="nav-children">
+									<x-navs.link route="notifications.index">
+									<i class="bx bx-cube" aria-hidden="true"></i>
+				                            <span>Notifications</span>
+									</x-navs.link>				                        
+				                    </li> 			                
 				                </ul>
 				            </nav>
 

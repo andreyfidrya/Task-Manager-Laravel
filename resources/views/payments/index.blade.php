@@ -3,7 +3,7 @@
   <p>
     <a href="{{ route('payments.create') }}" class="btn btn-success">Add a Payment</a>
   </p> 
-  <table class="table">
+<table class="table">
   <thead>
     <tr>
       <th scope="col"></th>

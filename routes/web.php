@@ -11,18 +11,8 @@ use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Taskmanager\Spendings as SpendingController;
 use App\Http\Controllers\Taskmanager\Annualearnings as AnnualearningController;
+use App\Http\Controllers\Notifications\NotificationController;
 use App\Http\Controllers\Auth\Session;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,7 +76,9 @@ Route::middleware('auth')->group(function(){
     
     Route::controller(SearchController::class)->group(function(){
         Route::get('autocomplete', 'autocomplete')->name('autocomplete');
-    });    
+    }); 
+    
+    Route::resource('notifications', NotificationController::class);
 
 });
 

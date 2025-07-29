@@ -56,4 +56,8 @@ class User extends Authenticatable
     public function chats(){
         return $this->hasMany(Chat::class);
     }
+
+    public function notifications(){
+        return $this->hasMany(Notification::class);
+    }
 }
