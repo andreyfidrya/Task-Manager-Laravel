@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Regularpayments;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\User;
+use App\Models\Notification;
 use App\Http\Requests\Payments\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,8 +48,11 @@ class Payments extends Controller
         $profile_image = $user->profile_image;
 
         }
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
           
-        return view('payments.index', compact('payments', 'username', 'profile_image'));
+        return view('payments.index', compact('unread_notifications', 'unread_notifications_number', 'payments', 'username', 'profile_image'));
     }
 
     /**
@@ -62,7 +66,10 @@ class Payments extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('payments.create', compact('username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('payments.create', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
     /**
@@ -129,7 +136,10 @@ class Payments extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('payments.edit', compact('payment', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('payments.edit', compact('unread_notifications', 'unread_notifications_number', 'payment', 'username', 'profile_image'));
     }
 
     /**

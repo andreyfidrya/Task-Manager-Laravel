@@ -1,4 +1,9 @@
-<x-layouts.porto title="Add a New Payment" header="Add a New Payment" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 
 <form method="post" action="{{ route('payments.store') }}">
     @include('payments.payments-fields-form')   
