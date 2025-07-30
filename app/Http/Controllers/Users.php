@@ -11,6 +11,7 @@ use App\Models\Spending;
 use App\Models\Task;
 use App\Models\Client;
 use App\Models\Chat;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +26,13 @@ class Users extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
         return view('users.index', [
             'users' => User::all()
-        ], compact('username', 'profile_image'));
+        ], compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
     public function create()
@@ -36,7 +41,11 @@ class Users extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('users.create', compact('username', 'profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('users.create', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -56,7 +65,11 @@ class Users extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('users.show', compact('user', 'username', 'profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('users.show', compact('unread_notifications', 'unread_notifications_number', 'user', 'username', 'profile_image'));
     }
 
     public function edit(string $id)
@@ -66,7 +79,11 @@ class Users extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('users.edit', compact('user', 'username', 'profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('users.edit', compact('unread_notifications', 'unread_notifications_number', 'user', 'username', 'profile_image'));
     }
 
     public function update(Request $request, $id)
@@ -163,9 +180,12 @@ class Users extends Controller
             $profilecompletion += 25;
         } 
         
-        $chats = Chat::where('user_id', $userID)->orderBy('created_at', 'desc')->get();        
+        $chats = Chat::where('user_id', $userID)->orderBy('created_at', 'desc')->get();   
+        
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
             
-        return view('users.profile', compact('username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion', 'chats', 'profile_image'));
+        return view('users.profile', compact('unread_notifications', 'unread_notifications_number', 'username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion', 'chats', 'profile_image'));
     }
 
     public function updatepersonalinfo(Request $request)

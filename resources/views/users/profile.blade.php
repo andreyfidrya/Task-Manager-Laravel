@@ -1,4 +1,9 @@
-<x-layouts.porto title="User Profile" header="User Profile" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 
 @if (session('status'))
     <div class="alert alert-success">
