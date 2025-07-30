@@ -1,4 +1,9 @@
-<x-layouts.porto title="Tasks" header="Edit a Task" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
   @bind($task)
     <x-form method="post" action="{{ route('tasks.update', [ $task->id ]) }}">
         @method('PUT')

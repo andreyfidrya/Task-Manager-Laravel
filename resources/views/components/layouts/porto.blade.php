@@ -2,7 +2,9 @@
     'title',
     'header',
 	'username',
-	'profile_image'		
+	'profile_image',
+	'unread_notifications_number',
+	'unread_notifications'			
 ])
 
 
@@ -129,59 +131,37 @@
 						<li>
 							<a href="#" class="dropdown-toggle notification-icon" data-bs-toggle="dropdown">
 								<i class="bx bx-bell"></i>
-								<span class="badge"></span>
+								<span class="badge">{{$unread_notifications_number}}</span>
 							</a>
 
 							<div class="dropdown-menu notification-menu">
 								<div class="notification-title">
 									<span class="float-end badge badge-default">230</span>
-									Messages
+									Notifications
 								</div>
 
 								<div class="content">
 									<ul>
+										@foreach($unread_notifications as $notification)
 										<li>
 											<a href="#" class="clearfix">
 												<figure class="image">
-													<img src="img/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle" />
+												<img src="{{ $notification->user && $notification->user->profile_image 
+														? asset('images/profiles/' . $notification->user->profile_image) 
+														: asset('img/!sample-user.jpg') }}" 											
+												class="rounded-circle" style="width: 60px; height: 60px;"/>
 												</figure>
-												<span class="title">Joseph Doe</span>
-												<span class="message">Lorem ipsum dolor sit.</span>
+												<span class="title">{{ optional($notification->user)->name }}</span>
+												<span class="message">{{ \Illuminate\Support\Str::limit($notification->text, 100) }}</span>
 											</a>
 										</li>
-										<li>
-											<a href="#" class="clearfix">
-												<figure class="image">
-													<img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
-												</figure>
-												<span class="title">Joseph Junior</span>
-												<span class="message truncate">Truncated message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam, nec venenatis risus. Vestibulum blandit faucibus est et malesuada. Sed interdum cursus dui nec venenatis. Pellentesque non nisi lobortis, rutrum eros ut, convallis nisi. Sed tellus turpis, dignissim sit amet tristique quis, pretium id est. Sed aliquam diam diam, sit amet faucibus tellus ultricies eu. Aliquam lacinia nibh a metus bibendum, eu commodo eros commodo. Sed commodo molestie elit, a molestie lacus porttitor id. Donec facilisis varius sapien, ac fringilla velit porttitor et. Nam tincidunt gravida dui, sed pharetra odio pharetra nec. Duis consectetur venenatis pharetra. Vestibulum egestas nisi quis elementum elementum.</span>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="clearfix">
-												<figure class="image">
-													<img src="img/!sample-user.jpg" alt="Joe Junior" class="rounded-circle" />
-												</figure>
-												<span class="title">Joe Junior</span>
-												<span class="message">Lorem ipsum dolor sit.</span>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="clearfix">
-												<figure class="image">
-													<img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
-												</figure>
-												<span class="title">Joseph Junior</span>
-												<span class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam.</span>
-											</a>
-										</li>
+										@endforeach
 									</ul>
 
 									<hr />
 
 									<div class="text-end">
-										<a href="#" class="view-more">View All</a>
+										<a href="{{ route('notifications.index') }}" class="view-more">View All</a>
 									</div>
 								</div>
 							</div>

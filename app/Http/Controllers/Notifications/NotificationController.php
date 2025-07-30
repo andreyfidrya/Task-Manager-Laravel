@@ -18,8 +18,11 @@ class NotificationController extends Controller
         $profile_image = $user->profile_image;
 
         $notifications = Notification::with('user')->get();
+        
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();             
 
-        return view('notifications.index', compact('notifications', 'profile_image', 'username'));
+        return view('notifications.index', compact('unread_notifications', 'unread_notifications_number', 'notifications', 'profile_image', 'username'));
     }
 
     public function create()
@@ -30,13 +33,16 @@ class NotificationController extends Controller
         $profile_image = $user->profile_image;
         $users = User::all()->pluck('name', 'id');
 
-        return view('notifications.create', compact('profile_image', 'username', 'users'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('notifications.create', compact('unread_notifications', 'unread_notifications_number', 'profile_image', 'username', 'users'));
     }
 
     public function store(Request $request)
     {
         $data = $request->only(['user_id', 'text', 'date', 'is_read']);
-        Notification::create($data);
+        Notification::create($data);        
         
         return redirect()->route('notifications.index');
     }
@@ -56,13 +62,16 @@ class NotificationController extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('notifications.edit', compact('notification', 'users', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('notifications.edit', compact('unread_notifications', 'unread_notifications_number', 'notification', 'users', 'username', 'profile_image'));
     }
 
     public function update(Request $request, string $id)
     {
         $data = $request->only(['user_id', 'text', 'date', 'is_read']);
-        Notification::findOrFail($id)->update($data);
+        Notification::findOrFail($id)->update($data);        
 
         return redirect()->route('notifications.index');
     }

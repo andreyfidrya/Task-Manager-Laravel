@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\Client;
 use App\Models\Spending;
 use App\Models\User;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\Tasks\Save as SaveRequest;
@@ -28,7 +29,10 @@ class Tasks extends Controller
         $clients = Client::all();
         $users = User::all();
 
-        return view('tasks.index', compact('tasks', 'clients', 'users', 'profile_image', 'statusesArr', 'taskstatuses', 'username'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('tasks.index', compact('unread_notifications', 'unread_notifications_number', 'tasks', 'clients', 'users', 'profile_image', 'statusesArr', 'taskstatuses', 'username'));
     }
     
     public function create()
@@ -43,7 +47,10 @@ class Tasks extends Controller
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
 
-        return view('tasks.create', compact('clients', 'users', 'profile_image', 'statuses', 'taskstatuses', 'username', 'profile_image'));        
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('tasks.create', compact('unread_notifications', 'unread_notifications_number', 'clients', 'users', 'profile_image', 'statuses', 'taskstatuses', 'username', 'profile_image'));        
     }
 
     public function store(SaveRequest $request)
@@ -67,7 +74,10 @@ class Tasks extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('tasks.show', compact('task', 'profile_image', 'username'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('tasks.show', compact('unread_notifications', 'unread_notifications_number', 'task', 'profile_image', 'username'));
     }
 
     public function edit($id)
@@ -82,9 +92,12 @@ class Tasks extends Controller
         $statuses = $collection->pluck('name', 'value');        
         $clients = Client::orderBy('name')->pluck('name', 'id');
         $users = User::orderBy('name')->pluck('name', 'id');
-        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];  
+        $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid']; 
+        
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('tasks.edit', compact('task', 'clients', 'users', 'profile_image', 'taskstatuses', 'username'));        
+        return view('tasks.edit', compact('unread_notifications', 'unread_notifications_number', 'task', 'clients', 'users', 'profile_image', 'taskstatuses', 'username'));        
     }
 
     public function update(SaveRequest $request, $id)
@@ -122,7 +135,10 @@ class Tasks extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('tasks.trash', compact('performedtasks', 'profile_image', 'sum', 'sumspent', 'taskstatuses', 'username','sumvat'));        
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('tasks.trash', compact('unread_notifications', 'unread_notifications_number', 'performedtasks', 'profile_image', 'sum', 'sumspent', 'taskstatuses', 'username','sumvat'));        
     }
 
     public function updateStatus(Request $request)
@@ -186,8 +202,11 @@ class Tasks extends Controller
                 ];
             }
         }
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
                 
-        return view('earnings.earningsbyclients', compact('clients', 'totalsum', 'username', 'profile_image', 'earningsofclients'));        
+        return view('earnings.earningsbyclients', compact('unread_notifications', 'unread_notifications_number', 'clients', 'totalsum', 'username', 'profile_image', 'earningsofclients'));        
     }
 
     public function earningsbyusers()
@@ -198,7 +217,10 @@ class Tasks extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('earnings.earningsbyusers', compact('users', 'profile_image', 'username'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('earnings.earningsbyusers', compact('unread_notifications', 'unread_notifications_number', 'users', 'profile_image', 'username'));
     }
 
     public function totalworkload()
@@ -217,7 +239,10 @@ class Tasks extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('workload.totalworkload', compact('totalwordcount', 'profile_image', 'username'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('workload.totalworkload', compact('unread_notifications', 'unread_notifications_number', 'totalwordcount', 'profile_image', 'username'));
     }
 
     public function workloadperuser()
@@ -233,7 +258,10 @@ class Tasks extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('workload.workloadperuser', compact('users', 'profile_image', 'weekStartDate', 'weekEndDate', 'username'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('workload.workloadperuser', compact('unread_notifications', 'unread_notifications_number', 'users', 'profile_image', 'weekStartDate', 'weekEndDate', 'username'));
     }
 
     public function restoretask($id){

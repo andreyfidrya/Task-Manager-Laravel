@@ -1,4 +1,10 @@
-<x-layouts.porto title="Total Earnings per Month" header="Total Earnings per Month" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
+
 Earnings per month: <strong>{{$sum}} USD</strong><br>
 Spendings per month: <strong>{{ $sumspent }} USD</strong><br>
 Total amount of vat per month: <strong>{{ $sumvat }} USD</strong><br>

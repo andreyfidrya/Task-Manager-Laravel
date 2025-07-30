@@ -1,4 +1,9 @@
-<x-layouts.porto title="Add a New Task" header="Add a New Task" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
     <x-form method="post" action="{{ route('tasks.store') }}">
     @include('tasks.form-fields')   
       <button class="btn btn-primary">Add a Task</button>
