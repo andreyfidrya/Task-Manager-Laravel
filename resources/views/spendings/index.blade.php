@@ -1,4 +1,9 @@
-<x-layouts.porto title="Total Spendings per Month" header="Total Spendings per Month" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 
 <p>
 <a href="{{ route('spendings.create') }}" class="btn btn-success">Add an Expense</a>
