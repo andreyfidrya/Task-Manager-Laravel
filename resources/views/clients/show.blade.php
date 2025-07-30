@@ -1,4 +1,9 @@
-<x-layouts.porto title="View a Client" header="View a Client" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 
 <b>Client Name: </b>{{ $client->name }}
 <hr>

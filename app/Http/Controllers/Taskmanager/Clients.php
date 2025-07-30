@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Taskmanager;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests\Clients\Save as SaveRequest;
@@ -19,7 +20,11 @@ class Clients extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('clients.index', compact('clients', 'username','profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('clients.index', compact('unread_notifications', 'unread_notifications_number', 'clients', 'username','profile_image'));
     }
 
     public function create()
@@ -28,7 +33,11 @@ class Clients extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('clients.create', compact('username','profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('clients.create', compact('unread_notifications', 'unread_notifications_number', 'username','profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -55,7 +64,11 @@ class Clients extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('clients.show', compact('client', 'username','profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('clients.show', compact('unread_notifications', 'unread_notifications_number', 'client', 'username','profile_image'));
     }
 
     public function edit($id)
@@ -65,7 +78,11 @@ class Clients extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('clients.edit', compact('client', 'username','profile_image')); 
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('clients.edit', compact('unread_notifications', 'unread_notifications_number', 'client', 'username','profile_image')); 
     }
 
     public function update(SaveRequest $request, string $id)
@@ -100,7 +117,11 @@ class Clients extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
-        return view('clients.trash', compact('inactiveclients', 'username','profile_image'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('clients.trash', compact('unread_notifications', 'unread_notifications_number', 'inactiveclients', 'username','profile_image'));
     }
 
     public function restoreclient($id){
