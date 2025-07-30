@@ -1,4 +1,9 @@
-<x-layouts.porto title="Topics" header="Topics" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 
   <p>
     <a href="{{ route('topics.create') }}" class="btn btn-success">Add a Topic</a>

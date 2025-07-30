@@ -8,6 +8,7 @@ use App\Models\Topic;
 use App\Models\Sample;
 use App\Models\Email;
 use App\Models\User;
+use App\Models\Notification;
 use App\Http\Requests\Topics\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,10 @@ class Topics extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.topics.index', compact('topics', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.topics.index', compact('unread_notifications', 'unread_notifications_number', 'topics', 'username', 'profile_image'));
     }
 
     public function create()
@@ -33,7 +37,10 @@ class Topics extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.topics.create', compact('username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.topics.create', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
     public function store(SaveRequest $request)
@@ -54,7 +61,10 @@ class Topics extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.topics.show', compact('topic', 'email', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.topics.show', compact('unread_notifications', 'unread_notifications_number', 'topic', 'email', 'username', 'profile_image'));
     }
 
     public function edit($id)
@@ -66,7 +76,10 @@ class Topics extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.topics.edit', compact('topic', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.topics.edit', compact('unread_notifications', 'unread_notifications_number', 'topic', 'username', 'profile_image'));
     }
 
     public function update(SaveRequest $request, $id)
@@ -100,7 +113,11 @@ class Topics extends Controller
             ->get();
         
         // Return the search view with the resluts compacted
-        return view('emails.search', compact('topics', 'samples', 'username'));
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.search', compact('unread_notifications', 'unread_notifications_number', 'topics', 'samples', 'username'));
     }
     
 }

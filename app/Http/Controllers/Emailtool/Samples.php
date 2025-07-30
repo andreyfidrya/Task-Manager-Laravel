@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Sample;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class Samples extends Controller
@@ -22,7 +23,10 @@ class Samples extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.samples.index', compact('samples', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.samples.index', compact('unread_notifications', 'unread_notifications_number', 'samples', 'username', 'profile_image'));
     }
 
     public function create()
@@ -34,9 +38,12 @@ class Samples extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
         return view('emails.samples.create', [
             'topics' => Topic::orderBy('name')->pluck('name', 'id'),                                               
-        ], compact('size', 'username', 'profile_image'));
+        ], compact( 'unread_notifications', 'unread_notifications_number', 'size', 'username', 'profile_image'));
         
     }
 
@@ -69,7 +76,10 @@ class Samples extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.samples.edit', compact('sample', 'topics', 'size', 'username', 'profile_image'));        
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.samples.edit', compact('unread_notifications', 'unread_notifications_number', 'sample', 'topics', 'size', 'username', 'profile_image'));        
     }
 
     public function update(SaveRequest $request, $id)

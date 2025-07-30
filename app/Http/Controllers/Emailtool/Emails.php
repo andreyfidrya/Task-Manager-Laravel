@@ -7,6 +7,7 @@ use App\Models\Email;
 use App\Models\Sample;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\Emails\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,10 @@ class Emails extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.index', compact('email', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.index', compact('unread_notifications', 'unread_notifications_number', 'email', 'username', 'profile_image'));
     }
 
     public function edit()
@@ -34,7 +38,10 @@ class Emails extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('emails.edit', compact('email', 'username', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('emails.edit', compact('unread_notifications', 'unread_notifications_number', 'email', 'username', 'profile_image'));
     }
 
     public function update(SaveRequest $request, $id)
