@@ -1,4 +1,9 @@
-<x-layouts.porto title="Annual Earnings by Months" header="Annual Earnings by Months" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 
 <div class="chart-data-selector" id="salesSelectorWrapper">
 			<h2>

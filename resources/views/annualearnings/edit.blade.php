@@ -1,4 +1,9 @@
-<x-layouts.porto title="Edit a Monthly Earning" header="Edit a Monthly Earning" username={{$username}} profile_image={{$profile_image}}>
+<x-layouts.porto title="Notifications" 
+header="Notifications" 
+username={{$username}} 
+profile_image={{$profile_image}} 
+unread_notifications_number={{$unread_notifications_number}} 
+:unread_notifications="$unread_notifications">
 @bind($annualearning)
     <x-form method="post" action="{{ route('annualearnings.update', [ $annualearning->id ]) }}" enctype="multipart/form-data">
         @method('PUT')

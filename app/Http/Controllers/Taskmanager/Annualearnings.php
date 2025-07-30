@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Annualearning;
 use App\Models\User;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +24,11 @@ class Annualearnings extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
                        
-        return view('annualearnings.index', compact('username', 'annualearnings', 'annualearningsT', 'annualearningsA','annualearningsE','profile_image'));
+        return view('annualearnings.index', compact('unread_notifications', 'unread_notifications_number', 'username', 'annualearnings', 'annualearningsT', 'annualearningsA','annualearningsE','profile_image'));
     }
 
     public function create()
@@ -37,7 +41,10 @@ class Annualearnings extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
 
-        return view('annualearnings.create', compact('username', 'months', 'profile_image'));
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('annualearnings.create', compact('unread_notifications', 'unread_notifications_number', 'username', 'months', 'profile_image'));
     }
 
     public function store(Request $request)
@@ -73,8 +80,11 @@ class Annualearnings extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
         
-        return view('annualearnings.edit', compact('annualearning', 'username', 'months', 'profile_image'));
+        return view('annualearnings.edit', compact('unread_notifications', 'unread_notifications_number', 'annualearning', 'username', 'months', 'profile_image'));
     }
 
     public function update(Request $request, string $id)
