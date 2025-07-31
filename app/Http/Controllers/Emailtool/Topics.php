@@ -102,6 +102,10 @@ class Topics extends Controller
         // Get the search value from the request
         $search = $request->input('search');
 
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;        
+
         // Search in the title and body columns from the posts table
         $topics = Topic::query()
             ->where('name', 'LIKE', "%{$search}%")
@@ -117,7 +121,7 @@ class Topics extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('emails.search', compact('unread_notifications', 'unread_notifications_number', 'topics', 'samples', 'username'));
+        return view('emails.search', compact('unread_notifications', 'unread_notifications_number', 'topics', 'samples', 'username', 'profile_image'));
     }
     
 }
