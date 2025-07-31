@@ -1,5 +1,5 @@
-<x-layouts.porto title="Notifications" 
-header="Notifications" 
+<x-layouts.porto title="Total Work Load Per Week" 
+header="Total Work Load Per Week" 
 username={{$username}} 
 profile_image={{$profile_image}} 
 unread_notifications_number={{$unread_notifications_number}} 

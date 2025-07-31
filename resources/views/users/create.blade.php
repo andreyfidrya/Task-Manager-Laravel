@@ -1,5 +1,5 @@
-<x-layouts.porto title="Notifications" 
-header="Notifications" 
+<x-layouts.porto title="Add a User" 
+header="Add a User" 
 username={{$username}} 
 profile_image={{$profile_image}} 
 unread_notifications_number={{$unread_notifications_number}} 

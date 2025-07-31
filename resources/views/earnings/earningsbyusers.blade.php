@@ -1,5 +1,5 @@
-<x-layouts.porto title="Notifications" 
-header="Notifications" 
+<x-layouts.porto title="Earnings By Users Per Month" 
+header="Earnings By Users Per Month" 
 username={{$username}} 
 profile_image={{$profile_image}} 
 unread_notifications_number={{$unread_notifications_number}} 

@@ -278,8 +278,11 @@ class Users extends Controller
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
         $chats = Chat::with('user')->get();
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
         
-        return view('users.messages', compact('username','chats','profile_image'));
+        return view('users.messages', compact('unread_notifications', 'unread_notifications_number', 'username','chats','profile_image'));
     }
 
     public function MessagesDelete($id)
