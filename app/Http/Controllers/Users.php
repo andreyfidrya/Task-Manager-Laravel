@@ -111,7 +111,7 @@ class Users extends Controller
     {
         $now = Carbon::now();
         $currentmonth = \Carbon\Carbon::now()->format('F'); 
-        $lastMonth = Carbon::now()->subMonth()->format('F');               
+        $lastMonth = Carbon::now()->copy()->startOfMonth()->subMonth()->format('F');               
         
         $username = Auth::user()->name;
         $userID = Auth::user()->id;
@@ -184,7 +184,7 @@ class Users extends Controller
         
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
-            
+                         
         return view('users.profile', compact('unread_notifications', 'unread_notifications_number', 'username','user','currentmonth','lastMonth','earningsforlastMonth', 'totalspendings','earningsofclients','numberofclients', 'tasksinprogressforuser','clientsWithAnyTasks', 'numberofactiveclients', 'profilecompletion', 'chats', 'profile_image'));
     }
 
