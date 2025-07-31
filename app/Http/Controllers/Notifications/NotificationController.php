@@ -70,8 +70,10 @@ class NotificationController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $data = $request->only(['user_id', 'text', 'date', 'is_read']);
-        Notification::findOrFail($id)->update($data);        
+        $data = $request->only(['user_id', 'text', 'date']);
+        $data['is_read'] = $request->has('is_read') ? 1 : 0; 
+        
+        Notification::findOrFail($id)->update($data);
 
         return redirect()->route('notifications.index');
     }
