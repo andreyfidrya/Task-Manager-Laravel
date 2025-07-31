@@ -9,10 +9,8 @@
     <x-form-input type="date" name="date" label="Date"/> 
 </div>
 <div class="mb-3">
-    <x-form-select 
+    <x-form-checkbox 
         name="is_read" 
-        label="Is Read" 
-        :options="['1' => 'Yes', '0' => 'No']" 
-        placeholder="Select the notification's status"
+        label="Is Read"
     /> 
 </div>
