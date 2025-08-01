@@ -74,22 +74,7 @@
 									<div class="header-nav header-nav-links header-nav-light-text header-nav-dropdowns-dark collapse">
 										<div class="header-nav-main header-nav-main-mobile-dark header-nav-main-effect-1 header-nav-main-sub-effect-1">
 											<nav>
-												<ul class="nav nav-pills" id="mainNav">
-													<li>
-													    <a class="nav-link" href="#demos" data-hash data-hash-offset="120">
-													        Task Manager
-													    </a>    
-													</li>
-													<li class="dropdown">
-													    <a class="nav-link dropdown-toggle" href="#">
-													        Email Creation Tool
-													    </a>													    
-													</li>
-													<li class="dropdown">
-													    <a class="nav-link dropdown-toggle" href="#">
-													        Regular Payments
-													    </a>													    
-													</li>													
+												<ul class="nav nav-pills" id="mainNav">																										
 													<li class="dropdown">
 													    <a class="nav-link dropdown-toggle" href="{{ route('login') }}">
 													        SIGN IN
@@ -115,8 +100,8 @@
 						<div class="row align-items-center pt-3">
 							<div class="col-lg-5 mb-5">
 								<h5 class="text-primary font-weight-bold mb-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-duration="750">PORTO ADMIN HTML5 TEMPLATE</h5>
-								<h1 class="font-weight-bold text-color-light text-13 line-height-2 mt-0 mb-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400" data-appear-animation-duration="750">The Best Admin Template<span class="appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="600" data-appear-animation-duration="800"><span class="d-inline-block text-primary highlighted-word highlighted-word-rotate highlighted-word-animation-1 alternative-font-3 font-weight-bold text-1 ms-2">ever</span></span></h1>
-								<p class="custom-font-size-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900" data-appear-animation-duration="750">Porto Admin is simply the best choice for your new project. The template is several years among the most popular in the world.<a href="#intro" data-hash data-hash-offset="120" class="text-color-light font-weight-semibold text-1 d-block">VIEW MORE <i class="fa fa-long-arrow-alt-right ms-1"></i></a></p>
+								<h1 class="font-weight-bold text-color-light text-13 line-height-2 mt-0 mb-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400" data-appear-animation-duration="750">Custom Task Manager<span class="appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="600" data-appear-animation-duration="800"><span class="d-inline-block text-primary highlighted-word highlighted-word-rotate highlighted-word-animation-1 alternative-font-3 font-weight-bold text-1 ms-2">ever</span></span></h1>
+								<p class="custom-font-size-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900" data-appear-animation-duration="750">Custom Task Manager Laravel is an all in one solution for all your needs. The system allows you to work with clients, manage tasks, payments, earnings and spendings successfully.</p>
 								<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200" data-appear-animation-duration="750">
 									<a href="https://getbootstrap.com/" target="_blank">
 										<img src="img/bs5-updated.png" class="img-fluid mt-2" alt="Bootstrap 5" width="200">

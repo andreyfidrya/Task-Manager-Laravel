@@ -131,7 +131,9 @@
 						<li>
 							<a href="#" class="dropdown-toggle notification-icon" data-bs-toggle="dropdown">
 								<i class="bx bx-bell"></i>
-								<span class="badge">{{$unread_notifications_number}}</span>
+								@if($unread_notifications_number > 0)
+									<span class="badge">{{ $unread_notifications_number }}</span>
+								@endif
 							</a>
 
 							<div class="dropdown-menu notification-menu">
