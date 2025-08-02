@@ -29,6 +29,11 @@ class Tasks extends Controller
         $clients = Client::all();
         $users = User::all();
 
+        $today = Carbon::today();
+        Notification::whereDate('date', '<=', $today)
+            ->where('is_read', true)
+            ->update(['is_read' => false]);        
+
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
