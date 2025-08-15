@@ -27,12 +27,30 @@ class Payments extends Controller
         $amount = $payment->amount;        
 
         $today = date("Y-m-d");
+        $user_id = Auth::user()->id;
         $duedate = $payment->duedate;
 // Re-calculating daysleft depending on today's date        
         $daytime1 = date_create($today);
         $daytime2 = date_create($duedate);
         $daysdiff = date_diff($daytime1, $daytime2);
         $daysleft = $daysdiff->format('%a');
+
+        if ($daysleft <= 5) {       
+        // Проверка: есть ли уже уведомление по этому платежу сегодня
+        $exists = Notification::where('user_id', $user_id)
+            ->whereDate('date', $today)
+            ->where('text', "$paymentname will expire in $daysleft days")
+            ->exists();
+
+        if (!$exists) {
+            $data['user_id'] = $user_id;
+            $data['text'] = "$paymentname will expire in $daysleft days";
+            $data['date'] = $today;
+            $data['is_read'] = false;
+
+            Notification::create($data);
+        }
+        }       
         
         $payment->daysleft = $daysleft;
 // Updating the database
