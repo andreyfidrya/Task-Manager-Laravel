@@ -14,11 +14,14 @@ use App\Http\Requests\Tasks\Save as SaveRequest;
 use App\Enums\Task\Status as TaskStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Regularpayments\Payments;
 
 class Tasks extends Controller
 {
     public function index()
     {
+        (new Payments())->checkPaymentsAndCreateNotifications(); 
+
         $statusesArr = TaskStatus::cases();
         $taskstatuses = ['In Progress', 'Submitted', 'Approved', 'Paid'];
         $username = Auth::user()->name;        
