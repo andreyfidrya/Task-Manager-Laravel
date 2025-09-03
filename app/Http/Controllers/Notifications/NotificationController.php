@@ -84,4 +84,12 @@ class NotificationController extends Controller
         $notification->delete();
         return redirect()->route('notifications.index');
     }
+
+    public function removeMultiNotifications(Request $request)
+    {
+        $ids = $request->ids;
+        Notification::whereIn('id',explode(",",$ids))->delete();
+
+        return response()->json(['status'=>true,'message'=>"Notifications have been successfully removed."]);       
+    }
 }

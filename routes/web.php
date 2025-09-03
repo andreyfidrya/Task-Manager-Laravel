@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function(){
     }); 
     
     Route::resource('notifications', NotificationController::class);
+    Route::delete('/delete-all-notifications', [NotificationController::class, 'removeMultiNotifications']);
 
 });
 
