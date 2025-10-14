@@ -85,7 +85,7 @@
 										</div>
 									</div>
 									<!-- end: header nav menu -->
-									<a href="https://themeforest.net/item/porto-admin-responsive-html5-template/8539472" class="btn btn-gradient btn-modern btn-rounded text-3 ms-4 d-none d-sm-block">SIGN UP NOW!</a>
+									<a href="https://themeforest.net/item/porto-admin-responsive-html5-template/8539472" class="btn btn-gradient btn-modern btn-rounded text-3 ms-4 d-none d-sm-block">SIGN UP NOW!</a>									
 								</div>
 							</div>
 						</div>
@@ -101,7 +101,7 @@
 							<div class="col-lg-5 mb-5">
 								<h5 class="text-primary font-weight-bold mb-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-duration="750">PORTO ADMIN HTML5 TEMPLATE</h5>
 								<h1 class="font-weight-bold text-color-light text-13 line-height-2 mt-0 mb-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400" data-appear-animation-duration="750">Custom Task Manager<span class="appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="600" data-appear-animation-duration="800"><span class="d-inline-block text-primary highlighted-word highlighted-word-rotate highlighted-word-animation-1 alternative-font-3 font-weight-bold text-1 ms-2">ever</span></span></h1>
-								<p class="custom-font-size-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900" data-appear-animation-duration="750">Custom Task Manager is an all-in-one solution for all your needs. The system allows you to work with clients, manage tasks, payments, earnings and spendings successfully.</p>
+								<p class="custom-font-size-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900" data-appear-animation-duration="750">Custom Task Manager is an all-in-one solution for all your needs. The system allows you to work with clients, manage tasks, payments, earnings and spendings successfully. If you would like to learn more about Custom Task Manager, have any questions or problems, <a href="{{url('/contact')}}">Contact Us</a> today!</p>
 								<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200" data-appear-animation-duration="750">
 									<a href="https://getbootstrap.com/" target="_blank">
 										<img src="img/bs5-updated.png" class="img-fluid mt-2" alt="Bootstrap 5" width="200">
