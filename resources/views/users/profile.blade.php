@@ -505,7 +505,7 @@ unread_notifications_number={{$unread_notifications_number}}
 									<p class="text-light">Earnings in {{$currentmonth}}</p>
 								</li>
 								<li class="primary">
-									<h3>{{ $earningsforlastMonth->amount }}</h3>
+									<h3>{{ optional($earningsforlastMonth)->amount ?? 0 }}</h3>
 									<p class="text-light">Earnings in {{$lastMonth}}</p>
 								</li>
 								<li class="primary">
