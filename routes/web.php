@@ -5,6 +5,7 @@ use App\Http\Controllers\Taskmanager\Tasks as TaskController;
 use App\Http\Controllers\Taskmanager\Clients as ClientController;
 use App\Http\Controllers\Regularpayments\Payments as PaymentController;
 use App\Http\Controllers\Emailtool\Emails as EmailController;
+use App\Http\Controllers\Emailtool\Answers as AnswerController;
 use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
 use App\Http\Controllers\Users as UserController;
@@ -59,6 +60,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('payments', PaymentController::class);
     
     Route::group(['prefix' => 'ect'], function () {
+        Route::get('/answers/', [ AnswerController::class, 'index' ])->name('answers.index');
         Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
         Route::get('/emails/edit/{id}', [ EmailController::class, 'edit' ])->name('emails.edit');
         Route::put('/emails/{id}', [ EmailController::class, 'update' ])->name('emails.update');

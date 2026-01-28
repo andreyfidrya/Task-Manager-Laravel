@@ -300,6 +300,9 @@
 				                        <ul class="nav nav-children">											                          
 												<li>
 												<x-navs.link route="emails.index">Email Template</x-navs.link>
+				                            	</li>
+												<li>
+												<x-navs.link route="answers.index">Answer Template</x-navs.link>
 				                            	</li>				                            
 												<li>
 				                                <x-navs.link route="topics.index">Topics</x-navs.link>
