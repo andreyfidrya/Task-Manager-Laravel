@@ -12,5 +12,5 @@ unread_notifications_number={{$unread_notifications_number}}
 {{ $answer->addquestion }}<p>
 {{ $answer->goodbye }}<p>
 
-<a href="" class="btn btn-primary">Customize</a>
+<a href="{{ route('answers.edit', [ $answer->id ]) }}" class="btn btn-primary">Customize</a>
 </x-layouts.porto>
