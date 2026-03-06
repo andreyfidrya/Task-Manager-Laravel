@@ -5,9 +5,11 @@ use App\Http\Controllers\Taskmanager\Tasks as TaskController;
 use App\Http\Controllers\Taskmanager\Clients as ClientController;
 use App\Http\Controllers\Regularpayments\Payments as PaymentController;
 use App\Http\Controllers\Emailtool\Emails as EmailController;
-use App\Http\Controllers\Answertool\Answers as AnswerController;
 use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
+use App\Http\Controllers\Answertool\Answers as AnswerController;
+use App\Http\Controllers\Answertool\Categories as CategoryController;
+use App\Http\Controllers\Answertool\Scripts as ScriptController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Taskmanager\Spendings as SpendingController;
@@ -70,6 +72,9 @@ Route::middleware('auth')->group(function(){
         
         Route::resource('topics', TopicController::class);
         Route::resource('samples', SampleController::class);
+
+        Route::resource('categories', CategoryController::class);
+        Route::resource('scripts', ScriptController::class);
     });
     
     Route::resource('users', UserController::class);

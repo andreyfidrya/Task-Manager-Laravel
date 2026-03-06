@@ -317,7 +317,10 @@
 				                        <ul class="nav nav-children">
 											<li>
 												<x-navs.link route="answers.index">Answer Template</x-navs.link>
-				                            </li>											
+				                            </li>
+											<li>
+				                                <x-navs.link route="categories.index">Categories</x-navs.link>
+											</li>											
 										</ul>
 				                    </li>
 									<li class="nav-children">
