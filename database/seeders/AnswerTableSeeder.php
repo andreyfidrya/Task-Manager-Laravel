@@ -16,6 +16,7 @@ class AnswerTableSeeder extends Seeder
             'template' => 'Template 1',
             'waiting' => 'Waiting sentence',
             'apologize' => 'Apologies',
+            'mainbody' => 'Main body',
             'addquestion' => 'Additional question',
             'goodbye' => 'Goodbye sentence'
         ]);

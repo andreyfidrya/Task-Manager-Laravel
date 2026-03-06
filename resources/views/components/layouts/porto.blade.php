@@ -300,10 +300,7 @@
 				                        <ul class="nav nav-children">											                          
 												<li>
 												<x-navs.link route="emails.index">Email Template</x-navs.link>
-				                            	</li>
-												<li>
-												<x-navs.link route="answers.index">Answer Template</x-navs.link>
-				                            	</li>				                            
+				                            	</li>																                            
 												<li>
 				                                <x-navs.link route="topics.index">Topics</x-navs.link>
 												</li>
@@ -311,6 +308,17 @@
 												<x-navs.link route="samples.index">Samples</x-navs.link>												
 				                            	</li> 		                            											
 				                        </ul>
+				                    </li>
+									<li class="nav-parent">
+				                        <a class="nav-link" href="#">
+				                            <i class="bx bx-cube" aria-hidden="true"></i>
+				                            <span>Answer Creation Tool</span>
+				                        </a>
+				                        <ul class="nav nav-children">
+											<li>
+												<x-navs.link route="answers.index">Answer Template</x-navs.link>
+				                            </li>											
+										</ul>
 				                    </li>
 									<li class="nav-children">
 									<x-navs.link route="payments.index">

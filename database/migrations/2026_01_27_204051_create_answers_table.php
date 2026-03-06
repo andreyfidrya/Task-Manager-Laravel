@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('template');
             $table->text('waiting');  
             $table->text('apologize');
+            $table->text('mainbody');
             $table->text('addquestion');
             $table->text('goodbye');          
         });

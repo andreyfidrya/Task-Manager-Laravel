@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Emailtool;
+namespace App\Http\Controllers\Answertool;
 
 use App\Http\Controllers\Controller;
 use App\Models\Answer;

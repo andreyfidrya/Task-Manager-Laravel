@@ -9,6 +9,7 @@ unread_notifications_number={{$unread_notifications_number}}
 <hr>
 {{ $answer->waiting }}<p>
 {{ $answer->apologize }}<p>
+{{ $answer->mainbody }}<p>
 {{ $answer->addquestion }}<p>
 {{ $answer->goodbye }}<p>
 
