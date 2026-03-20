@@ -23,7 +23,7 @@ class CategorySeeder extends Seeder
             ], 
             [
                 'name' => 'Additional questions',
-                'slug' => 'additional-sentences',
+                'slug' => 'additional-questions',
                 'beforemaintext' => false,
             ],          
             [
