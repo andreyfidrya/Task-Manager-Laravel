@@ -5,13 +5,9 @@ profile_image={{$profile_image}}
 unread_notifications_number={{$unread_notifications_number}} 
 :unread_notifications="$unread_notifications">
 
-<h1>{{ $answer->template }}:</h1>
+<h1>Create Your Answer:</h1>
 <hr>
-{{ $answer->waiting }}<p>
-{{ $answer->apologize }}<p>
-{{ $answer->mainbody }}<p>
-{{ $answer->addquestion }}<p>
-{{ $answer->goodbye }}<p>
 
-<a href="{{ route('answers.edit', [ $answer->id ]) }}" class="btn btn-primary">Customize</a>
+
+<a class="btn btn-primary">Generate</a>
 </x-layouts.porto>

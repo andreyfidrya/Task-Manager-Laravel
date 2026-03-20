@@ -14,8 +14,7 @@ class Answers extends Controller
 {
     public function index()
     {
-        $username = Auth::user()->name;
-        $answer = Answer::first();  
+        $username = Auth::user()->name;          
         
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
@@ -24,7 +23,7 @@ class Answers extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('answers.index', compact('unread_notifications', 'unread_notifications_number', 'answer', 'username', 'profile_image'));
+        return view('answers.index', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
     public function edit()

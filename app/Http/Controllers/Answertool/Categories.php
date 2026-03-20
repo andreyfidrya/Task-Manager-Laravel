@@ -43,9 +43,12 @@ class Categories extends Controller
         return view('answers.categories.create', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        //
+        $username = Auth::user()->name;
+        $data = $request->only(['slug', 'name']);
+        Category::create($data);
+        return redirect()->route('categories.index');
     }
 
     public function show(Category $category)

@@ -1,4 +1,4 @@
-<x-layouts.porto title="Create a Topic" 
+<x-layouts.porto title="Create a Category" 
 header="Create a Category" 
 username={{$username}} 
 profile_image={{$profile_image}} 
