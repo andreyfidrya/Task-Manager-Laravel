@@ -22,8 +22,8 @@ class Answers extends Controller
         $profile_image = $user->profile_image;
 
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
-        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
-
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();               
+        
         $categories_before_main_text = Category::where('beforemaintext', 1)->get();
         $categories_after_main_text = Category::where('beforemaintext', 0)->get();        
 

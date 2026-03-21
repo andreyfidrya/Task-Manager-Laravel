@@ -16,8 +16,9 @@ class Categories extends Controller
 {
     public function index()
     {
-        $username = Auth::user()->name;
-        // $categories = Category::orderBy('name')->paginate(10);
+        $username = Auth::user()->name;    
+
+        $categories = Category::all();        
         
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
@@ -26,7 +27,7 @@ class Categories extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('answers.categories.index', compact('unread_notifications', 'unread_notifications_number', /*'categories',*/ 'username', 'profile_image'));
+        return view('answers.categories.index', compact('unread_notifications', 'unread_notifications_number', 'categories', 'username', 'profile_image'));
     }
 
     public function create()
