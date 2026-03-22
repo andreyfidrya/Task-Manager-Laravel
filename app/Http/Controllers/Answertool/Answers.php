@@ -28,27 +28,5 @@ class Answers extends Controller
         $categories_after_main_text = Category::where('beforemaintext', 0)->get();        
 
         return view('answers.index', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image', 'categories_before_main_text', 'categories_after_main_text'));
-    }
-
-    public function edit()
-    {
-        $username = Auth::user()->name;
-        $answer = Answer::first();
-
-        $user_id = Auth::user()->id;
-        $user = User::find($user_id);
-        $profile_image = $user->profile_image;
-
-        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
-        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
-
-        return view('answers.edit', compact('unread_notifications', 'unread_notifications_number', 'answer', 'username', 'profile_image'));
-    }
-
-    public function update(SaveRequest $request, $id)
-    {
-        
-
-        return redirect()->route('answers.index');
-    }
+    }    
 }

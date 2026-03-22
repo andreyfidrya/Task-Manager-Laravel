@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function sentences(){
-        return $this->hasMany(Sentence::class);
+    public function scripts(){
+        return $this->hasMany(Script::class);
     }
 }

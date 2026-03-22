@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EmailTableSeeder::class,
-            CategorySeeder::class,
+            CategoryTableSeeder::class,
+            ScriptTableSeeder::class,
         ]);        
     }
 }

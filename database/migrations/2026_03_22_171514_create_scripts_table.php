@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('sentences', function (Blueprint $table) {
+        Schema::create('scripts', function (Blueprint $table) {
             $table->id();
             $table->text('name');
             $table->foreignId('category_id')
@@ -19,6 +19,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('sentences');
+        Schema::dropIfExists('scripts');
     }
 };

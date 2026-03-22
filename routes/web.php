@@ -9,6 +9,7 @@ use App\Http\Controllers\Emailtool\Topics as TopicController;
 use App\Http\Controllers\Emailtool\Samples as SampleController;
 use App\Http\Controllers\Answertool\Answers as AnswerController;
 use App\Http\Controllers\Answertool\Categories as CategoryController;
+use App\Http\Controllers\Answertool\Sentences as SentenceController;
 use App\Http\Controllers\Answertool\Scripts as ScriptController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
@@ -73,7 +74,7 @@ Route::middleware('auth')->group(function(){
         Route::resource('topics', TopicController::class);
         Route::resource('samples', SampleController::class);
 
-        Route::resource('categories', CategoryController::class);
+        Route::resource('categories', CategoryController::class);        
         Route::resource('scripts', ScriptController::class);
     });
     
