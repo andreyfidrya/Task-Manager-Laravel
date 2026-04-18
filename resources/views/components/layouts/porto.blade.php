@@ -322,7 +322,7 @@
 				                                <x-navs.link route="categories.index">Categories</x-navs.link>
 											</li>
 											<li>
-				                                <x-navs.link route="categories.index">Sentences</x-navs.link>
+				                                <x-navs.link route="categories.index">Scripts</x-navs.link>
 											</li>											
 										</ul>
 				                    </li>

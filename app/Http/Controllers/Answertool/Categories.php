@@ -18,7 +18,7 @@ class Categories extends Controller
     {
         $username = Auth::user()->name;    
 
-        $categories = Category::orderBy('name', 'asc')->get();        
+        $categories = Category::orderBy('name', 'asc')->get();       
         
         $user_id = Auth::user()->id;
         $user = User::find($user_id);

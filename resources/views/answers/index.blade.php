@@ -9,8 +9,18 @@ unread_notifications_number={{$unread_notifications_number}}
 <hr>
 
 @foreach($categories_before_main_text as $category)
-    <div class="mb-2">
-        <label>{{ $category->name }}</label>        
+    <div class="mb-3">
+        <label>{{ $category->name }}</label>
+
+        <select name="categories[{{ $category->id }}]" class="form-select">
+            <option value="">No</option>
+
+            @foreach($category->scripts as $script)
+                <option value="{{ $script->id }}">
+                    {{ $script->name }}
+                </option>
+            @endforeach
+        </select>
     </div>
 @endforeach
 
@@ -23,8 +33,18 @@ unread_notifications_number={{$unread_notifications_number}}
 </div>
 
 @foreach($categories_after_main_text as $category)
-    <div class="mb-2">
-        <label>{{ $category->name }}</label>        
+    <div class="mb-3">
+        <label>{{ $category->name }}</label>
+
+        <select name="categories[{{ $category->id }}]" class="form-select">
+            <option value="">No</option>
+
+            @foreach($category->scripts as $script)
+                <option value="{{ $script->id }}">
+                    {{ $script->name }}
+                </option>
+            @endforeach
+        </select>
     </div>
 @endforeach
 
