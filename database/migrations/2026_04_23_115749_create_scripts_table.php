@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('scripts', function (Blueprint $table) {
@@ -13,10 +16,14 @@ return new class extends Migration
             $table->text('name');
             $table->foreignId('category_id')
                   ->constrained()
-                  ->cascadeOnDelete();            
+                  ->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('scripts');

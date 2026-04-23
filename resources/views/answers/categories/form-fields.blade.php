@@ -5,6 +5,9 @@
 <div class="mb-3">    
     <x-form-input name="slug" label="Slug"/> 
 </div>
+<div class="mb-3">    
+    <x-form-input name="priority" label="Priority"/> 
+</div>
 
 <div class="mb-3">
     <input type="hidden" name="beforemaintext" value="0"> 

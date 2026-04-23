@@ -47,8 +47,9 @@ class Categories extends Controller
     public function store(SaveRequest $request)
     {
         $username = Auth::user()->name;
-        $data = $request->only(['slug', 'name']);
+        $data = $request->only(['name', 'slug', 'beforemaintext', 'priority']);
         Category::create($data);
+        
         return redirect()->route('categories.index');
     }
 
@@ -57,14 +58,30 @@ class Categories extends Controller
         //
     }
 
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $username = Auth::user()->name;
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        $category = Category::findOrFail($id);
+
+        return view('answers.categories.edit', compact('unread_notifications', 'unread_notifications_number', 'category', 'profile_image', 'username'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(SaveRequest $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $data = $request->only(['name','slug','priority']);
+        
+        $category->update($data);
+
+        return redirect()->route('categories.index');
     }
 
     public function destroy(Category $category)

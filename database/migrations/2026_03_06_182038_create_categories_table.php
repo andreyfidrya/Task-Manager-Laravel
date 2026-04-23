@@ -13,7 +13,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('priority');
-            $table->boolean('beforemaintext');            
+            $table->boolean('beforemaintext'); 
+            $table->timestamps();           
         });
     }
 

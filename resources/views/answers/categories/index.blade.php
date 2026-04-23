@@ -13,6 +13,7 @@ unread_notifications_number={{$unread_notifications_number}}
     <tr>
       <th scope="col" class="text-center">Name</th>
       <th scope="col" class="text-center">Slug</th>
+      <th scope="col" class="text-center">Priority</th>
       <th scope="col" class="text-center">Before Main Text</th>
       <th scope="col" class="text-center">Action</th>             
     </tr>
@@ -22,9 +23,11 @@ unread_notifications_number={{$unread_notifications_number}}
         <tr>
             <td class="text-center">{{ $category->name }}</td>
             <td class="text-center">{{ $category->slug }}</td>
+            <td class="text-center">{{ $category->priority }}</td>
             <td class="text-center">{{ $category->beforemaintext }}</td>
             <td class="text-center">
-                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                <a href="#" class="btn btn-info">View</a>
+                <a href="{{ route('categories.edit', [ $category->id ]) }}" class="btn btn-primary btn-sm">Edit</a>
                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
