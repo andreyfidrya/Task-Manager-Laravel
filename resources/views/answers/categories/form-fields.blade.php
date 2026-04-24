@@ -13,7 +13,12 @@
     <input type="hidden" name="beforemaintext" value="0"> 
     
     <label>
-        <input type="checkbox" name="beforemaintext" value="1">
+        <input 
+            type="checkbox" 
+            name="beforemaintext" 
+            value="1"
+            {{ old('beforemaintext', $category->beforemaintext) ? 'checked' : '' }}
+        >
         Before main text
     </label>
 </div>
