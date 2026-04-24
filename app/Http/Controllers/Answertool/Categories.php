@@ -77,7 +77,12 @@ class Categories extends Controller
     public function update(SaveRequest $request, $id)
     {
         $category = Category::findOrFail($id);
-        $data = $request->only(['name','slug','priority']);
+        $data = $request->only([
+            'name',
+            'slug',
+            'priority',
+            'beforemaintext'
+        ]);
         
         $category->update($data);
 
