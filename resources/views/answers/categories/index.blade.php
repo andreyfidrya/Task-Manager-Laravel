@@ -26,7 +26,7 @@ unread_notifications_number={{$unread_notifications_number}}
             <td class="text-center">{{ $category->priority }}</td>
             <td class="text-center">{{ $category->beforemaintext }}</td>
             <td class="text-center">
-                <a href="#" class="btn btn-info">View</a>
+                <a href="{{ route('categories.show', [ $category->id ]) }}" class="btn btn-info">View</a>
                 <a href="{{ route('categories.edit', [ $category->id ]) }}" class="btn btn-primary btn-sm">Edit</a>
                 <form method="POST" action="{{ route('categories.destroy', $category->id) }}" style="display:inline;">
                   @csrf

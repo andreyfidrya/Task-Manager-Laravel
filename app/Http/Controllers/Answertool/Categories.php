@@ -53,9 +53,22 @@ class Categories extends Controller
         return redirect()->route('categories.index');
     }
 
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        
+        $category->load('scripts');
+        
+        $username = Auth::user()->name;
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('answers.categories.show', compact('unread_notifications', 'unread_notifications_number', 'profile_image', 'category', 'username'));
     }
 
     public function edit($id)
