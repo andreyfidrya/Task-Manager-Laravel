@@ -16,10 +16,18 @@ class Categories extends Controller
 {
     public function index()
     {
-        $username = Auth::user()->name;    
-
-        $categories = Category::orderBy('name', 'asc')->get();       
+        $username = Auth::user()->name;
         
+        $categories = Category::orderBy('name', 'asc')->get();
+
+        $categories_before_main_text = Category::where('beforemaintext', 1)
+        ->orderBy('priority', 'asc')
+        ->get(); 
+        
+        $categories_after_main_text = Category::where('beforemaintext', 0)
+        ->orderBy('priority', 'asc')
+        ->get();
+         
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $profile_image = $user->profile_image;
@@ -27,7 +35,7 @@ class Categories extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('answers.categories.index', compact('unread_notifications', 'unread_notifications_number', 'categories', 'username', 'profile_image'));
+        return view('answers.categories.index', compact('unread_notifications', 'unread_notifications_number', 'categories', 'categories_before_main_text', 'categories_after_main_text', 'username', 'profile_image'));
     }
 
     public function create()
@@ -55,9 +63,7 @@ class Categories extends Controller
 
     public function show($id)
     {
-        $category = Category::findOrFail($id);
-        
-        $category->load('scripts');
+        $category = Category::findOrFail($id);       
         
         $username = Auth::user()->name;
 
