@@ -28,7 +28,18 @@ unread_notifications_number={{$unread_notifications_number}}
             <td class="text-center">
                 <a href="#" class="btn btn-info">View</a>
                 <a href="{{ route('categories.edit', [ $category->id ]) }}" class="btn btn-primary btn-sm">Edit</a>
-                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                <form method="POST" action="{{ route('categories.destroy', $category->id) }}" style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+
+                  <button 
+                      type="submit" 
+                      class="btn btn-danger btn-sm"
+                      onclick="return confirm('Delete this category?')"
+                  >
+                      Delete
+                  </button>
+              </form>
             </td>
         </tr>
     @endforeach
