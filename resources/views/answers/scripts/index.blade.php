@@ -1,4 +1,4 @@
-<x-layouts.porto title="Categories" 
+<x-layouts.porto title="Scripts" 
 header="Scripts" 
 username={{$username}} 
 profile_image={{$profile_image}} 
