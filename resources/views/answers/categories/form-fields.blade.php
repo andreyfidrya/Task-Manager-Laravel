@@ -17,7 +17,7 @@
             type="checkbox" 
             name="beforemaintext" 
             value="1"
-            {{ old('beforemaintext', $category->beforemaintext) ? 'checked' : '' }}
+            {{ old('beforemaintext', $category->beforemaintext ?? 0) ? 'checked' : '' }}
         >
         Before main text
     </label>
