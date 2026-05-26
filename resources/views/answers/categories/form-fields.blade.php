@@ -23,3 +23,20 @@
     </label>
 </div>
 
+<script>
+    $(function(){            
+
+        $("input[name='name']").on("change",function(){
+            $("input[name='slug']").val(StringToSlug($(this).val())); 
+        });
+
+    });
+
+    function StringToSlug(Text)
+    {
+        return Text.toLowerCase()
+        .replace(/[^\w ]+/g,"")
+        .replace(/ +/g,"-");
+    }
+</script>
+
