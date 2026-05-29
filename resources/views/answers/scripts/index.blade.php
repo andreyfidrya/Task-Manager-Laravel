@@ -6,7 +6,7 @@ unread_notifications_number={{$unread_notifications_number}}
 :unread_notifications="$unread_notifications">
 
   <p>
-    <a href="" class="btn btn-success">Add a Script</a>
+    <a href="{{ route('scripts.create') }}" class="btn btn-success">Add a Script</a>
   </p>
   <h1>Scripts by Categories</h1>
   

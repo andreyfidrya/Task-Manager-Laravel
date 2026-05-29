@@ -23,9 +23,7 @@ class Scripts extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        $categories = Category::with('scripts')
-            ->orderBy('priority')
-            ->get();
+        $categories = Category::orderBy('priority')->get();
 
         return view(
             'answers.scripts.index', 
@@ -41,7 +39,24 @@ class Scripts extends Controller
 
     public function create()
     {
-        //
+        $username = Auth::user()->name;
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        $categories = Category::orderBy('priority')->get();
+
+        return view('answers.scripts.create', compact(
+            'unread_notifications', 
+            'unread_notifications_number', 
+            'username', 
+            'profile_image',
+            'categories'
+        ));
     }
 
     public function store(Request $request)
