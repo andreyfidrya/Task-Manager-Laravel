@@ -7,6 +7,7 @@ use App\Models\Script;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Category;
 use App\Models\Notification;
 
 class Scripts extends Controller
@@ -22,7 +23,20 @@ class Scripts extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('answers.scripts.index', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
+        $categories = Category::with('scripts')
+            ->orderBy('priority')
+            ->get();
+
+        return view(
+            'answers.scripts.index', 
+            compact(
+                'unread_notifications', 
+                'unread_notifications_number', 
+                'username', 
+                'profile_image', 
+                'categories'
+                )
+            );
     }
 
     public function create()
