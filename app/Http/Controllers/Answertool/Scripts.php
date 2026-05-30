@@ -73,9 +73,21 @@ class Scripts extends Controller
         //
     }
 
-    public function edit(Script $script)
+    public function edit($id)
     {
-        //
+        $username = Auth::user()->name;
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get(); 
+        
+        $script = Script::findOrFail($id);
+        $categories = Category::orderBy('priority')->get();
+
+        return view('answers.scripts.edit', compact('unread_notifications', 'unread_notifications_number', 'script', 'categories', 'profile_image', 'username'));
     }
 
     public function update(Request $request, Script $script)
