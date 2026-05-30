@@ -54,7 +54,6 @@ class Categories extends Controller
 
     public function store(SaveRequest $request)
     {
-        $username = Auth::user()->name;
         $data = $request->only(['name', 'slug', 'beforemaintext', 'priority']);
         Category::create($data);
         

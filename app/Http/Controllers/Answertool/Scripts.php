@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Notification;
+use App\Http\Requests\Scripts\Save as SaveRequest;
 
 class Scripts extends Controller
 {
@@ -59,9 +60,12 @@ class Scripts extends Controller
         ));
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        //
+        $data = $request->only(['name', 'category_id']);
+        Script::create($data);
+        
+        return redirect()->route('scripts.index');
     }
 
     public function show(Script $script)
