@@ -20,7 +20,7 @@ class Save extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                Rule::unique('scripts', 'name'),
+                Rule::unique('scripts', 'name')->ignore($this->route('script')),
             ],
 
             'category_id' => [

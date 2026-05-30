@@ -28,7 +28,7 @@ class Scripts extends Controller
 
         return view(
             'answers.scripts.index', 
-            compact(
+            compact(                
                 'unread_notifications', 
                 'unread_notifications_number', 
                 'username', 
@@ -40,6 +40,8 @@ class Scripts extends Controller
 
     public function create()
     {
+        $script = new Script();
+
         $username = Auth::user()->name;
 
         $user_id = Auth::user()->id;
@@ -52,6 +54,7 @@ class Scripts extends Controller
         $categories = Category::orderBy('priority')->get();
 
         return view('answers.scripts.create', compact(
+            'script',
             'unread_notifications', 
             'unread_notifications_number', 
             'username', 
@@ -90,9 +93,17 @@ class Scripts extends Controller
         return view('answers.scripts.edit', compact('unread_notifications', 'unread_notifications_number', 'script', 'categories', 'profile_image', 'username'));
     }
 
-    public function update(Request $request, Script $script)
+    public function update(SaveRequest $request, $id)
     {
-        //
+        $script = Script::findOrFail($id);
+        $data = $request->only([
+            'name',
+            'category_id'            
+        ]);
+        
+        $script->update($data);
+
+        return redirect()->route('scripts.index');
     }
 
     public function destroy(Script $script)
