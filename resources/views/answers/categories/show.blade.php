@@ -20,7 +20,7 @@ unread_notifications_number={{$unread_notifications_number}}
     </ul>
 @endif
 <hr>
-<a href="" class="btn btn-sm btn-primary">Edit</a>
+<a href="{{ route('categories.edit', [ $category->id ]) }}" class="btn btn-primary btn-sm">Edit</a>
   <form method="post" action="">
     @csrf
     @method('DELETE')

@@ -108,6 +108,7 @@ class Scripts extends Controller
 
     public function destroy(Script $script)
     {
-        //
+        $script->delete();
+        return redirect()->route('scripts.index');
     }
 }
