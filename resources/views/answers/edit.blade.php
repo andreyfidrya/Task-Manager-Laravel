@@ -4,9 +4,9 @@ username={{$username}}
 profile_image={{$profile_image}} 
 unread_notifications_number={{$unread_notifications_number}} 
 :unread_notifications="$unread_notifications">
-<h1>Generated Answer</h1>
 
-<textarea class="form-control" rows="20">
-{{ $answer }}
-</textarea>
+
+<h1>Create Your Answer:</h1>
+<hr>    
+    
 </x-layouts.porto>

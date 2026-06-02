@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             EmailTableSeeder::class,
             CategoryTableSeeder::class,
             ScriptTableSeeder::class,
+            AnswerTableSeeder::class,
         ]);        
     }
 }
