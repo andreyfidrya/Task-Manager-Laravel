@@ -7,46 +7,51 @@ unread_notifications_number={{$unread_notifications_number}}
 
 <h1>Create Your Answer:</h1>
 <hr>
+    <form method="POST" action="{{ route('answers.generate') }}">
+        @csrf
+        @foreach($categories_before_main_text as $category)
+            <div class="mb-3">
+                <label>{{ $category->name }}</label>
 
-@foreach($categories_before_main_text as $category)
-    <div class="mb-3">
-        <label>{{ $category->name }}</label>
+                <select name="categories[{{ $category->id }}]" class="form-select">
+                    <option value="">No</option>
 
-        <select name="categories[{{ $category->id }}]" class="form-select">
-            <option value="">No</option>
+                    @foreach($category->scripts as $script)
+                        <option value="{{ $script->id }}">
+                            {{ $script->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        @endforeach
 
-            @foreach($category->scripts as $script)
-                <option value="{{ $script->id }}">
-                    {{ $script->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-@endforeach
+        <div class="mb-3">
+            <x-form-input 
+                name="MainText" 
+                label="Main Text" 
+                placeholder="Enter the main answer text here" 
+            />
+        </div>
 
-<div class="mb-3">
-    <x-form-input 
-        name="MainText" 
-        label="Main Text" 
-        placeholder="Enter the main answer text here" 
-    />
-</div>
+        @foreach($categories_after_main_text as $category)
+            <div class="mb-3">
+                <label>{{ $category->name }}</label>
 
-@foreach($categories_after_main_text as $category)
-    <div class="mb-3">
-        <label>{{ $category->name }}</label>
+                <select name="categories[{{ $category->id }}]" class="form-select">
+                    <option value="">No</option>
 
-        <select name="categories[{{ $category->id }}]" class="form-select">
-            <option value="">No</option>
+                    @foreach($category->scripts as $script)
+                        <option value="{{ $script->id }}">
+                            {{ $script->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        @endforeach
 
-            @foreach($category->scripts as $script)
-                <option value="{{ $script->id }}">
-                    {{ $script->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-@endforeach
-
-<a class="btn btn-primary">Generate</a>
+        <button type="submit" class="btn btn-primary">
+        Generate
+        </button>
+    </form>
+    
 </x-layouts.porto>
