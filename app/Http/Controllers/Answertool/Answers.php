@@ -49,4 +49,10 @@ class Answers extends Controller
 
         return view('answers.edit', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image', 'categories_before_main_text', 'categories_after_main_text', 'answer'));
     }
+
+    public function update(SaveRequest $request, $id)
+    {
+        
+        
+    }
 }

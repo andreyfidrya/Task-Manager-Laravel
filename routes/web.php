@@ -64,7 +64,8 @@ Route::middleware('auth')->group(function(){
     
     Route::group(['prefix' => 'ect'], function () {
         Route::get('/answers/', [ AnswerController::class, 'index' ])->name('answers.index');
-        Route::get('/answers/edit/{id}', [ AnswerController::class, 'edit' ])->name('answers.edit');                        
+        Route::get('/answers/edit/{id}', [ AnswerController::class, 'edit' ])->name('answers.edit');
+        Route::put('/answers/{id}', [ AnswerController::class, 'update' ])->name('answers.update');                        
 
         Route::get('/emails/', [ EmailController::class, 'index' ])->name('emails.index');
         Route::get('/emails/edit/{id}', [ EmailController::class, 'edit' ])->name('emails.edit');

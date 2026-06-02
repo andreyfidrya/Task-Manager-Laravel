@@ -39,8 +39,5 @@
                 </select>
             </div>
         @endforeach
-
-        <button type="submit" class="btn btn-primary">
-        Generate
-        </button>
+        
     </form>
