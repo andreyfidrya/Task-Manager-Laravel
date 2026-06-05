@@ -126,7 +126,7 @@
 
 					<form action="#" method="GET" class="search nav-form">
 						<div class="input-group">
-							<input type="text" class="form-control" name="search" id="search" placeholder="Search for scripts">
+							<input type="text" class="form-control" name="search" id="search" placeholder="Search for responses">
 							<button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
 						</div>
 					</form>
