@@ -11,11 +11,10 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->string('template');
-            $table->text('waiting');  
-            $table->text('apologize');
-            $table->text('maintext');
-            $table->text('addquestion');
-            $table->text('goodbye');
+            $table->text('waiting')->nullable(); 
+            $table->text('apologize')->nullable();
+            $table->text('maintext')->nullable();
+            $table->text('addquestion')->nullable();            
         });
     }
 

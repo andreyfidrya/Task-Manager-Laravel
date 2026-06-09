@@ -14,11 +14,10 @@ class AnswerTableSeeder extends Seeder
 
         DB::table('answers')->insert([
             'template' => 'Answer Template',
-            'waiting' => 'Waiting sentence',
-            'apologize' => 'Apologies',
-            'maintext' => 'Main Text',
-            'addquestion' => 'Additional question',
-            'goodbye' => 'Goodbye sentence'
+            'waiting' => 'Thank you for the long waiting!',
+            'apologize' => null,
+            'maintext' => null,
+            'addquestion' => 'Are there any other questions I can help you with?'            
         ]);
     }
 }
