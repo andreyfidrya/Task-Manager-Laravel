@@ -93,7 +93,7 @@
 
 					<form action="{{ route('search') }}" method="GET" class="search nav-form">
 						<div class="input-group">
-							<input type="text" class="form-control" name="search" id="search" placeholder="Search for topics">
+							<input type="text" class="form-control" name="search" id="search-responses" placeholder="Search for topics">
 							<button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
 						</div>
 					</form>
@@ -125,7 +125,7 @@
 					</script>
 
 					<form action="#" method="GET" class="search nav-form">
-						<div class="input-group">
+						<div class="input-group" style="width: 200px;">
 							<input type="text" class="form-control" name="search" id="search" placeholder="Search for responses">
 							<button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
 						</div>
