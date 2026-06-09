@@ -3954,7 +3954,7 @@ html.has-left-sidebar-half .header {
 
 	.header .search,
 		.header .separator {
-		display: none;
+		display: none;		
 	}
 }
 
