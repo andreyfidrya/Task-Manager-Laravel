@@ -4,11 +4,11 @@
             <div class="mb-3">
                 <label>{{ $category->name }}</label>
 
-                <select name="categories[{{ $category->id }}]" class="form-select">
+                <select name="{{ $category->slug }}" class="form-select">
                     <option value="">No</option>
 
                     @foreach($category->scripts as $script)
-                        <option value="{{ $script->id }}">
+                        <option value="{{ $script->name }}">
                             {{ $script->name }}
                         </option>
                     @endforeach
@@ -18,7 +18,7 @@
 
         <div class="mb-3">
             <x-form-input 
-                name="MainText" 
+                name="maintext" 
                 label="Main Text" 
                 placeholder="Enter the main answer text here" 
             />
@@ -28,11 +28,11 @@
             <div class="mb-3">
                 <label>{{ $category->name }}</label>
 
-                <select name="categories[{{ $category->id }}]" class="form-select">
+                <select name="{{ $category->slug }}" class="form-select">
                     <option value="">No</option>
 
                     @foreach($category->scripts as $script)
-                        <option value="{{ $script->id }}">
+                        <option value="{{ $script->name }}">
                             {{ $script->name }}
                         </option>
                     @endforeach
