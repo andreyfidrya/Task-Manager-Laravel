@@ -23,10 +23,7 @@ class ScriptTableSeeder extends Seeder
                 'name' => 'Is anything else I can help you with?',
                 'category_id' => '3',                
             ],          
-            [
-                'name' => 'If you have any other questions, please contact us',
-                'category_id' => '4',                
-            ],
+           
         ]);
     }
 }

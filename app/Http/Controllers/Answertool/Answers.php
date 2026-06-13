@@ -52,7 +52,24 @@ class Answers extends Controller
 
     public function update(SaveRequest $request, $id)
     {
+        $template = 'Answer Template 1';
+        $waiting = $request->waiting;        
+        $apologize = $request->apologize;
+        $maintext = $request->maintext; 
+        $addquestion = $request->addquestion; 
         
-        
+        $answer = Answer::first();
+
+        // dd($request->all());
+
+        $answer->update([
+            'template' => $template,
+            'waiting' => $waiting,
+            'apologize' => $apologize,
+            'maintext' => $maintext,           
+            'addquestion' => $addquestion            
+        ]);
+
+        return redirect()->route('answers.index');
     }
 }

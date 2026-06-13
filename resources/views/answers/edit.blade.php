@@ -12,6 +12,5 @@ unread_notifications_number={{$unread_notifications_number}}
   @include('answers.form-fields')   
     <button class="btn btn-primary">Generate</button>
   </form>
-  @endbind  
-    
+  @endbind   
 </x-layouts.porto>

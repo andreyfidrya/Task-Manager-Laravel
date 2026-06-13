@@ -10,10 +10,10 @@ class AnswerTableSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('answers')->truncate(); 
+        // DB::table('answers')->truncate(); 
 
         DB::table('answers')->insert([
-            'template' => 'Answer Template',
+            'template' => 'Answer Template 1',
             'waiting' => 'Thank you for the long waiting!',
             'apologize' => null,
             'maintext' => null,

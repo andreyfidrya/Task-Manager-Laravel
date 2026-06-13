@@ -33,14 +33,7 @@ class CategoryTableSeeder extends Seeder
                 'slug' => 'additional-questions',
                 'priority' => '1',
                 'beforemaintext' => false,
-            ],          
-            [
-                'id' => '4',
-                'name' => 'Goodbye sentences',
-                'slug' => 'goodbye-sentences',
-                'priority' => '2',
-                'beforemaintext' => false,
-            ],
-        ]);
+            ],     
+            ]);
     }
 }

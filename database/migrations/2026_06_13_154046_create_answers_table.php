@@ -14,7 +14,8 @@ return new class extends Migration
             $table->text('waiting')->nullable(); 
             $table->text('apologize')->nullable();
             $table->text('maintext')->nullable();
-            $table->text('addquestion')->nullable();            
+            $table->text('addquestion')->nullable();
+            $table->timestamps();            
         });
     }
 
