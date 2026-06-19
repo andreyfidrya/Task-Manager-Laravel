@@ -1,4 +1,3 @@
-
 @csrf
 @foreach($categories_before_main_text as $category)
     <div class="mb-3">
