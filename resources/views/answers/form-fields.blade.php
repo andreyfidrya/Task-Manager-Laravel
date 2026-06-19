@@ -5,7 +5,6 @@
 
         <select name="{{ $category->slug }}" class="form-select">
             <option value="">No</option>
-
             @foreach($category->scripts as $script)
                 <option
                     value="{{ $script->name }}"
@@ -32,11 +31,10 @@
 
         <select name="{{ $category->slug }}" class="form-select">
             <option value="">No</option>
-
             @foreach($category->scripts as $script)
                 <option
                     value="{{ $script->name }}"
-                    @selected(old('addquestion', $answer->addquestion) == $script->name)
+                    @selected(old($category->slug, $answer->{$category->slug}) == $script->name)
                 >
                     {{ $script->name }}
                 </option>
