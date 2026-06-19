@@ -8,7 +8,10 @@
                     <option value="">No</option>
 
                     @foreach($category->scripts as $script)
-                        <option value="{{ $script->name }}">
+                        <option
+                            value="{{ $script->name }}"
+                            @selected(old($category->slug, $answer->{$category->slug}) == $script->name)
+                        >
                             {{ $script->name }}
                         </option>
                     @endforeach
@@ -16,13 +19,12 @@
             </div>
         @endforeach
 
-        <div class="mb-3">
-            <x-form-input 
-                name="maintext" 
-                label="Main Text" 
-                placeholder="Enter the main answer text here" 
-            />
-        </div>
+        <input
+            type="text"
+            name="maintext"
+            class="form-control"
+            value="{{ old('maintext', $answer->maintext) }}"
+        >
 
         @foreach($categories_after_main_text as $category)
             <div class="mb-3">
@@ -32,7 +34,10 @@
                     <option value="">No</option>
 
                     @foreach($category->scripts as $script)
-                        <option value="{{ $script->name }}">
+                        <option
+                            value="{{ $script->name }}"
+                            @selected(old('addquestion', $answer->addquestion) == $script->name)
+                        >
                             {{ $script->name }}
                         </option>
                     @endforeach
