@@ -79,6 +79,16 @@ Route::middleware('auth')->group(function(){
         Route::resource('scripts', ScriptController::class);
         Route::resource('responses', ResponseController::class);
     });
+
+    Route::group(['prefix' => 'act'], function () {
+        Route::get('/answers/', [ AnswerController::class, 'index' ])->name('answers.index');
+        Route::get('/answers/edit/{id}', [ AnswerController::class, 'edit' ])->name('answers.edit');
+        Route::put('/answers/{id}', [ AnswerController::class, 'update' ])->name('answers.update');                        
+
+        Route::resource('categories', CategoryController::class);        
+        Route::resource('scripts', ScriptController::class);
+        Route::resource('responses', ResponseController::class);
+    });
     
     Route::resource('users', UserController::class);
     Route::get('/user-profile-page/', [ UserController::class, 'profile' ])->name('users.profile'); 
