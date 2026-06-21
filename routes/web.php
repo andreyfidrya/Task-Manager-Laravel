@@ -11,6 +11,7 @@ use App\Http\Controllers\Answertool\Answers as AnswerController;
 use App\Http\Controllers\Answertool\Categories as CategoryController;
 use App\Http\Controllers\Answertool\Sentences as SentenceController;
 use App\Http\Controllers\Answertool\Scripts as ScriptController;
+use App\Http\Controllers\Answertool\Responses as ResponseController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Taskmanager\Spendings as SpendingController;
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function(){
 
         Route::resource('categories', CategoryController::class);        
         Route::resource('scripts', ScriptController::class);
+        Route::resource('responses', ResponseController::class);
     });
     
     Route::resource('users', UserController::class);

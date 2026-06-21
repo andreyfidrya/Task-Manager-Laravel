@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             CategoryTableSeeder::class,
             ScriptTableSeeder::class,
             AnswerTableSeeder::class,
+            ResponseTableSeeder::class,
         ]);        
     }
 }

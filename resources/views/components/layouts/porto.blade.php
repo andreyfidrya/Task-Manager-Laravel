@@ -330,6 +330,9 @@
 											</li>
 											<li>
 				                                <x-navs.link route="scripts.index">Scripts</x-navs.link>
+											</li>
+											<li>
+				                                <x-navs.link route="responses.index">Responses</x-navs.link>
 											</li>											
 										</ul>
 				                    </li>
