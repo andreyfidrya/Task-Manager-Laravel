@@ -72,7 +72,7 @@ class Responses extends Controller
         
     }
 
-    public function searchresponses(Request $request){        
+    public function searchresponses(Request $request){      
         $username = Auth::user()->name;
         // Get the search value from the request
         $search = $request->input('search-responses');        
@@ -90,6 +90,6 @@ class Responses extends Controller
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('answers.search-responses', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image', 'responses'));
+        return view('answers.search-responses', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image', 'responses'));        
     }
 }
