@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Notification;
 use App\Models\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests\Responses\Save as SaveRequest;
 use Illuminate\Support\Facades\Auth;
 
 class Responses extends Controller
@@ -30,12 +31,24 @@ class Responses extends Controller
 
     public function create()
     {
-        //
+        $username = Auth::user()->name;
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('answers.responses.create', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        //
+        $username = Auth::user()->name;
+        $data = $request->only(['title', 'description']);
+        Response::create($data);
+        return redirect()->route('responses.index');
     }
    
     public function show(string $id)
