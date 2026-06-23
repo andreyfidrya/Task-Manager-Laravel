@@ -72,7 +72,7 @@ class Responses extends Controller
         
     }
 
-    public function searchresponses(Request $request){
+    public function searchresponses(Request $request){        
         $username = Auth::user()->name;
         // Get the search value from the request
         $search = $request->input('search-responses');        
