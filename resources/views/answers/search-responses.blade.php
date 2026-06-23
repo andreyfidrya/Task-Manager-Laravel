@@ -6,14 +6,14 @@ unread_notifications_number={{$unread_notifications_number}}
 :unread_notifications="$unread_notifications">
 
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Action</th>             
-    </tr>
-  </thead>
-  <tbody>
+    <thead>
+        <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>             
+        </tr>
+    </thead>
+    <tbody>
 
     @foreach($responses as $response)  
     <tr>
