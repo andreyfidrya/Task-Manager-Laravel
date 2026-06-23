@@ -54,36 +54,42 @@ class Responses extends Controller
    
     public function show(string $id)
     {
-        //
+        
     }
 
     public function edit(string $id)
     {
-        //
+        
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     public function destroy(string $id)
     {
-        //
+        
     }
 
     public function searchresponses(Request $request){
         $username = Auth::user()->name;
         // Get the search value from the request
-        $search = $request->input('search');
+        $search = $request->input('search-responses');        
 
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        $profile_image = $user->profile_image;       
+        $profile_image = $user->profile_image;
+        
+        // Search in the title and body columns from the posts table
+        $responses = Response::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->get();        
 
         $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();
 
-        return view('answers.search-responses', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
+        return view('answers.search-responses', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image', 'responses'));
     }
 }
