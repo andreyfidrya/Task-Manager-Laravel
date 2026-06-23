@@ -48,6 +48,7 @@ class Responses extends Controller
         $username = Auth::user()->name;
         $data = $request->only(['title', 'description']);
         Response::create($data);
+        
         return redirect()->route('responses.index');
     }
    
@@ -69,5 +70,20 @@ class Responses extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function searchresponses(Request $request){
+        $username = Auth::user()->name;
+        // Get the search value from the request
+        $search = $request->input('search');
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;       
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('answers.search-responses', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image'));
     }
 }

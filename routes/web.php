@@ -104,7 +104,9 @@ Route::middleware('auth')->group(function(){
     
     Route::controller(SearchController::class)->group(function(){
         Route::get('autocomplete', 'autocomplete')->name('autocomplete');
-    }); 
+    });
+    
+    Route::get('/search-responses/', [ ResponseController::class, 'searchresponses' ])->name('search-responses');
     
     Route::resource('notifications', NotificationController::class);
     Route::delete('/delete-all-notifications', [NotificationController::class, 'removeMultiNotifications']);
