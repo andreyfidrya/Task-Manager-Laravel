@@ -17,7 +17,7 @@ class Responses extends Controller
     {
         $username = Auth::user()->name; 
         $answer = Answer::first();
-        $responses = Response::orderBy('title')->get();          
+        $responses = Response::orderBy('title')->paginate(10);          
         
         $user_id = Auth::user()->id;
         $user = User::find($user_id);

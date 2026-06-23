@@ -6,8 +6,8 @@ unread_notifications_number={{$unread_notifications_number}}
 :unread_notifications="$unread_notifications">
 
 <p>
-    <a href="{{ route('responses.create') }}" class="btn btn-success">Add a Response</a>
-  </p> 
+  <a href="{{ route('responses.create') }}" class="btn btn-success">Add a Response</a>
+</p> 
   <table class="table">
   <thead>
     <tr>
@@ -36,5 +36,9 @@ unread_notifications_number={{$unread_notifications_number}}
   
 </tbody>
 </table>
+
+<div class="mt-3">
+  {{ $responses->links() }}
+</div>
 
 </x-layouts.porto>
