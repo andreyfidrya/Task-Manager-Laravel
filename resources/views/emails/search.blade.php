@@ -62,20 +62,20 @@ unread_notifications_number={{$unread_notifications_number}}
   </thead>
   <tbody>  
   @foreach($samples as $sample) 
-<tr>
-      <td><a class="nav-link" href="{{ $sample->url }}">{{ $sample->url }}</a></td>
-      <td>{{ $sample->title }}</td>      
-      <td>
-      <a href="{{ route('samples.edit', [ $sample->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
-      <form method="post" action="{{ route('samples.destroy', [ $sample->id ]) }}">
-          @csrf
-          @method('DELETE')
-          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $sample->title }} sample')">Delete</button>
-      </form>
-      </td>     
-</tr>
-@endforeach
-</tbody>
+    <tr>
+          <td><a class="nav-link" href="{{ $sample->url }}">{{ $sample->url }}</a></td>
+          <td>{{ $sample->title }}</td>      
+          <td>
+          <a href="{{ route('samples.edit', [ $sample->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
+          <form method="post" action="{{ route('samples.destroy', [ $sample->id ]) }}">
+              @csrf
+              @method('DELETE')
+              <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $sample->title }} sample')">Delete</button>
+          </form>
+          </td>     
+    </tr>
+  @endforeach
+  </tbody>
 </table>
 @else 
     <div>
