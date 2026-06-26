@@ -21,7 +21,7 @@ unread_notifications_number={{$unread_notifications_number}}
 @foreach($responses as $response)  
 <tr>
       <td>{{ $response->title }}</td>
-      <td>{{ $response->description }}</td>      
+      <td>{!! $response->description !!}</td>      
       <td>
       <a href="{{ route('responses.show', [ $response->id ]) }}" class="btn btn-info">View</a>
       <a href="{{ route('responses.edit', [ $response->id ]) }}" class="btn btn-sm btn-primary">Edit</a>

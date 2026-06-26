@@ -18,12 +18,12 @@
     </div>
 @endforeach
 
-<input
+<textarea
     type="text"
     name="maintext"
-    class="form-control"
-    value="{{ old('maintext', $answer->maintext) }}"
->
+    id="editor"
+    class="form-control"    
+>{{ old('maintext', $answer->maintext) }}</textarea>
 
 @foreach($categories_after_main_text as $category)
     <div class="mb-3">

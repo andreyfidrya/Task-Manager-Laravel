@@ -17,7 +17,7 @@ unread_notifications_number={{$unread_notifications_number}}
 @endif
 
 @if(!empty($answer->maintext))
-    {{ $answer->maintext }}<p>
+    {!! $answer->maintext !!}<p>
 @endif
 
 @if(!empty($answer->addquestion))

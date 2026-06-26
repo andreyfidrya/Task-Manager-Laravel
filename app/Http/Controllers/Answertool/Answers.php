@@ -45,8 +45,8 @@ class Answers extends Controller
         $unread_notifications = Notification::with('user')->where('is_read',0)->get();               
         
         $categories_before_main_text = Category::where('beforemaintext', 1)->get();
-        $categories_after_main_text = Category::where('beforemaintext', 0)->get();        
-
+        $categories_after_main_text = Category::where('beforemaintext', 0)->get();    
+        
         return view('answers.edit', compact('unread_notifications', 'unread_notifications_number', 'username', 'profile_image', 'categories_before_main_text', 'categories_after_main_text', 'answer'));
     }
 
