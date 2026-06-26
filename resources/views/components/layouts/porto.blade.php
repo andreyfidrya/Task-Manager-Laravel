@@ -129,6 +129,30 @@
 						</div>
 					</form>
 
+					<script type="text/javascript">					
+				
+					$(document).ready(function () {
+
+						var path = "{{ route('autocomplete') }}";
+
+						$("#search-responses").autocomplete({
+							source: function(request, response) {
+								$.ajax({
+									url: path,
+									data: {
+										search: request.term
+									},
+									success: function(data) {
+										response(data);
+									}
+								});
+							}
+						});
+
+					});
+  
+					</script>
+
 					<span class="separator"></span>
 
 					<ul class="notifications">
