@@ -59,12 +59,25 @@ class Responses extends Controller
 
     public function edit(string $id)
     {
-        
+        $username = Auth::user()->name;
+        $response = Response::findOrFail($id);
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('answers.responses.edit', compact('unread_notifications', 'unread_notifications_number', 'response', 'username', 'profile_image'));
     }
 
     public function update(Request $request, string $id)
     {
-        
+        $response = Response::findOrFail($id);
+        $data = $request->only(['title', 'description']);
+        $response->update($data);
+        return redirect()->route('responses.index');
     }
 
     public function destroy(string $id)

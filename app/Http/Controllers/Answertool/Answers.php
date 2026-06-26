@@ -58,9 +58,7 @@ class Answers extends Controller
         $maintext = $request->maintext; 
         $addquestion = $request->addquestion; 
         
-        $answer = Answer::first();
-
-        // dd($request->all());
+        $answer = Answer::first();        
 
         $answer->update([
             'template' => $template,
