@@ -122,7 +122,7 @@
   
 					</script>
 
-					<form action="#" method="GET" class="search nav-form">
+					<form action="{{ route('search-responses') }}" method="GET" class="search nav-form">
 						<div class="input-group" style="width: 200px;">
 							<input type="text" class="form-control" name="search-responses" id="search-responses" placeholder="Search for responses">
 							<button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
