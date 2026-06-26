@@ -82,7 +82,9 @@ class Responses extends Controller
 
     public function destroy(string $id)
     {
-        
+        $response = Response::findOrFail($id);
+        $response->delete();
+        return redirect()->route('responses.index');
     }
 
     public function searchresponses(Request $request){      

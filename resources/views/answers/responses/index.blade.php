@@ -28,7 +28,7 @@ unread_notifications_number={{$unread_notifications_number}}
       <form method="post" action="{{ route('responses.destroy', [ $response->id ]) }}">
           @csrf
           @method('DELETE')
-          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $response->title }} response')">Delete</button>
+          <button class="btn btn-sm btn-danger" onClick="return confirm('Do you really want to delete the {{ $response->title }} response?')">Delete</button>
       </form>
       </td>     
 </tr>
