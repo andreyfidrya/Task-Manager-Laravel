@@ -133,7 +133,7 @@
 				
 					$(document).ready(function () {
 
-						var path = "{{ route('autocomplete') }}";
+						var path = "{{ route('autocomplete-responses') }}";
 
 						$("#search-responses").autocomplete({
 							source: function(request, response) {
