@@ -98,28 +98,26 @@
 						</div>
 					</form>
 
-					<script type="text/javascript">
-					var path = "{{ route('autocomplete') }}";
+					<script type="text/javascript">					
 				
-					$( "#search" ).autocomplete({
-						source: function( request, response ) {
-						$.ajax({
-							url: path,
-							type: 'GET',
-							dataType: "json",
-							data: {
-							search: request.term
-							},
-							success: function( data ) {
-							response( data );
+					$(document).ready(function () {
+
+						var path = "{{ route('autocomplete') }}";
+
+						$("#search").autocomplete({
+							source: function(request, response) {
+								$.ajax({
+									url: path,
+									data: {
+										search: request.term
+									},
+									success: function(data) {
+										response(data);
+									}
+								});
 							}
 						});
-						},
-						select: function (event, ui) {
-						$('#search').val(ui.item.label);
-						console.log(ui.item); 
-						return false;
-						}
+
 					});
   
 					</script>
