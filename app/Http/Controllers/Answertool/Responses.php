@@ -54,7 +54,18 @@ class Responses extends Controller
    
     public function show(string $id)
     {
-        
+        $username = Auth::user()->name;
+        $response = Response::findOrFail($id);
+        $answer = Answer::first();
+
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $profile_image = $user->profile_image;
+
+        $unread_notifications_number = Notification::with('user')->where('is_read',0)->count();
+        $unread_notifications = Notification::with('user')->where('is_read',0)->get();
+
+        return view('answers.responses.show', compact('unread_notifications', 'unread_notifications_number', 'response', 'answer', 'username', 'profile_image'));
     }
 
     public function edit(string $id)
