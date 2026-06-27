@@ -1,4 +1,4 @@
-<x-layouts.porto title="Search" 
+<x-layouts.porto title="Search for responses" 
 header="Search" 
 username={{$username}} 
 profile_image={{$profile_image}} 
