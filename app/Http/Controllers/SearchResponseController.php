@@ -9,9 +9,13 @@ class SearchResponseController extends Controller
 {
     public function autocomplete(Request $request)
     {
-        $data = Response::select("title as value", "id")
-                    ->where('title', 'LIKE', '%'. $request->get('search'). '%')
-                    ->get();
+        $search = $request->get('search');
+
+        $data = Response::select('title as value', 'id')
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->get();
+
         return response()->json($data);
     }
 }

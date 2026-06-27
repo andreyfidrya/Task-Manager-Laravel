@@ -12,12 +12,14 @@ use App\Http\Controllers\Answertool\Categories as CategoryController;
 use App\Http\Controllers\Answertool\Sentences as SentenceController;
 use App\Http\Controllers\Answertool\Scripts as ScriptController;
 use App\Http\Controllers\Answertool\Responses as ResponseController;
+use App\Http\Controllers\SearchResponseController;
 use App\Http\Controllers\Users as UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Taskmanager\Spendings as SpendingController;
 use App\Http\Controllers\Taskmanager\Annualearnings as AnnualearningController;
 use App\Http\Controllers\Notifications\NotificationController;
 use App\Http\Controllers\Auth\Session;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -107,6 +109,10 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::get('/search-responses/', [ ResponseController::class, 'searchresponses' ])->name('search-responses');
+
+    Route::controller(SearchResponseController::class)->group(function(){
+        Route::get('autocomplete-responses', 'autocomplete')->name('autocomplete-responses');
+    });
 
     Route::resource('notifications', NotificationController::class);
     Route::delete('/delete-all-notifications', [NotificationController::class, 'removeMultiNotifications']);
