@@ -13,7 +13,7 @@ unread_notifications_number={{$unread_notifications_number}}
 @endif
 
 @if(!empty($answer->apologize))
-    {{ $answer->apologize }}<p>
+    <p>{{ $answer->apologize }}<p>
 @endif
 
 {!! $response->description !!}<p>
