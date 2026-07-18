@@ -23,6 +23,22 @@ unread_notifications_number={{$unread_notifications_number}}
 @if(!empty($answer->addquestion))
     {{ $answer->addquestion }}<p>
 @endif
-    
-<a href="{{ route('answers.edit', [ $answer->id ]) }}" class="btn btn-primary">Customize</a>    
+
+<div class="d-flex gap-2">
+    <a href="{{ route('answers.edit', [ $answer->id ]) }}" class="btn btn-primary">
+        Customize
+    </a>
+    <form action="{{ route('answers.empty', $answer) }}" method="POST" class="d-inline">
+        @csrf
+        @method('PATCH')
+
+        <button
+            type="submit"
+            class="btn btn-info"
+            onclick="return confirm('Очистить шаблон?')"
+        >
+            Empty
+        </button>
+    </form>
+</div>    
 </x-layouts.porto>

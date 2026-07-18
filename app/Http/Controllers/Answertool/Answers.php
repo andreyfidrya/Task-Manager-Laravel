@@ -70,4 +70,18 @@ class Answers extends Controller
 
         return redirect()->route('answers.index');
     }
+
+    public function empty(Answer $answer)
+{
+        $answer->update([
+            'waiting'    => null,
+            'apologize'  => null,
+            'maintext'   => null,
+            'addquestion'=> null,
+        ]);
+
+        return redirect()
+            ->route('answers.index', $answer)
+            ->with('success', 'Шаблон очищен.');
+    }
 }
