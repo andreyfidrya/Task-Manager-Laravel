@@ -5,8 +5,8 @@ profile_image={{$profile_image}}
 unread_notifications_number={{$unread_notifications_number}} 
 :unread_notifications="$unread_notifications">
     
-        <h1>{{ $answer->template }}:</h1>
-        <hr>
+    <h1>{{ $answer->template }}:</h1>
+    <hr>
     <div id="answer-text">
         @if(!empty($answer->waiting))
             {{ $answer->waiting }}<p>
