@@ -18,9 +18,16 @@ unread_notifications_number={{$unread_notifications_number}}
 
         @foreach($responses as $response)  
         <tr>
-            <td>{{ $response->title }}</td>
-            <td>{!! $response->description !!}</td>      
+            <td>{{ $response->title }}</td>            
+            <td>{!! $response->description !!}</td>                
             <td>
+            <button
+            type="button"
+            class="btn btn-success copy-answer"
+            data-answer="{{ strip_tags($response->description) }}"
+            >
+                Copy
+            </button>
             <a href="{{ route('responses.show', [ $response->id ]) }}" class="btn btn-info">View</a>
             <a href="{{ route('responses.edit', [ $response->id ]) }}" class="btn btn-sm btn-primary">Edit</a>
             <form method="post" action="{{ route('responses.destroy', [ $response->id ]) }}">
@@ -39,5 +46,27 @@ unread_notifications_number={{$unread_notifications_number}}
         <h3>No responses have been found</h3>
     </div>
     @endif
+
+    <script>
+        document.querySelectorAll('.copy-answer').forEach(button => {
+
+            button.addEventListener('click', function () {
+
+                const answer = this.dataset.answer;
+
+                navigator.clipboard.writeText(answer).then(() => {
+
+                    this.textContent = 'Copied!';
+
+                    setTimeout(() => {
+                        this.textContent = 'Copy';
+                    }, 1500);
+
+                });
+
+            });
+
+        });
+    </script>
 
 </x-layouts.porto>
